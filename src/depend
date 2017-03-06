@@ -1,0 +1,2 @@
+Executor.o: Executor.c Executor.h
+main.o: main.c
