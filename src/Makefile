@@ -14,6 +14,7 @@ EXEC=../main
 all: $(EXEC)
 
 objects/%.o: %.c
+	@mkdir -p objects
 	@echo -e "\033[1;33m=== COMPILING $*.c INTO $@ ===\033[0m"
 	$(CC) $(CFLAGS) -c -o $@ $<
 	@echo
