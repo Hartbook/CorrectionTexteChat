@@ -1,11 +1,11 @@
-CC=gcc
+CC=g++
 RM=rm -f
 
-CFLAGS=-W -Wall -std=c99 -g3
-LFLAGS=-lpthread
+CFLAGS=-W -Wall -std=c++11 -g3
+LFLAGS=-pthread
 
-SOURCES=$(wildcard *.c)
-HEADERS=$(wildcard *.h)
+SOURCES=$(wildcard *.cpp)
+HEADERS=$(wildcard *.hpp)
 BASENAMES=$(basename $(SOURCES)) 
 OBJECTS=$(addsuffix .o , $(BASENAMES))
 OBJECTSLOC=$(addprefix objects/, $(addsuffix .o, $(BASENAMES)))
@@ -13,9 +13,9 @@ EXEC=../main
 
 all: $(EXEC)
 
-objects/%.o: %.c
+objects/%.o: %.cpp
 	@mkdir -p objects
-	@echo -e "\033[1;33m=== COMPILING $*.c INTO $@ ===\033[0m"
+	@echo -e "\033[1;33m=== COMPILING $*.cpp INTO $@ ===\033[0m"
 	$(CC) $(CFLAGS) -c -o $@ $<
 	@echo
 
@@ -37,6 +37,6 @@ display:
 
 depend: $(SOURCES) $(HEADERS)
 	@echo -e "\033[1;34m=== UPDATING DEPENDENCIES ===\033[0m"
-	gcc $(CFLAGS) -MM $(SOURCES) | tee depend
+	$(CC) $(CFLAGS) -MM $(SOURCES) | tee depend
 
 -include depend

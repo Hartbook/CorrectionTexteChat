@@ -1,2 +1,1 @@
-Executor.o: Executor.c Executor.h
-main.o: main.c
+main.o: main.cpp Executor.hpp
