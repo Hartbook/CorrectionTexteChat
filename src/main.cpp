@@ -3,15 +3,12 @@
 
 int main()
 {
-	int nbTimes = 1000*10;
+	int nbTimes = 1000;
 
-	Executor<void*, void*> executor(2);
-
-	std::vector<int> dawa;
+	Executor<void, void> executor(2);
 
 	for (int i = 0; i < nbTimes; i++)
-		executor.addTask([&](void*){printf("TG\n");dawa.push_back(1); dawa.pop_back(); return
-			nullptr;}, nullptr);
+		executor.addTask([&](){});
 
 	executor.run();
 
