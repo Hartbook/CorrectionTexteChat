@@ -1,8 +1,9 @@
-Tokenizer.o: Tokenizer.cpp Tokenizer.hpp Trie.hpp util.hpp
+Tokenizer.o: Tokenizer.cpp Tokenizer.hpp File.hpp Trie.hpp util.hpp
 main.o: main.cpp Database.hpp Lexicon.hpp GramsCounter.hpp
 GramsCounter.o: GramsCounter.cpp GramsCounter.hpp
 Trie.o: Trie.cpp Trie.hpp util.hpp colors.hpp
+File.o: File.cpp File.hpp
 Lexicon.o: Lexicon.cpp Lexicon.hpp
 Database.o: Database.cpp Database.hpp Lexicon.hpp GramsCounter.hpp \
- util.hpp Tokenizer.hpp Trie.hpp
+ File.hpp Tokenizer.hpp Trie.hpp
 util.o: util.cpp util.hpp

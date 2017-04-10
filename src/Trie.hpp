@@ -23,7 +23,8 @@ class Node
 class Trie
 {
 	private :
-
+	
+	static constexpr int maxNbBackups = 128;
 	bool printUnknownWords;
 
 	std::vector< std::unique_ptr<Node> > nodes;
@@ -33,14 +34,14 @@ class Trie
 	int codeMin;
 	int codeMax;
 
-	char buffer[128];
+	char buffer[maxNbBackups];
 	int bufferIndex;
-	char charToPutBack[128];
+	char charToPutBack[maxNbBackups];
 	int nbCharToPutBack;
 
-	Node * backups[128];
-	int backupsIndexes[128];
-	char backupsCurrentLetters[128];
+	Node * backups[maxNbBackups];
+	int backupsIndexes[maxNbBackups];
+	char backupsCurrentLetters[maxNbBackups];
 	int nbBackups;
 
 	public :

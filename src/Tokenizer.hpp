@@ -2,6 +2,7 @@
 #define TOKENIZER__H
 
 #include <cstdio>
+#include "File.hpp"
 #include "Trie.hpp"
 
 class Tokenizer
@@ -15,7 +16,7 @@ class Tokenizer
 
 	Tokenizer(bool printUnknownWords = false);
 	void readLexicon(FILE * lexicon);
-	unsigned int tokenize(FILE * corpus);
+	unsigned int tokenize(File & corpus);
 	std::string getCurrentWord();
 };
 

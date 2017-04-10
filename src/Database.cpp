@@ -1,5 +1,5 @@
 #include "Database.hpp"
-#include "util.hpp"
+#include "File.hpp"
 #include "Tokenizer.hpp"
 #include <cstdio>
 
@@ -10,33 +10,28 @@ Database::Database()
 
 void Database::buildFromCorpus(std::string correctName, std::string incorrectName)
 {
-	FILE * correct = readFile(correctName);
-	FILE * incorrect = readFile(incorrectName);
+	File correct(correctName, "r");
+	File incorrect(incorrectName, "r");
 
-	char c;
-	Tokenizer * tokenizer = new Tokenizer;
+	Tokenizer * tokenizer1 = new Tokenizer;
+	Tokenizer * tokenizer2 = new Tokenizer;
 
-	while (c = fgetc(correct) != EOF)
+	while (!correct.isFinished())
 	{
-		ungetc(c, correct);
-		tokenizer->tokenize(correct);
-		correctLexicon.addWord(tokenizer->getCurrentWord());
+		tokenizer1->tokenize(correct);
+		correctLexicon.addWord(tokenizer1->getCurrentWord());
 	}
+
+	for (unsigned int i = 0; i < 20; i++)
+		printf("%d <%s>\n", i, correctLexicon.getString(i).c_str());
 	
-	fclose(correct);
-
-	delete tokenizer;
-	tokenizer = new Tokenizer;
-
-	while (c = fgetc(incorrect) != EOF)
+	while (!incorrect.isFinished())
 	{
-		ungetc(c, incorrect);
-		tokenizer->tokenize(incorrect);
-		incorrectLexicon.addWord(tokenizer->getCurrentWord());
+		tokenizer2->tokenize(incorrect);
+		incorrectLexicon.addWord(tokenizer2->getCurrentWord());
 	}
 
-	fclose(incorrect);
-
-	delete tokenizer;
+	delete tokenizer1;
+	delete tokenizer2;
 }
 

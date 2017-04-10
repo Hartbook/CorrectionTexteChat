@@ -18,15 +18,11 @@ void Tokenizer::readLexicon(FILE * lexicon)
 	}
 }
 
-unsigned int Tokenizer::tokenize(FILE * corpus)
+unsigned int Tokenizer::tokenize(File & corpus)
 {
-	static auto readUntilSeparator = [&]() {
-		char character;
-
-		while (!isSeparator(character = fgetc(corpus)))
-			trie.addToBuffer(character);
-
-		ungetc(character, corpus);
+	static auto ignoreSeparators = [&]() {
+		while (!corpus.isFinished() && isSeparator(corpus.peek()))
+			corpus.getChar();
 	};
 
 	static auto putBackCharacters = [&]() {
@@ -34,14 +30,18 @@ unsigned int Tokenizer::tokenize(FILE * corpus)
 		int nbCharToPutBack = trie.getNbCharToPutBack();
 
 		for (int i = nbCharToPutBack-1; i >= 0; i--)
-			ungetc(charToPutBack[i], corpus);
+			corpus.ungetChar(charToPutBack[i]);
 	};
 
-	char character;
-	int code = 1;
+	int code = -1;
 
-	while ((character = fgetc(corpus)) != EOF && code != 0)
+	ignoreSeparators();
+
+	while (!corpus.isFinished() && code != 0)
+	{
+		char character = corpus.getChar();
 		code = trie.processChar(character);
+	}
 
 	if (trie.getNbBackups())
 		do

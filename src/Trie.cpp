@@ -22,6 +22,8 @@ void Node::print(bool endLine = false)
 
 Trie::Trie(bool printUnknownWords)
 {
+	resetState();
+
 	this->printUnknownWords = printUnknownWords;
 	codeMin = -1;
 	codeMax = -1;

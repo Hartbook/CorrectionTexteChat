@@ -43,7 +43,7 @@ void Lexicon::addWord(std::string word)
 {
 	word = normalize(word);
 
-	if (lexicon.count(word))
+	if (lexicon.count(word) || word.empty())
 		return;
 
 	lexicon[word] = nextToken++;

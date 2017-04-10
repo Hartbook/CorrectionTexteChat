@@ -18,6 +18,9 @@ bool isNum(char c)
 
 bool isSeparator(char c)
 {
+	if (c == '-')
+		return false;
+
 	return (c == EOF) || (!isAlpha(c) && !isNum(c) && (c >= 0));
 }
 
@@ -32,41 +35,5 @@ bool containsLetter(char * buffer)
 	}
 
 	return false;
-}
-
-FILE * readFile(const char * filename)
-{
-	FILE * file = fopen(filename, "r");
-
-	if (!file)
-	{
-		printf("Can't open file %s\n", filename);
-		exit(1);
-	}
-
-	return file;
-}
-
-FILE * writeFile(const char * filename)
-{
-	FILE * file = fopen(filename, "w");
-
-	if (!file)
-	{
-		printf("Can't open file %s\n", filename);
-		exit(1);
-	}
-
-	return file;
-}
-
-FILE * readFile(const std::string & filename)
-{
-	return readFile(filename.c_str());
-}
-
-FILE * writeFile(const std::string & filename)
-{
-	return writeFile(filename.c_str());
 }
 
