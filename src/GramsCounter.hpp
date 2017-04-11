@@ -1,47 +1,64 @@
 #ifndef GRAMSCOUNTER__H
 #define GRAMSCOUNTER__H
 
+#include <unordered_map>
 #include <vector>
+
+class Gram;
+class GramsCounter;
+
+namespace std {struct hash<Gram>;}
+
+class Gram
+{
+	private :
+
+	std::vector<unsigned int> tokens;
+
+	Gram(unsigned int t1);
+	Gram(unsigned int t1, unsigned int t2);
+	Gram(unsigned int t1, unsigned int t2, unsigned int t3);
+
+	public :
+
+	bool operator==(const Gram & other) const;
+	
+	friend class std::hash<Gram>;
+	friend class GramsCounter;
+};
+
+namespace std
+{
+	template <>
+	struct hash<Gram>
+	{
+		size_t operator()(const Gram & g) const
+		{
+    		static hash<unsigned int> hasher;
+
+			size_t seed = 0;
+
+			for (auto it : g.tokens)
+	    		seed ^= hasher(it) + 0x9e3779b9 + (seed<<6) + (seed>>2);
+
+			return seed;
+		}
+	};
+}
 
 class GramsCounter
 {
 	private :
 
-	class Gram
-	{
-		protected :
-
-		unsigned int nbOcc;
-		std::vector<unsigned int> tokens;
-		Gram();
-
-		public :
-
-		void countUp();
-		bool match(std::vector<unsigned int> & model);
-		unsigned int getNbOcc();
-	};
-
-	std::vector<Gram> monograms;
-	std::vector<Gram> bigrams;
-	std::vector<Gram> trigrams;
+	std::unordered_map<Gram, unsigned int> nbOcc;
 
 	public :
 
-	class Monogram : Gram
-	{
-		Monogram(unsigned int token);
-	};
+	void addGram(unsigned int t1);
+	void addGram(unsigned int t1, unsigned int t2);
+	void addGram(unsigned int t1, unsigned int t2, unsigned int t3);
 
-	class Bigram : Gram
-	{
-		Bigram(unsigned int t1, unsigned int t2);
-	};
-
-	class Trigram : Gram
-	{
-		Trigram(unsigned int t1, unsigned int t2, unsigned int t3);
-	};
+	void print(FILE * output);
 };
 
 #endif

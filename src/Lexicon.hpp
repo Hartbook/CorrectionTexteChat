@@ -3,12 +3,12 @@
 
 #include <string>
 #include <unordered_map>
+#include "File.hpp"
 
 class Lexicon
 {
 	private :
 
-	std::string filename;
 	std::unordered_map<std::string, unsigned int> lexicon;
 	unsigned int nextToken;
 
@@ -21,7 +21,8 @@ class Lexicon
 	Lexicon();
 	unsigned int getToken(std::string & s);
 	std::string getString(unsigned int token);
-	void addWord(std::string word);
+	unsigned int addWord(std::string word);
+	void print(FILE * output);
 };
 
 #endif

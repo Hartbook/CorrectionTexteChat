@@ -7,10 +7,12 @@
 
 class File
 {
-	public :
+	private :
 
 	FILE * file;
 	std::stack<char> buffer;
+	bool endHasBeenReached;
+	std::string filename;
 
 	public :
 
@@ -20,6 +22,8 @@ class File
 	bool isFinished();
 	char getChar();
 	void ungetChar(char c);
+	FILE * getDescriptor();
+	std::string getName();
 };
 
 #endif

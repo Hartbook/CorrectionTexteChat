@@ -1,37 +1,71 @@
 #include "Database.hpp"
 #include "File.hpp"
 #include "Tokenizer.hpp"
+#include "util.hpp"
 #include <cstdio>
-
-Database::Database()
-{
-
-}
 
 void Database::buildFromCorpus(std::string correctName, std::string incorrectName)
 {
 	File correct(correctName, "r");
 	File incorrect(incorrectName, "r");
 
-	Tokenizer * tokenizer1 = new Tokenizer;
-	Tokenizer * tokenizer2 = new Tokenizer;
+	buildLexiconFromCorpus(correctLexicon, correct, true);
+	buildLexiconFromCorpus(incorrectLexicon, incorrect, false);
+}
 
-	while (!correct.isFinished())
+void Database::buildLexiconFromCorpus(Lexicon & lexicon, File & corpus, bool countGrams)
+{
+	std::string word;
+
+	auto ignoreSeparators = [&]()
 	{
-		tokenizer1->tokenize(correct);
-		correctLexicon.addWord(tokenizer1->getCurrentWord());
+		while (!corpus.isFinished() && isSeparator(corpus.peek()))
+			corpus.getChar();
+	};
+
+	auto readWord = [&]()
+	{
+		while (!corpus.isFinished() && !isSeparator(corpus.peek()))
+			word.push_back(corpus.getChar());
+	};
+
+	auto addGrams = [&](unsigned int token)
+	{
+		static unsigned int t1 = 0;
+		static unsigned int t2 = 0;
+		static unsigned int t3 = 0;
+
+		t1 = t2;
+		t2 = t3;
+		t3 = token;
+
+		if (!t3)
+			return;
+		gramsCounter.addGram(t3);
+		if (!t2)
+			return;
+		gramsCounter.addGram(t2, t3);
+		if (!t1)
+			return;
+		gramsCounter.addGram(t1, t2, t3);
+	};
+
+	while (!corpus.isFinished())
+	{
+		ignoreSeparators();
+		readWord();
+		unsigned int token = lexicon.addWord(word);
+
+		if (countGrams)
+			addGrams(token);
+
+		word.clear();
 	}
 
-	for (unsigned int i = 0; i < 20; i++)
-		printf("%d <%s>\n", i, correctLexicon.getString(i).c_str());
-	
-	while (!incorrect.isFinished())
+	if (countGrams)
 	{
-		tokenizer2->tokenize(incorrect);
-		incorrectLexicon.addWord(tokenizer2->getCurrentWord());
+		lexicon.print(stdout);
+		gramsCounter.print(stdout);
 	}
-
-	delete tokenizer1;
-	delete tokenizer2;
 }
 

@@ -5,14 +5,24 @@ char File::peek()
 	if (!buffer.empty())
 		return buffer.top();
 
+	if (endHasBeenReached)
+		return EOF;
+
 	char c = fgetc(file);
-	ungetc(c, file);
+
+	if (c == EOF)
+		endHasBeenReached = true;
+	else
+		ungetc(c, file);
 
 	return c;
 }
 
 File::File(std::string & filename, std::string mode)
 {
+	this->filename = filename;
+	endHasBeenReached = false;
+
 	if (mode != "r" && mode != "w")
 	{
 		printf("\"%s\" is an invalid mode when opening a file\n", mode.c_str());
@@ -54,5 +64,15 @@ char File::getChar()
 void File::ungetChar(char c)
 {
 	buffer.push(c);
+}
+
+FILE * File::getDescriptor()
+{
+	return file;
+}
+
+std::string File::getName()
+{
+	return filename;
 }
 

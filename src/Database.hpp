@@ -13,9 +13,10 @@ class Database
 	Lexicon incorrectLexicon;
 	GramsCounter gramsCounter;
 
+	void buildLexiconFromCorpus(Lexicon & lexicon, File & corpus, bool countGrams);
+
 	public :
 
-	Database();
 	void buildFromCorpus(std::string correctName, std::string incorrectName);
 };
 
