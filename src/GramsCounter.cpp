@@ -1,4 +1,5 @@
 #include "GramsCounter.hpp"
+#include "Lexicon.hpp"
 
 Gram::Gram(unsigned int t1)
 {
@@ -44,10 +45,44 @@ void GramsCounter::print(FILE * output)
 	{
 		fprintf(output, "<");
 
-		for (unsigned int i = 0; i < it.first.tokens.size(); i++)
-			fprintf(output, "%03d%s", it.first.tokens[i], i == it.first.tokens.size()-1 ? ">" : ", ");
+		unsigned int padding = 50;
 
-		for (unsigned int i = 0; i < 30 - 5*it.first.tokens.size(); i++)
+		for (unsigned int i = 0; i < it.first.tokens.size(); i++)
+		{
+			unsigned int token = it.first.tokens[i];
+
+			fprintf(output, "%06d%s", token, i == it.first.tokens.size()-1 ? ">" : ", ");
+
+			padding -= 2;
+			padding -= 6;
+		}
+
+		for (unsigned int i = 0; i < padding; i++)
+			fprintf(output, " ");
+
+		fprintf(output, "%d\n", it.second);
+	}
+}
+
+void GramsCounter::print(FILE * output, Lexicon & lexicon)
+{
+	for (auto it : nbOcc)
+	{
+		fprintf(output, "<");
+
+		unsigned int padding = 50;
+
+		for (unsigned int i = 0; i < it.first.tokens.size(); i++)
+		{
+			std::string word = lexicon.getString(it.first.tokens[i]);
+
+			fprintf(output, "%s%s", word.c_str(), i == it.first.tokens.size()-1 ? ">" : ", ");
+
+			padding -= 2;
+			padding -= word.size();
+		}
+
+		for (unsigned int i = 0; i < padding; i++)
 			fprintf(output, " ");
 
 		fprintf(output, "%d\n", it.second);

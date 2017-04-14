@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <vector>
 
+class Lexicon;
 class Gram;
 class GramsCounter;
 
@@ -59,6 +60,7 @@ class GramsCounter
 	void addGram(unsigned int t1, unsigned int t2, unsigned int t3);
 
 	void print(FILE * output);
+	void print(FILE * output, Lexicon & lexicon);
 };
 
 #endif

@@ -1,5 +1,5 @@
 #include "util.hpp"
-#include <unordered_map>
+#include <algorithm>
 
 bool equalsChar(char a, char b)
 {
@@ -35,5 +35,20 @@ bool containsLetter(char * buffer)
 	}
 
 	return false;
+}
+
+std::string getFilenameFromPath(std::string s)
+{
+	std::string result;
+
+	while (!s.empty() && s[s.size()-1] != '/')
+	{
+		result.push_back(s[s.size()-1]);
+		s.pop_back();
+	}
+
+	std::reverse(result.begin(), result.end());
+
+	return result;
 }
 

@@ -6,11 +6,33 @@
 
 void Database::buildFromCorpus(std::string correctName, std::string incorrectName)
 {
-	File correct(correctName, "r");
-	File incorrect(incorrectName, "r");
+	static const char * pathToCorrectLexicon = "data/lexicon/corrige/";
+	static const char * pathToIncorrectLexicon = "data/lexicon/brut/";
+	static const char * pathToGramsCount = "data/gramsCount/";
 
-	buildLexiconFromCorpus(correctLexicon, correct, true);
-	buildLexiconFromCorpus(incorrectLexicon, incorrect, false);
+	File * correct = new File(correctName, "r");
+	File * incorrect = new File(incorrectName, "r");
+
+	buildLexiconFromCorpus(correctLexicon, *correct, true);
+	buildLexiconFromCorpus(incorrectLexicon, *incorrect, false);
+
+	delete correct;
+	delete incorrect;
+
+	std::string gramsFilename = pathToGramsCount + getFilenameFromPath(correctName) + ".grams";
+	correctName = pathToCorrectLexicon + getFilenameFromPath(correctName) + ".lexicon";
+	incorrectName = pathToIncorrectLexicon + getFilenameFromPath(incorrectName) + ".lexicon";
+
+	correct = new File(correctName, "w");
+	incorrect = new File(incorrectName, "w");
+	File gramsFile(gramsFilename, "w");
+
+	correctLexicon.print(correct->getDescriptor());
+	incorrectLexicon.print(incorrect->getDescriptor());
+	gramsCounter.print(gramsFile.getDescriptor());
+
+	delete correct;
+	delete incorrect;
 }
 
 void Database::buildLexiconFromCorpus(Lexicon & lexicon, File & corpus, bool countGrams)
@@ -60,12 +82,6 @@ void Database::buildLexiconFromCorpus(Lexicon & lexicon, File & corpus, bool cou
 			addGrams(token);
 
 		word.clear();
-	}
-
-	if (countGrams)
-	{
-		lexicon.print(stdout);
-		gramsCounter.print(stdout);
 	}
 }
 
