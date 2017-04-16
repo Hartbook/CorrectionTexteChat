@@ -18,6 +18,7 @@ class Lexicon
 	public :
 
 	static unsigned int unknown;
+	static std::string unknownStr;
 
 	Lexicon();
 	unsigned int getToken(std::string & s);

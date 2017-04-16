@@ -2,10 +2,14 @@
 #include "util.hpp"
 
 unsigned int Lexicon::unknown = 0;
+std::string Lexicon::unknownStr = "UNKNOWN";
 
 Lexicon::Lexicon()
 {
 	this->nextToken = 1;
+
+	tokens[unknownStr] = unknown;
+	strings[unknown] = &unknownStr;
 }
 
 std::string & Lexicon::normalize(std::string & s)
