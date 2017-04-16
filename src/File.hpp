@@ -16,14 +16,14 @@ class File
 
 	public :
 
-	File(std::string & filename, std::string mode);
+	File(const std::string & filename, const std::string & mode);
 	~File();
 	char peek();
 	bool isFinished();
 	char getChar();
 	void ungetChar(char c);
 	FILE * getDescriptor();
-	std::string getName();
+	const std::string & getName();
 };
 
 #endif

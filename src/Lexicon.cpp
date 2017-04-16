@@ -23,39 +23,45 @@ unsigned int Lexicon::getToken(std::string & s)
 {
 	s = normalize(s);
 
-	auto it = lexicon.find(s);
+	auto it = tokens.find(s);
 
-	if (it == lexicon.end())
+	if (it == tokens.end())
 		return unknown;
 
 	return it->second;
 }
 
-std::string Lexicon::getString(unsigned int token)
+const std::string & Lexicon::getString(unsigned int token)
 {
-	for (auto it : lexicon)
-		if (it.second == token)
-			return it.first;
+	if (!strings.count(token))
+		return *strings[unknown];
 
-	return "UNKNOWN";
+	return *strings[token];
 }
 
-unsigned int Lexicon::addWord(std::string word)
+unsigned int Lexicon::addWord(const std::string & word)
 {
-	word = normalize(word);
+	std::string normalized = word;
+	normalized = normalize(normalized);
 
-	if (word.empty())
+	if (normalized.empty())
 		return unknown;
 
-	if (lexicon.count(word))
-		return lexicon[word];
+	if (tokens.count(normalized))
+		return tokens[normalized];
 
-	return lexicon[word] = nextToken++;
+	unsigned int token = nextToken++;
+	tokens[normalized] = token;
+	
+	const auto & it = tokens.find(normalized);
+	strings[token] = &(it->first);
+
+	return token;
 }
 
 void Lexicon::print(FILE * output)
 {
-	for (auto it : lexicon)
+	for (auto it : tokens)
 		fprintf(output, "<%d>\t\t<%s>\n", it.second, it.first.c_str());
 }
 

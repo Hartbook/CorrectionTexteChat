@@ -39,6 +39,7 @@ namespace std
 
 			size_t seed = 0;
 
+			// From Boost
 			for (auto it : g.tokens)
 	    		seed ^= hasher(it) + 0x9e3779b9 + (seed<<6) + (seed>>2);
 

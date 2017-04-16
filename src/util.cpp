@@ -52,3 +52,18 @@ std::string getFilenameFromPath(std::string s)
 	return result;
 }
 
+unsigned int lengthPrinted(const std::string & s)
+{
+	float l = 0.0;
+
+	for (char c : s)
+	{
+		if (c > 0)
+			l += 1;
+		if (c < 0)
+			l += 0.5;
+	}
+
+	return (l - (int)l > 0) ? (unsigned int) l + 1 : (unsigned int) l;
+}
+

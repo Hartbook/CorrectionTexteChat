@@ -18,7 +18,7 @@ char File::peek()
 	return c;
 }
 
-File::File(std::string & filename, std::string mode)
+File::File(const std::string & filename, const std::string & mode)
 {
 	this->filename = filename;
 	endHasBeenReached = false;
@@ -71,7 +71,7 @@ FILE * File::getDescriptor()
 	return file;
 }
 
-std::string File::getName()
+const std::string & File::getName()
 {
 	return filename;
 }

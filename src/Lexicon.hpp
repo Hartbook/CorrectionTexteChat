@@ -9,7 +9,8 @@ class Lexicon
 {
 	private :
 
-	std::unordered_map<std::string, unsigned int> lexicon;
+	std::unordered_map<std::string, unsigned int> tokens;
+	std::unordered_map<unsigned int, const std::string *> strings;
 	unsigned int nextToken;
 
 	std::string & normalize(std::string & s);
@@ -20,8 +21,8 @@ class Lexicon
 
 	Lexicon();
 	unsigned int getToken(std::string & s);
-	std::string getString(unsigned int token);
-	unsigned int addWord(std::string word);
+	const std::string & getString(unsigned int token);
+	unsigned int addWord(const std::string & word);
 	void print(FILE * output);
 };
 

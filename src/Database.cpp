@@ -29,7 +29,7 @@ void Database::buildFromCorpus(std::string correctName, std::string incorrectNam
 
 	correctLexicon.print(correct->getDescriptor());
 	incorrectLexicon.print(incorrect->getDescriptor());
-	gramsCounter.print(gramsFile.getDescriptor());
+	gramsCounter.print(gramsFile.getDescriptor(), correctLexicon);
 
 	delete correct;
 	delete incorrect;

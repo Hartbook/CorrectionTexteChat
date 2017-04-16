@@ -1,5 +1,6 @@
 #include "GramsCounter.hpp"
 #include "Lexicon.hpp"
+#include "util.hpp"
 
 Gram::Gram(unsigned int t1)
 {
@@ -66,21 +67,26 @@ void GramsCounter::print(FILE * output)
 
 void GramsCounter::print(FILE * output, Lexicon & lexicon)
 {
+	static unsigned int maxPadding = 50;
+
 	for (auto it : nbOcc)
 	{
 		fprintf(output, "<");
 
-		unsigned int padding = 50;
+		unsigned int padding = maxPadding;
 
 		for (unsigned int i = 0; i < it.first.tokens.size(); i++)
 		{
-			std::string word = lexicon.getString(it.first.tokens[i]);
+			const auto & word = lexicon.getString(it.first.tokens[i]);
 
 			fprintf(output, "%s%s", word.c_str(), i == it.first.tokens.size()-1 ? ">" : ", ");
 
 			padding -= 2;
-			padding -= word.size();
+			padding -= lengthPrinted(word);
 		}
+
+		if (padding > maxPadding)
+			padding = 1;
 
 		for (unsigned int i = 0; i < padding; i++)
 			fprintf(output, " ");
