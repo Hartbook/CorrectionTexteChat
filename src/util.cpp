@@ -16,6 +16,15 @@ bool isNum(char c)
 	return c >= '0' && c <= '9';
 }
 
+bool isNum(const std::string & s)
+{
+	for (char c : s)
+		if (isAlpha(c))
+			return false;
+
+	return true;
+}
+
 bool isSeparator(char c)
 {
 	if (c == '-')
@@ -65,5 +74,29 @@ unsigned int lengthPrinted(const std::string & s)
 	}
 
 	return (l - (int)l > 0) ? (unsigned int) l + 1 : (unsigned int) l;
+}
+
+bool isUpper(char c)
+{
+	return c >= 'A' && c <= 'Z';
+}
+
+bool endSentence(char c)
+{
+	return c == '.' || c == '!' || c == '?' || c == '\n';
+}
+
+File * cleanCorpus(File * corpus, std::string path)
+{
+	std::string pathName = path + getFilenameFromPath(corpus->getName());
+
+	File * result = new File(pathName, "w");
+
+	while (!corpus->isFinished())
+		fprintf(result->getDescriptor(), "%c", corpus->getChar());
+
+	delete result;
+
+	return new File(pathName, "r");
 }
 

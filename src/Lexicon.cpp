@@ -1,15 +1,37 @@
 #include "Lexicon.hpp"
 #include "util.hpp"
 
-unsigned int Lexicon::unknown = 0;
-std::string Lexicon::unknownStr = "UNKNOWN";
+constexpr unsigned int Lexicon::unknown;
+constexpr unsigned int Lexicon::mail;
+constexpr unsigned int Lexicon::number;
+constexpr unsigned int Lexicon::properNoun;
+constexpr char Lexicon::unknownStr[];
+constexpr char Lexicon::mailStr[];
+constexpr char Lexicon::numberStr[];
+constexpr char Lexicon::properNounStr[];
 
 Lexicon::Lexicon()
 {
-	this->nextToken = 1;
+	static std::unordered_map<std::string, unsigned int> specials =
+	{
+		{unknownStr, unknown},
+		{mailStr, mail},
+		{numberStr, number},
+		{properNounStr, properNoun}
+	};
 
-	tokens[unknownStr] = unknown;
-	strings[unknown] = &unknownStr;
+	this->nextToken = unknown + specials.size();
+
+	initMaps(specials);
+}
+
+void Lexicon::initMaps(std::unordered_map<std::string, unsigned int> & specials)
+{
+	for (auto & it : specials)
+	{
+		tokens[it.first] = it.second;
+		strings[it.second] = &it.first;
+	}
 }
 
 std::string & Lexicon::normalize(std::string & s)
@@ -26,6 +48,9 @@ std::string & Lexicon::normalize(std::string & s)
 unsigned int Lexicon::getToken(std::string & s)
 {
 	s = normalize(s);
+
+	if (isNum(s))
+		return number;
 
 	auto it = tokens.find(s);
 
@@ -51,6 +76,9 @@ unsigned int Lexicon::addWord(const std::string & word)
 	if (normalized.empty())
 		return unknown;
 
+	if (isNum(normalized))
+		return number;
+
 	if (tokens.count(normalized))
 		return tokens[normalized];
 
@@ -66,6 +94,17 @@ unsigned int Lexicon::addWord(const std::string & word)
 void Lexicon::print(FILE * output)
 {
 	for (auto it : tokens)
-		fprintf(output, "<%d>\t\t<%s>\n", it.second, it.first.c_str());
+	{
+		unsigned int padding = 50;
+
+		fprintf(output, "<%06d>", it.second);
+
+		padding -= 6;
+
+		for (unsigned int i = 0; i < padding; i++)
+			fprintf(output, " ");
+
+		fprintf(output, "<%s>\n", it.first.c_str());
+	}
 }
 
