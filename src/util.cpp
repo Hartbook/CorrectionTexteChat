@@ -1,5 +1,6 @@
 #include "util.hpp"
 #include <algorithm>
+#include "Lexicon.hpp"
 
 bool equalsChar(char a, char b)
 {
@@ -92,11 +93,95 @@ File * cleanCorpus(File * corpus, std::string path)
 
 	File * result = new File(pathName, "w");
 
+	char ridden = 0;
+
 	while (!corpus->isFinished())
-		fprintf(result->getDescriptor(), "%c", corpus->getChar());
+	{
+		if (ridden == '\n' && corpus->peek() == '#')
+			corpus->readUntil('\n');
+
+		if (ridden == '\n' && corpus->peek() == '[')
+		{
+			corpus->readUntil(']');
+
+			corpus->readUntil(':');
+		}
+
+		if (corpus->isFinished())
+			break;
+
+		fprintf(result->getDescriptor(), "%c", ridden = corpus->getChar());
+	}
 
 	delete result;
 
 	return new File(pathName, "r");
+}
+
+unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
+{
+	unsigned int indexOfFirstSeparator = 0;
+	bool startsWithUpperCase = isUpper(corpus.peek());
+
+	while (!corpus.isFinished() && !isSeparator(corpus.peek()))
+	{
+		word.push_back(corpus.getChar());
+		indexOfFirstSeparator++;
+	}
+
+	if (corpus.peek() == ' ')
+	{
+		unsigned int token = Lexicon::unknown;
+
+		if (!sentenceBegin && startsWithUpperCase)
+			token = Lexicon::properNoun;
+
+		return token;
+	}
+
+	bool containsAtSign = false;
+
+	while (!corpus.isFinished() && corpus.peek() != ' ')
+	{
+		char c = corpus.getChar();
+
+		if (c == '@')
+			containsAtSign = true;
+
+		word.push_back(c);
+	}
+
+	if (containsAtSign)
+		return Lexicon::mail;
+
+	unsigned int nbToUnget = word.size() - indexOfFirstSeparator;
+
+	for (unsigned int i = 0; i < nbToUnget; i++)
+	{
+		corpus.ungetChar(word[word.size()-1]);
+		word.pop_back();
+	}
+
+	unsigned int token = Lexicon::unknown;
+
+	if (!sentenceBegin && startsWithUpperCase)
+		token = Lexicon::properNoun;
+
+	return token;
+}
+
+bool ignoreSeparators(File & corpus)
+{
+	bool sentenceBegin = false;
+
+	while (!corpus.isFinished() && isSeparator(corpus.peek()))
+	{
+		char c = corpus.getChar();
+
+		if (endSentence(c))
+			sentenceBegin = true;
+	}
+
+	return sentenceBegin;
 }
 

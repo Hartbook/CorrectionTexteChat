@@ -3,6 +3,7 @@
 
 #include <unordered_map>
 #include <vector>
+#include "File.hpp"
 
 class Lexicon;
 class Gram;
@@ -60,6 +61,7 @@ class GramsCounter
 	void addGram(unsigned int t1, unsigned int t2);
 	void addGram(unsigned int t1, unsigned int t2, unsigned int t3);
 
+	void read(File & input);
 	void print(FILE * output);
 	void print(FILE * output, Lexicon & lexicon);
 };

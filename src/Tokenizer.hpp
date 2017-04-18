@@ -1,23 +1,19 @@
 #ifndef TOKENIZER__H
 #define TOKENIZER__H
 
-#include <cstdio>
+#include "Lexicon.hpp"
 #include "File.hpp"
-#include "Trie.hpp"
 
 class Tokenizer
 {
 	private :
 
-	Trie trie;
-	std::string currentWord;
+	Lexicon & lexicon;
 
 	public :
 
-	Tokenizer(bool printUnknownWords = false);
-	void readLexicon(FILE * lexicon);
+	Tokenizer(Lexicon & lexicon);
 	unsigned int tokenize(File & corpus);
-	std::string getCurrentWord();
 };
 
 #endif

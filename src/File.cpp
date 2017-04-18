@@ -76,3 +76,8 @@ const std::string & File::getName()
 	return filename;
 }
 
+void File::readUntil(char c)
+{
+	while (!isFinished() && getChar() != c);
+}
+

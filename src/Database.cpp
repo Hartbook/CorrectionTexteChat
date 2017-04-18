@@ -4,6 +4,18 @@
 #include "util.hpp"
 #include <cstdio>
 
+void Database::readFromFiles(std::string incorrectFilename, std::string correctFilename,
+	std::string gramsFilename, std::string tableFilename)
+{
+	File incorrectLexiconFile(incorrectFilename, "r");
+	File correctLexiconFile(correctFilename, "r");
+	File gramsCountFile(gramsFilename, "r");
+
+	correctLexicon.read(correctLexiconFile);
+	incorrectLexicon.read(incorrectLexiconFile);
+	gramsCounter.read(gramsCountFile);
+}
+
 void Database::buildFromCorpus(std::string correctName, std::string incorrectName)
 {
 	static const char * pathToCorrectLexicon = "data/lexicon/corrige/";
@@ -36,7 +48,7 @@ void Database::buildFromCorpus(std::string correctName, std::string incorrectNam
 
 	correctLexicon.print(correct->getDescriptor());
 	incorrectLexicon.print(incorrect->getDescriptor());
-	gramsCounter.print(gramsFile.getDescriptor(), correctLexicon);
+	gramsCounter.print(gramsFile.getDescriptor());
 
 	delete correct;
 	delete incorrect;
@@ -46,76 +58,6 @@ void Database::buildLexiconFromCorpus(Lexicon & lexicon, File & corpus, bool cou
 {
 	std::string word;
 	bool firstWordOfSentence = true;
-
-	auto ignoreSeparators = [&]()
-	{
-		while (!corpus.isFinished() && isSeparator(corpus.peek()))
-		{
-			char c = corpus.getChar();
-
-			if (endSentence(c))
-				firstWordOfSentence = true;
-		}
-	};
-
-	auto readWord = [&]()
-	{
-		unsigned int indexOfFirstSeparator = 0;
-		bool startsWithUpperCase = isUpper(corpus.peek());
-
-		while (!corpus.isFinished() && !isSeparator(corpus.peek()))
-		{
-			word.push_back(corpus.getChar());
-			indexOfFirstSeparator++;
-		}
-
-		if (corpus.peek() == ' ')
-		{
-			unsigned int token = Lexicon::unknown;
-
-			if (!firstWordOfSentence && startsWithUpperCase)
-				token = Lexicon::properNoun;
-
-			firstWordOfSentence = false;
-
-			return token;
-		}
-
-		bool containsAtSign = false;
-
-		while (!corpus.isFinished() && corpus.peek() != ' ')
-		{
-			char c = corpus.getChar();
-
-			if (c == '@')
-				containsAtSign = true;
-
-			word.push_back(c);
-		}
-
-		if (containsAtSign)
-		{
-			firstWordOfSentence = false;
-			return Lexicon::mail;
-		}
-
-		unsigned int nbToUnget = word.size() - indexOfFirstSeparator;
-
-		for (unsigned int i = 0; i < nbToUnget; i++)
-		{
-			corpus.ungetChar(word[word.size()-1]);
-			word.pop_back();
-		}
-
-		unsigned int token = Lexicon::unknown;
-
-		if (!firstWordOfSentence && startsWithUpperCase)
-			token = Lexicon::properNoun;
-
-		firstWordOfSentence = false;
-
-		return token;
-	};
 
 	auto addGrams = [&](unsigned int token)
 	{
@@ -140,8 +82,8 @@ void Database::buildLexiconFromCorpus(Lexicon & lexicon, File & corpus, bool cou
 
 	while (!corpus.isFinished())
 	{
-		ignoreSeparators();
-		unsigned int token = readWord();
+		firstWordOfSentence = ignoreSeparators(corpus);
+		unsigned int token = readWord(corpus, word, firstWordOfSentence);
 
 		if (token == 0)
 			token = lexicon.addWord(word);

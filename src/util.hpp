@@ -13,5 +13,7 @@ bool isNum(const std::string & s);
 bool isUpper(char c);
 bool endSentence(char c);
 File * cleanCorpus(File * corpus, std::string path);
+bool ignoreSeparators(File & corpus);
+unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin);
 
 #endif

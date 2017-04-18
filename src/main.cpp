@@ -7,6 +7,7 @@ void printUsageAndExit(char * argv[])
 {
 	printf("USAGE : %s OPTION [args]\n", *argv);
 	printf("--buildDatabase correctCorpus incorrectCorpus\n");
+	printf("--correct incorrectLexicon correctLexicon gramsCount translationTable\n");
 
 	exit(1);
 }
@@ -14,6 +15,7 @@ void printUsageAndExit(char * argv[])
 enum Option
 {
 	BuildDatabase,
+	Correct,
 	None
 };
 
@@ -21,7 +23,8 @@ Option parseArgs(int argc, char * argv[])
 {
 	static std::unordered_map<std::string, Option> options =
 	{
-		{"--buildDatabase", Option::BuildDatabase}
+		{"--buildDatabase", Option::BuildDatabase},
+		{"--correct", Option::Correct}
 	};
 
 	Option result = Option::None;
@@ -60,6 +63,20 @@ int main(int argc, char * argv[])
 
 		Database database;
 		database.buildFromCorpus(correctFilename, incorrectFilename);
+	}
+	else if (option == Option::Correct)
+	{
+		if (argc != 6)
+			printUsageAndExit(argv);
+
+		std::string incorrectFilename = argv[2];
+		std::string correctFilename = argv[3];
+		std::string gramsFilename = argv[4];
+		std::string tableFilename = argv[5];
+
+		Database database;
+		database.readFromFiles(incorrectFilename, correctFilename,
+			gramsFilename, tableFilename);
 	}
 
 	return 0;

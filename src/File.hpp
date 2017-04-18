@@ -24,6 +24,7 @@ class File
 	void ungetChar(char c);
 	FILE * getDescriptor();
 	const std::string & getName();
+	void readUntil(char c);
 };
 
 #endif

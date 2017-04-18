@@ -18,6 +18,8 @@ class Database
 	public :
 
 	void buildFromCorpus(std::string correctName, std::string incorrectName);
+	void readFromFiles(std::string incorrectFilename, std::string correctFilename,
+		std::string gramsFilename, std::string tableFilename);
 };
 
 #endif

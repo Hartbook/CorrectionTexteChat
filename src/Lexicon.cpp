@@ -25,6 +25,15 @@ Lexicon::Lexicon()
 	initMaps(specials);
 }
 
+void Lexicon::read(File & input)
+{
+	static char word[1024];
+	unsigned int token;
+
+	while (fscanf(input.getDescriptor(), "<%u>%*[^<]<%[^>]>\n", &token, word) == 2)
+		addWord(word, token);
+}
+
 void Lexicon::initMaps(std::unordered_map<std::string, unsigned int> & specials)
 {
 	for (auto & it : specials)
@@ -89,6 +98,13 @@ unsigned int Lexicon::addWord(const std::string & word)
 	strings[token] = &(it->first);
 
 	return token;
+}
+
+void Lexicon::addWord(std::string word, unsigned int token)
+{
+	tokens[word] = token;
+	const auto & it = tokens.find(word);
+	strings[token] = &(it->first);
 }
 
 void Lexicon::print(FILE * output)

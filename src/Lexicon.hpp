@@ -14,6 +14,7 @@ class Lexicon
 	unsigned int nextToken;
 
 	std::string & normalize(std::string & s);
+	void addWord(std::string word, unsigned int token);
 
 	public :
 
@@ -35,6 +36,7 @@ class Lexicon
 	const std::string & getString(unsigned int token);
 	unsigned int addWord(const std::string & word);
 	void print(FILE * output);
+	void read(File & input);
 };
 
 #endif
