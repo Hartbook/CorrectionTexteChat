@@ -25,6 +25,7 @@ class File
 	FILE * getDescriptor();
 	const std::string & getName();
 	void readUntil(char c);
+	void rewind();
 };
 
 #endif

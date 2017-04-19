@@ -4,6 +4,7 @@
 #include <string>
 #include "Lexicon.hpp"
 #include "GramsCounter.hpp"
+#include "TranslationTable.hpp"
 
 class Database
 {
@@ -12,6 +13,7 @@ class Database
 	Lexicon correctLexicon;
 	Lexicon incorrectLexicon;
 	GramsCounter gramsCounter;
+	TranslationTable translationTable;
 
 	void buildLexiconFromCorpus(Lexicon & lexicon, File & corpus, bool countGrams);
 

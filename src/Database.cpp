@@ -21,6 +21,7 @@ void Database::buildFromCorpus(std::string correctName, std::string incorrectNam
 	static const char * pathToCorrectLexicon = "data/lexicon/corrige/";
 	static const char * pathToIncorrectLexicon = "data/lexicon/brut/";
 	static const char * pathToGramsCount = "data/gramsCount/";
+	static const char * pathToTranslationTable = "data/translationTable/";
 	static const char * pathToTemp = "data/corpus/temp/";
 
 	File * correctUncleaned = new File(correctName, "r");
@@ -35,13 +36,30 @@ void Database::buildFromCorpus(std::string correctName, std::string incorrectNam
 	buildLexiconFromCorpus(correctLexicon, *correct, true);
 	buildLexiconFromCorpus(incorrectLexicon, *incorrect, false);
 
+	correct->rewind();
+	incorrect->rewind();
+
+	Tokenizer correctTokenizer(correctLexicon);
+	Tokenizer incorrectTokenizer(incorrectLexicon);
+	File * correctTokenized = correctTokenizer.tokenize(*correct, pathToTemp + getFilenameFromPath(correctName) + ".tokenized");
+	File * incorrectTokenized = incorrectTokenizer.tokenize(*incorrect, pathToTemp + getFilenameFromPath(incorrectName) + ".tokenized");
+
 	delete correct;
 	delete incorrect;
+
+	translationTable.create(*incorrectTokenized, *correctTokenized);
+	File translationTableFile(pathToTranslationTable + getFilenameFromPath(correctName) + ".table", "w");
+
+	translationTable.printMostProbableTranslation(stdout, correctLexicon, incorrectLexicon);
+	translationTable.print(translationTableFile.getDescriptor());
+
+	delete correctTokenized;
+	delete incorrectTokenized;
 
 	std::string gramsFilename = pathToGramsCount + getFilenameFromPath(correctName) + ".grams";
 	correctName = pathToCorrectLexicon + getFilenameFromPath(correctName) + ".lexicon";
 	incorrectName = pathToIncorrectLexicon + getFilenameFromPath(incorrectName) + ".lexicon";
-
+	
 	correct = new File(correctName, "w");
 	incorrect = new File(incorrectName, "w");
 	File gramsFile(gramsFilename, "w");

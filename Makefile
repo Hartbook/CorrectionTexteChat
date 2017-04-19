@@ -1,4 +1,4 @@
-FOLDERS=data data/corpus data/lexicon data/corpus/brut data/corpus/corrige data/lexicon/brut data/lexicon/corrige data/gramsCount data/corpus/temp
+FOLDERS=data data/corpus data/lexicon data/corpus/brut data/corpus/corrige data/lexicon/brut data/lexicon/corrige data/gramsCount data/corpus/temp data/translationTable
 
 all:
 	mkdir -p $(FOLDERS)

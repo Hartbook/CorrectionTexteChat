@@ -81,3 +81,21 @@ void File::readUntil(char c)
 	while (!isFinished() && getChar() != c);
 }
 
+void File::rewind()
+{
+	fclose(file);
+
+	endHasBeenReached = false;
+	while (!buffer.empty())
+		buffer.pop();
+
+	file = fopen(filename.c_str(), "r");
+
+	if (!file)
+	{
+		printf("Cannot open file %s\n", filename.c_str());
+
+		exit(1);
+	}
+}
+
