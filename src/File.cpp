@@ -76,9 +76,19 @@ const std::string & File::getName()
 	return filename;
 }
 
-void File::readUntil(char c)
+char File::readUntil(char c)
 {
 	while (!isFinished() && getChar() != c);
+
+	return c;
+}
+
+char File::readUntil(const std::function<bool(char)> & condition)
+{
+	char c = 0;
+	while (!isFinished() && !condition(c = getChar()));
+
+	return c;
 }
 
 void File::rewind()

@@ -32,8 +32,8 @@ class TranslationTable
 {
 	private :
 
-	static constexpr int nbIterations = 1;
-	static constexpr float minimalProb = 0.001;
+	static constexpr int nbIterations = 0;
+	static constexpr float minimalProb = 0.5;
 
 	using Pair = std::pair<unsigned int, unsigned int>;
 
@@ -43,8 +43,9 @@ class TranslationTable
 
 	void create(File & incorrect, File & correct);
 	void print(FILE * output);
-	void printMostProbableTranslation(FILE * output, Lexicon & correctLex,
+	void printForDebug(FILE * output, Lexicon & correctLex,
 		Lexicon & incorrectLex);
+	void read(File & input);
 };
 
 #endif

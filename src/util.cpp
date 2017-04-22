@@ -89,29 +89,80 @@ bool endSentence(char c)
 
 File * cleanCorpus(File * corpus, std::string path)
 {
+	auto isNewline = [](char c) {return c == 10 || c == 13;};
+	auto isNotNewline = [](char c) {return c != 10 && c != 13;};
+	auto skipNewlines = [&]()
+	{
+		char c = corpus->readUntil(isNotNewline);
+		if (!isNewline(c))
+			corpus->ungetChar(c);
+	};
+
 	std::string pathName = path + getFilenameFromPath(corpus->getName());
 
 	File * result = new File(pathName, "w");
 
-	char ridden = 0;
+	char read = '\n';
 
 	while (!corpus->isFinished())
 	{
-		if (ridden == '\n' && corpus->peek() == '#')
-			corpus->readUntil('\n');
+		if (isNewline(read))
+			skipNewlines();
 
-		if (ridden == '\n' && corpus->peek() == '[')
+		bool triggered = true;
+
+		while (triggered)
 		{
-			corpus->readUntil(']');
+			triggered = false;
 
-			corpus->readUntil(':');
+			while (isNewline(read) && corpus->peek() == '#')
+			{
+				triggered = true;
+
+				read = corpus->readUntil(isNewline);
+
+				if (isNewline(read))
+					skipNewlines();
+			}
+
+			while (isNewline(read) && corpus->peek() == '[')
+			{
+				triggered = true;
+
+				read = corpus->readUntil(']');
+
+				read = corpus->readUntil([&](char c)
+				{
+					return isNewline(c) || c == ':';
+				});
+
+				if (read == ':')
+					fprintf(result->getDescriptor(), "\n");
+
+				if (corpus->peek() == ' ')
+					read = corpus->getChar();
+
+				if (isNewline(read))
+					skipNewlines();
+			}
+
+			if (corpus->isFinished())
+				break;
 		}
+
+		read = corpus->getChar();
 
 		if (corpus->isFinished())
 			break;
 
-		fprintf(result->getDescriptor(), "%c", ridden = corpus->getChar());
+		if (isNewline(read))
+			read = '\n';
+
+		if (!isNewline(read))
+			fprintf(result->getDescriptor(), "%c", read);
 	}
+
+	fprintf(result->getDescriptor(), "\n");
 
 	delete result;
 

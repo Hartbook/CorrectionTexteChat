@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <stack>
 #include <string>
+#include <functional>
 
 class File
 {
@@ -24,7 +25,8 @@ class File
 	void ungetChar(char c);
 	FILE * getDescriptor();
 	const std::string & getName();
-	void readUntil(char c);
+	char readUntil(char c);
+	char readUntil(const std::function<bool(char)> & condition);
 	void rewind();
 };
 

@@ -30,7 +30,6 @@ File * Tokenizer::tokenize(File & corpus, const std::string & path)
 
 	std::string word;
 
-	bool firstTime = true;
 	unsigned int token;
 	bool firstWordOfSentence = ignoreSeparators(corpus);
 
@@ -38,9 +37,7 @@ File * Tokenizer::tokenize(File & corpus, const std::string & path)
 	{
 		word.clear();
 
-		if (firstWordOfSentence && firstTime)
-			firstTime = false;
-		else if (firstWordOfSentence)
+		if (firstWordOfSentence)
 			fprintf(file->getDescriptor(), "\n");
 
 		token = readWord(corpus, word, firstWordOfSentence);

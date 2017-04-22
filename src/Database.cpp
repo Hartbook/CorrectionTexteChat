@@ -10,10 +10,14 @@ void Database::readFromFiles(std::string incorrectFilename, std::string correctF
 	File incorrectLexiconFile(incorrectFilename, "r");
 	File correctLexiconFile(correctFilename, "r");
 	File gramsCountFile(gramsFilename, "r");
+	File translationTableFile(tableFilename, "r");
 
 	correctLexicon.read(correctLexiconFile);
 	incorrectLexicon.read(incorrectLexiconFile);
 	gramsCounter.read(gramsCountFile);
+	translationTable.read(translationTableFile);
+
+	translationTable.printForDebug(stdout, correctLexicon, incorrectLexicon);
 }
 
 void Database::buildFromCorpus(std::string correctName, std::string incorrectName)
@@ -50,7 +54,6 @@ void Database::buildFromCorpus(std::string correctName, std::string incorrectNam
 	translationTable.create(*incorrectTokenized, *correctTokenized);
 	File translationTableFile(pathToTranslationTable + getFilenameFromPath(correctName) + ".table", "w");
 
-	translationTable.printMostProbableTranslation(stdout, correctLexicon, incorrectLexicon);
 	translationTable.print(translationTableFile.getDescriptor());
 
 	delete correctTokenized;

@@ -2,6 +2,7 @@
 #include <vector>
 #include <set>
 #include <cmath>
+#include <algorithm>
 
 void TranslationTable::create(File & incorrect, File & correct)
 {
@@ -32,7 +33,7 @@ void TranslationTable::create(File & incorrect, File & correct)
 	std::set<unsigned int> tokensCorrect;
 	std::set<unsigned int> tokensIncorrect;
 
-	float initValueForTable = 1.0 / 1;
+	float initValueForTable = 1.0 / 1000000;
 
 	for (int i = 0; i < nbIterations; i++)
 	{
@@ -52,7 +53,7 @@ void TranslationTable::create(File & incorrect, File & correct)
 	
 				for (auto tokenCorrect : sentenceCorrect)
 				{
-					if (table[Pair(tokenIncorrect, tokenCorrect)] == 0)
+					if (i == 0 && table[Pair(tokenIncorrect, tokenCorrect)] == 0)
 						table[Pair(tokenIncorrect, tokenCorrect)] = initValueForTable;
 					s_total[tokenIncorrect] += table[Pair(tokenIncorrect, tokenCorrect)];
 				}
@@ -61,6 +62,9 @@ void TranslationTable::create(File & incorrect, File & correct)
 			for (auto tokenIncorrect : sentenceIncorrect)
 				for (auto tokenCorrect : sentenceCorrect)
 				{
+					if (i == 0 && table[Pair(tokenIncorrect, tokenCorrect)] == 0)
+						table[Pair(tokenIncorrect, tokenCorrect)] = initValueForTable;
+
 					auto increment = table[Pair(tokenIncorrect, tokenCorrect)];
 
 					nb[Pair(tokenIncorrect, tokenCorrect)] += increment/s_total[tokenIncorrect];
@@ -69,37 +73,66 @@ void TranslationTable::create(File & incorrect, File & correct)
 				}
 		}
 
-		for (auto tokenIncorrect : sentenceIncorrect)
-			for (auto tokenCorrect : sentenceCorrect)
+		for (auto tokenIncorrect : tokensIncorrect)
+			for (auto tokenCorrect : tokensCorrect)
+			{
+				if (i == 0 && table[Pair(tokenIncorrect, tokenCorrect)] == 0)
+					table[Pair(tokenIncorrect, tokenCorrect)] = initValueForTable;
+
 				table[Pair(tokenIncorrect, tokenCorrect)] =
 					nb[Pair(tokenIncorrect, tokenCorrect)] / total[tokenCorrect];
+			}
+
+		incorrect.rewind();
+		correct.rewind();
+
+		printf("Iteration %d : OK !\n", i);
 	}
 
 	for (auto & it : table)
 		if (it.second >= minimalProb)
 		 	it.second = -log(it.second);
+		else
+			it.second = -1.0;
 }
 
 void TranslationTable::print(FILE * output)
 {
 	for (auto & it : table)
-		if (it.second >= minimalProb)
+		if (it.second >= 0)
 			fprintf(output, "%u %u %f\n", it.first.first, it.first.second, it.second);
 }
 
-void TranslationTable::printMostProbableTranslation(FILE * output, Lexicon & correctLex,
+void TranslationTable::printForDebug(FILE * output, Lexicon & correctLex,
 	Lexicon & incorrectLex)
 {
-	Pair best;
-	float bestProb = 100000;
+	using Elem = std::pair<std::pair<unsigned int, unsigned int>, float>;
+
+	std::vector<Elem> sortedPairs;
 
 	for (auto & it : table)
-		if (it.second < bestProb)
-		{
-			best = it.first;
-			bestProb = it.second;
-		}
+		if (it.second >= 0)
+			sortedPairs.push_back(it);
 
-	printf("Best : %s -> %s\n", incorrectLex.getString(best.first).c_str(), correctLex.getString(best.second).c_str());
+	std::sort(sortedPairs.begin(), sortedPairs.end(),
+	[](Elem & a, Elem & b)
+	{
+		return a.second < b.second;
+	});
+
+	for (auto & it : sortedPairs)
+		fprintf(output, "%09f\t<%s> -> <%s>\n", it.second,
+			incorrectLex.getString(it.first.first).c_str(),
+			correctLex.getString(it.first.second).c_str());
+}
+
+void TranslationTable::read(File & input)
+{
+	table.clear();
+	unsigned int token1, token2;
+	float proba;
+
+	while (fscanf(input.getDescriptor(), "%u %u %f", &token1, &token2, &proba) == 3)
+		table[Pair(token1, token2)] = proba;
 }
 
