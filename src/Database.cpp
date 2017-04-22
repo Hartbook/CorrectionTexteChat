@@ -38,6 +38,7 @@ void Database::buildFromCorpus(std::string correctName, std::string incorrectNam
 	delete incorrectUncleaned;
 
 	buildLexiconFromCorpus(correctLexicon, *correct, true);
+	incorrectLexicon.copy(correctLexicon);
 	buildLexiconFromCorpus(incorrectLexicon, *incorrect, false);
 
 	correct->rewind();
@@ -51,7 +52,7 @@ void Database::buildFromCorpus(std::string correctName, std::string incorrectNam
 	delete correct;
 	delete incorrect;
 
-	translationTable.create(*incorrectTokenized, *correctTokenized);
+	translationTable.create(correctLexicon, *incorrectTokenized, *correctTokenized);
 	File translationTableFile(pathToTranslationTable + getFilenameFromPath(correctName) + ".table", "w");
 
 	translationTable.print(translationTableFile.getDescriptor());

@@ -1,4 +1,6 @@
 #include "Lexicon.hpp"
+#include <vector>
+#include <algorithm>
 #include "util.hpp"
 
 constexpr unsigned int Lexicon::unknown;
@@ -109,18 +111,40 @@ void Lexicon::addWord(std::string word, unsigned int token)
 
 void Lexicon::print(FILE * output)
 {
-	for (auto it : tokens)
+	for (unsigned int token = 0; token < nextToken; token++)
 	{
 		unsigned int padding = 50;
 
-		fprintf(output, "<%06d>", it.second);
+		fprintf(output, "<%06d>", token);
 
 		padding -= 6;
 
 		for (unsigned int i = 0; i < padding; i++)
 			fprintf(output, " ");
 
-		fprintf(output, "<%s>\n", it.first.c_str());
+		fprintf(output, "<%s>\n", getString(token).c_str());
 	}
+}
+
+void Lexicon::copy(const Lexicon & other)
+{
+	nextToken = 0;
+	tokens.clear();	
+	strings.clear();
+
+	for (auto & it : other.tokens)
+	{
+		addWord(it.first, it.second);
+
+		if (it.second > nextToken)
+			nextToken = it.second;
+	}
+
+	nextToken++;
+}
+
+unsigned int Lexicon::getMaxToken() const
+{
+	return nextToken-1;
 }
 

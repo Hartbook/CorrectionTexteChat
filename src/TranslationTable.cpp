@@ -4,10 +4,15 @@
 #include <cmath>
 #include <algorithm>
 
-void TranslationTable::create(File & incorrect, File & correct)
+void TranslationTable::create(const Lexicon & correctLexicon, File & incorrect, File & correct)
 {
 	std::vector<unsigned int> sentenceIncorrect;
 	std::vector<unsigned int> sentenceCorrect;
+
+	auto isCorrect = [&](unsigned int token)
+	{
+		return token <= correctLexicon.getMaxToken();
+	};
 
 	auto readSentence = [&](std::vector<unsigned int> & sentence,
 		std::set<unsigned int> & tokens, File & file)
@@ -33,7 +38,7 @@ void TranslationTable::create(File & incorrect, File & correct)
 	std::set<unsigned int> tokensCorrect;
 	std::set<unsigned int> tokensIncorrect;
 
-	float initValueForTable = 1.0 / 1000000;
+	float initValueForTable = 1.0 / (correctLexicon.getMaxToken()+1);
 
 	for (int i = 0; i < nbIterations; i++)
 	{
@@ -49,6 +54,9 @@ void TranslationTable::create(File & incorrect, File & correct)
 
 			for (auto tokenIncorrect : sentenceIncorrect)
 			{
+				if (isCorrect(tokenIncorrect))
+					continue;
+
 				s_total[tokenIncorrect] = 0;
 	
 				for (auto tokenCorrect : sentenceCorrect)
@@ -60,6 +68,10 @@ void TranslationTable::create(File & incorrect, File & correct)
 			}
 
 			for (auto tokenIncorrect : sentenceIncorrect)
+			{
+				if (isCorrect(tokenIncorrect))
+					continue;
+
 				for (auto tokenCorrect : sentenceCorrect)
 				{
 					if (i == 0 && table[Pair(tokenIncorrect, tokenCorrect)] == 0)
@@ -71,9 +83,14 @@ void TranslationTable::create(File & incorrect, File & correct)
 					total[tokenCorrect] +=
 						table[Pair(tokenIncorrect, tokenCorrect)] / s_total[tokenIncorrect];
 				}
+			}
 		}
 
 		for (auto tokenIncorrect : tokensIncorrect)
+		{
+			if (isCorrect(tokenIncorrect))
+				continue;
+
 			for (auto tokenCorrect : tokensCorrect)
 			{
 				if (i == 0 && table[Pair(tokenIncorrect, tokenCorrect)] == 0)
@@ -82,6 +99,7 @@ void TranslationTable::create(File & incorrect, File & correct)
 				table[Pair(tokenIncorrect, tokenCorrect)] =
 					nb[Pair(tokenIncorrect, tokenCorrect)] / total[tokenCorrect];
 			}
+		}
 
 		incorrect.rewind();
 		correct.rewind();
@@ -117,7 +135,10 @@ void TranslationTable::printForDebug(FILE * output, Lexicon & correctLex,
 	std::sort(sortedPairs.begin(), sortedPairs.end(),
 	[](Elem & a, Elem & b)
 	{
-		return a.second < b.second;
+		if (a.first.first == b.first.first)
+			return a.second < b.second;
+
+		return a.first.first < b.first.first;
 	});
 
 	for (auto & it : sortedPairs)

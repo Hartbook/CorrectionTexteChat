@@ -37,6 +37,8 @@ class Lexicon
 	unsigned int addWord(const std::string & word);
 	void print(FILE * output);
 	void read(File & input);
+	void copy(const Lexicon & other);
+	unsigned int getMaxToken() const;
 };
 
 #endif
