@@ -32,7 +32,7 @@ class TranslationTable
 {
 	private :
 
-	static constexpr int nbIterations = 20;
+	static constexpr int nbIterations = 0;
 	static constexpr float minimalProb = 0.001;
 
 	using Pair = std::pair<unsigned int, unsigned int>;

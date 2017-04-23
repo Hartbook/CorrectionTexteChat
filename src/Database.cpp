@@ -107,7 +107,7 @@ void Database::buildLexiconFromCorpus(Lexicon & lexicon, File & corpus, bool cou
 		firstWordOfSentence = ignoreSeparators(corpus);
 		unsigned int token = readWord(corpus, word, firstWordOfSentence);
 
-		if (token == 0)
+		if (token == Lexicon::unknown)
 			token = lexicon.addWord(word);
 
 		if (countGrams)

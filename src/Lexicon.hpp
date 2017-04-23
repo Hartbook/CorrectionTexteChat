@@ -30,6 +30,9 @@ class Lexicon
 	static constexpr unsigned int properNoun = 3;
 	static constexpr char properNounStr[] = "PROPERNOUN";
 
+	static constexpr unsigned int date = 4;
+	static constexpr char dateStr[] = "DATE";
+
 	Lexicon();
 	void initMaps(std::unordered_map<std::string, unsigned int> & specials);
 	unsigned int getToken(std::string & s);

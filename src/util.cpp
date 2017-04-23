@@ -97,6 +97,14 @@ File * cleanCorpus(File * corpus, std::string path)
 		if (!isNewline(c))
 			corpus->ungetChar(c);
 	};
+	auto skipControlCharacters = [&]()
+	{
+		while (((unsigned char)corpus->peek()) == 194)
+		{
+			corpus->getChar();
+			corpus->getChar();
+		}
+	};
 
 	std::string pathName = path + getFilenameFromPath(corpus->getName());
 
@@ -114,6 +122,8 @@ File * cleanCorpus(File * corpus, std::string path)
 		while (triggered)
 		{
 			triggered = false;
+
+			skipControlCharacters();
 
 			while (isNewline(read) && corpus->peek() == '#')
 			{
@@ -174,58 +184,89 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 	unsigned int indexOfFirstSeparator = 0;
 	bool startsWithUpperCase = isUpper(corpus.peek());
 
+	auto checkForPattern = [&]()
+	{
+		bool containsLetter = false;
+		bool containsDigit = false;
+
+		for (char c : word)
+		{
+			if (isNum(c))
+				containsDigit = true;
+			if (isAlpha(c))
+				containsLetter = true;
+		}
+
+		if (containsLetter && containsDigit)
+			return Lexicon::date;
+
+		if (!sentenceBegin && startsWithUpperCase)
+			return Lexicon::properNoun;
+
+		return Lexicon::unknown;
+	};
+
+	auto checkForMailAddress = [&]()
+	{
+		bool containsAtSign = false;
+
+		while (!corpus.isFinished() && corpus.peek() != ' ')
+		{
+			char c = corpus.getChar();
+
+			if (c == '@')
+				containsAtSign = true;
+
+			word.push_back(c);
+		}
+
+		if (containsAtSign)
+			return true;
+
+		unsigned int nbToUnget = word.size() - indexOfFirstSeparator;
+
+		for (unsigned int i = 0; i < nbToUnget; i++)
+		{
+			corpus.ungetChar(word[word.size()-1]);
+			word.pop_back();
+		}
+
+		return false;
+	};
+
+	auto removeEndingDashes = [&]()
+	{
+		while (word.back() == '-')
+			word.pop_back();
+	};
+
 	while (!corpus.isFinished() && !isSeparator(corpus.peek()))
 	{
 		word.push_back(corpus.getChar());
 		indexOfFirstSeparator++;
 	}
 
+	removeEndingDashes();
+
 	if (corpus.peek() == ' ')
-	{
-		unsigned int token = Lexicon::unknown;
+		return checkForPattern();
 
-		if (!sentenceBegin && startsWithUpperCase)
-			token = Lexicon::properNoun;
-
-		return token;
-	}
-
-	bool containsAtSign = false;
-
-	while (!corpus.isFinished() && corpus.peek() != ' ')
-	{
-		char c = corpus.getChar();
-
-		if (c == '@')
-			containsAtSign = true;
-
-		word.push_back(c);
-	}
-
-	if (containsAtSign)
+	if (checkForMailAddress())
 		return Lexicon::mail;
 
-	unsigned int nbToUnget = word.size() - indexOfFirstSeparator;
-
-	for (unsigned int i = 0; i < nbToUnget; i++)
-	{
-		corpus.ungetChar(word[word.size()-1]);
-		word.pop_back();
-	}
-
-	unsigned int token = Lexicon::unknown;
-
-	if (!sentenceBegin && startsWithUpperCase)
-		token = Lexicon::properNoun;
-
-	return token;
+	return checkForPattern();
 }
 
 bool ignoreSeparators(File & corpus)
 {
+	static auto isToBeIgnored = [](char c)
+	{
+		return isSeparator(c) || c == '-';
+	};
+
 	bool sentenceBegin = false;
 
-	while (!corpus.isFinished() && isSeparator(corpus.peek()))
+	while (!corpus.isFinished() && isToBeIgnored(corpus.peek()))
 	{
 		char c = corpus.getChar();
 

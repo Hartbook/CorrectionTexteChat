@@ -7,10 +7,12 @@ constexpr unsigned int Lexicon::unknown;
 constexpr unsigned int Lexicon::mail;
 constexpr unsigned int Lexicon::number;
 constexpr unsigned int Lexicon::properNoun;
+constexpr unsigned int Lexicon::date;
 constexpr char Lexicon::unknownStr[];
 constexpr char Lexicon::mailStr[];
 constexpr char Lexicon::numberStr[];
 constexpr char Lexicon::properNounStr[];
+constexpr char Lexicon::dateStr[];
 
 Lexicon::Lexicon()
 {
@@ -19,7 +21,8 @@ Lexicon::Lexicon()
 		{unknownStr, unknown},
 		{mailStr, mail},
 		{numberStr, number},
-		{properNounStr, properNoun}
+		{properNounStr, properNoun},
+		{dateStr, date}
 	};
 
 	this->nextToken = unknown + specials.size();
@@ -49,8 +52,23 @@ std::string & Lexicon::normalize(std::string & s)
 {
 	for (unsigned int i = 0; i < s.size(); i++)
 	{
+		// Uncapitalize basic letters
 		if (s[i] >= 'A' && s[i] <= 'Z')
+		{
 			s[i] += -'A' + 'a';
+			continue;
+		}
+
+		// Uncapitalize accentuated letters
+		if (i == s.size()-1)
+			continue;
+		unsigned char s1 = s[i], s2 = s[i+1];
+		if (s1 == 195 && s2 >= 128 && s2 <= 158)
+		{
+			s2 += 32;
+			s[i+1] = s2;
+			continue;
+		}
 	}
 
 	return s;
