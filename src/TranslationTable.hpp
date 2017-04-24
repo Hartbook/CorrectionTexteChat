@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include "File.hpp"
 #include "Lexicon.hpp"
+#include "AtomicFloat.hpp"
 
 class TranslationTable;
 namespace std {struct hash< std::pair<unsigned int, unsigned int> >;}
@@ -32,16 +33,17 @@ class TranslationTable
 {
 	private :
 
-	static constexpr int nbIterations = 0;
+	static constexpr int nbIterations = 5;
 	static constexpr float minimalProb = 0.001;
 
 	using Pair = std::pair<unsigned int, unsigned int>;
 
-	std::unordered_map<Pair, float> table;
+	std::unordered_map<Pair, AtomicFloat> table;
 
 	public :
 
-	void create(const Lexicon & correctLexicon, File & incorrect, File & correct);
+	void create(const Lexicon & correctLexicon, const Lexicon & incorrectLexicon,
+		File & incorrect, File & correct);
 	void print(FILE * output);
 	void printForDebug(FILE * output, Lexicon & correctLex,
 		Lexicon & incorrectLex);

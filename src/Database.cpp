@@ -52,7 +52,7 @@ void Database::buildFromCorpus(std::string correctName, std::string incorrectNam
 	delete correct;
 	delete incorrect;
 
-	translationTable.create(correctLexicon, *incorrectTokenized, *correctTokenized);
+	translationTable.create(correctLexicon, incorrectLexicon, *incorrectTokenized, *correctTokenized);
 	File translationTableFile(pathToTranslationTable + getFilenameFromPath(correctName) + ".table", "w");
 
 	translationTable.print(translationTableFile.getDescriptor());

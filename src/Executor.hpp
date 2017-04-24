@@ -17,9 +17,8 @@ class Executor
 		ArgType argument;
 		ReturnType result;
 
-		Task(std::function<ReturnType(ArgType)> run, ArgType argument)
+		Task(const std::function<ReturnType(ArgType)> & run, ArgType argument) : run(run)
 		{
-			this->run = run;
 			this->argument = argument;
 		}
 	};
@@ -40,8 +39,11 @@ class Executor
 
 	public :
 
-	Executor(int nbThreads)
+	Executor(int nbThreads = std::thread::hardware_concurrency())
 	{
+		if (nbThreads == 0)
+			nbThreads = 1;
+
 		this->nbThreads = nbThreads;
 	}
 
@@ -68,6 +70,13 @@ class Executor
 		for (auto & t : threads)
 			t.join();
 	}
+
+	void clear()
+	{
+		threads.clear();
+		tasks.clear();
+		taskGroups.clear();
+	}
 };
 
 template <>
@@ -79,9 +88,8 @@ class Executor<void, void>
 	{
 		std::function<void(void)> run;
 
-		Task(std::function<void(void)> run)
+		Task(const std::function<void(void)> & run) : run(run)
 		{
-			this->run = run;
 		}
 	};
 
@@ -101,8 +109,11 @@ class Executor<void, void>
 
 	public :
 
-	Executor(int nbThreads)
+	Executor(int nbThreads = std::thread::hardware_concurrency())
 	{
+		if (nbThreads == 0)
+			nbThreads = 1;
+
 		this->nbThreads = nbThreads;
 	}
 
@@ -128,6 +139,13 @@ class Executor<void, void>
 
 		for (auto & t : threads)
 			t.join();
+	}
+
+	void clear()
+	{
+		threads.clear();
+		tasks.clear();
+		taskGroups.clear();
 	}
 };
 

@@ -236,7 +236,7 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 
 	auto removeEndingDashes = [&]()
 	{
-		while (word.back() == '-')
+		while (!word.empty() && word.back() == '-')
 			word.pop_back();
 	};
 

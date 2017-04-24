@@ -1,12 +1,14 @@
 Tokenizer.o: Tokenizer.cpp Tokenizer.hpp Lexicon.hpp File.hpp util.hpp
+AtomicFloat.o: AtomicFloat.cpp AtomicFloat.hpp
 main.o: main.cpp Database.hpp Lexicon.hpp File.hpp GramsCounter.hpp \
- TranslationTable.hpp
+ TranslationTable.hpp AtomicFloat.hpp
 GramsCounter.o: GramsCounter.cpp GramsCounter.hpp File.hpp Lexicon.hpp \
  util.hpp
 TranslationTable.o: TranslationTable.cpp TranslationTable.hpp File.hpp \
- Lexicon.hpp
+ Lexicon.hpp AtomicFloat.hpp Executor.hpp
 File.o: File.cpp File.hpp
 Lexicon.o: Lexicon.cpp Lexicon.hpp File.hpp util.hpp
 Database.o: Database.cpp Database.hpp Lexicon.hpp File.hpp \
- GramsCounter.hpp TranslationTable.hpp Tokenizer.hpp util.hpp
+ GramsCounter.hpp TranslationTable.hpp AtomicFloat.hpp Tokenizer.hpp \
+ util.hpp
 util.o: util.cpp util.hpp File.hpp Lexicon.hpp
