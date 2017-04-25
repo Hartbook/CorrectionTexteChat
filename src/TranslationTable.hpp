@@ -1,44 +1,24 @@
 #ifndef TRANSLATIONTABLE__H
 #define TRANSLATIONTABLE__H
 
-#include <unordered_map>
+#include <set>
 #include "File.hpp"
 #include "Lexicon.hpp"
 #include "AtomicFloat.hpp"
+#include "WordTranslator.hpp"
 
-class TranslationTable;
-namespace std {struct hash< std::pair<unsigned int, unsigned int> >;}
-
-namespace std
-{
-	template <>
-	struct hash< std::pair<unsigned int, unsigned int> >
-	{
-		size_t operator()(const std::pair<unsigned int, unsigned int> & p) const
-		{
-    		static hash<unsigned int> hasher;
-
-			size_t seed = 0;
-
-			// From Boost
-	    	seed ^= hasher(p.first) + 0x9e3779b9 + (seed<<6) + (seed>>2);
-	    	seed ^= hasher(p.second) + 0x9e3779b9 + (seed<<6) + (seed>>2);
-
-			return seed;
-		}
-	};
-}
-
-class TranslationTable
+class TranslationTable : WordTranslator
 {
 	private :
 
-	static constexpr int nbIterations = 5;
-	static constexpr float minimalProb = 0.001;
+	static constexpr int nbIterations = 10;
+	static constexpr float minimalProb = 0.1;
 
-	using Pair = std::pair<unsigned int, unsigned int>;
+	std::vector< std::vector<AtomicFloat> > table;
 
-	std::unordered_map<Pair, AtomicFloat> table;
+	unsigned int maxTokenCorrect;
+
+	bool isCorrect(unsigned int token);
 
 	public :
 
@@ -48,6 +28,7 @@ class TranslationTable
 	void printForDebug(FILE * output, Lexicon & correctLex,
 		Lexicon & incorrectLex);
 	void read(File & input);
+	const std::vector< std::pair<unsigned int, float> > & getTranslations(unsigned int token);
 };
 
 #endif

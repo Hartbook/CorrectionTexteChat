@@ -1,6 +1,5 @@
 #include "TranslationTable.hpp"
 #include <vector>
-#include <set>
 #include <cmath>
 #include <algorithm>
 #include <atomic>
@@ -9,10 +8,7 @@
 void TranslationTable::create(const Lexicon & correctLexicon,
 	const Lexicon & incorrectLexicon, File & incorrect, File & correct)
 {
-	auto isCorrect = [&](unsigned int token)
-	{
-		return token <= correctLexicon.getMaxToken();
-	};
+	maxTokenCorrect = correctLexicon.getMaxToken();
 
 	auto readSentence = [&](std::vector<unsigned int> & sentence,
 		std::set<unsigned int> & tokens, File & file)
@@ -34,11 +30,36 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 		file.getChar();
 	};
 
-	std::set<unsigned int> tokensCorrect;
-	std::set<unsigned int> tokensIncorrect;
+	auto cleanSentences = [&](std::vector<unsigned int> & correct,
+		std::vector<unsigned int> & incorrect)
+	{
+		for (unsigned int i = 0; i < incorrect.size(); i++)
+		{
+			if (!isCorrect(incorrect[i]))
+				continue;
+
+			for (unsigned int j = 0; j < correct.size(); j++)
+			{
+				if (incorrect[i] == correct[j])
+				{
+					incorrect[i] = incorrect.back();
+					correct[i] = correct.back();
+
+					incorrect.pop_back();
+					correct.pop_back();
+
+					i--;
+					break;
+				}
+			}
+		}
+	};
 
 	std::vector< std::vector<unsigned int> > correctSentences;
 	std::vector< std::vector<unsigned int> > incorrectSentences;
+
+	std::set<unsigned int> tokensCorrect;
+	std::set<unsigned int> tokensIncorrect;
 
 	while (!incorrect.isFinished() && !correct.isFinished())
 	{
@@ -47,53 +68,40 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 
 		readSentence(incorrectSentences.back(), tokensIncorrect, incorrect);
 		readSentence(correctSentences.back(), tokensCorrect, correct);
+
+		cleanSentences(correctSentences.back(), incorrectSentences.back());
 	}
 
-	unsigned int nbSentences = correctSentences.size();
-	if (incorrectSentences.size() > nbSentences)
-		nbSentences = incorrectSentences.size();
+	unsigned int nbSentences = std::max(correctSentences.size(), incorrectSentences.size());
 
-	float initValueForTable = 1.0 / (correctLexicon.getMaxToken()+1);
+	float initValueForTable = 1.0 / (incorrectLexicon.getMaxToken()+1);
 
-	for (auto tokenIncorrect : tokensIncorrect)
-	{
-		if (isCorrect(tokenIncorrect))
-			continue;
+	std::vector<AtomicFloat> total(correctLexicon.getMaxToken()+1);
+	std::vector< std::vector<AtomicFloat> > nb(incorrectLexicon.getMaxToken()+1,
+		std::vector<AtomicFloat>(correctLexicon.getMaxToken()+1));
 
-		for (auto tokenCorrect : tokensCorrect)
-			table[Pair(tokenIncorrect, tokenCorrect)] = initValueForTable;
-	}
+	table = nb;
+
+	for (auto & it : table)
+		for (auto & it2 : it)
+			it2 = initValueForTable;
 
 	Executor<void,void> executor;
-
-	std::unordered_map<unsigned int, AtomicFloat> total;
-	std::unordered_map<Pair, AtomicFloat> nb;
-
-	for (auto tokenIncorrect : tokensIncorrect)
-	{
-		if (isCorrect(tokenIncorrect))
-			continue;
-
-		for (auto tokenCorrect : tokensCorrect)
-			nb[Pair(tokenIncorrect, tokenCorrect)] = 0;
-	}
-
-	for (auto tokenCorrect : tokensCorrect)
-		total[tokenCorrect] = 0;
 
 	for (int i = 0; i < nbIterations; i++)
 	{
 		executor.clear();
 	
 		for (auto & it : nb)
-			it.second = 0.0f;
+			for (auto & it2 : it)
+				it2 = 0.0f;
 
 		for (auto & it : total)
-			it.second = 0.0f;
+			it = 0.0f;
 
 		for (unsigned int sentenceIndex = 0; sentenceIndex < nbSentences; sentenceIndex++)
 			executor.addTask([this, sentenceIndex, &incorrectSentences, &correctSentences,
-								&incorrectLexicon, &isCorrect, &total, &nb]()
+								&incorrectLexicon, &total, &nb]()
 			{
 				auto & sentenceIncorrect = incorrectSentences[sentenceIndex];
 				auto & sentenceCorrect = correctSentences[sentenceIndex];
@@ -101,28 +109,19 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 				std::vector<float> s_total(incorrectLexicon.getMaxToken()+1, 0.0f);
 
 				for (auto tokenIncorrect : sentenceIncorrect)
-				{
-					if (isCorrect(tokenIncorrect))
-						continue;
-
-					for (auto tokenCorrect : sentenceCorrect)
-						s_total[tokenIncorrect] += table[Pair(tokenIncorrect, tokenCorrect)];
-				}
+					if (!isCorrect(tokenIncorrect))
+						for (auto tokenCorrect : sentenceCorrect)
+							s_total[tokenIncorrect] += table[tokenIncorrect][tokenCorrect];
 
 				for (auto tokenIncorrect : sentenceIncorrect)
-				{
-					if (isCorrect(tokenIncorrect))
-						continue;
-
-					for (auto tokenCorrect : sentenceCorrect)
-					{
-						Pair p(tokenIncorrect, tokenCorrect);
-
-						nb[p] += table[p] / s_total[tokenIncorrect];
-
-						total[tokenCorrect] += table[p] / s_total[tokenIncorrect];
-					}
-				}
+					if (!isCorrect(tokenIncorrect))
+						for (auto tokenCorrect : sentenceCorrect)
+						{
+							nb[tokenIncorrect][tokenCorrect] +=
+								table[tokenIncorrect][tokenCorrect] / s_total[tokenIncorrect];
+							total[tokenCorrect] += table[tokenIncorrect][tokenCorrect] /
+								s_total[tokenIncorrect];
+						}
 			});
 
 		executor.run();
@@ -130,75 +129,87 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 		executor.clear();
 
 		for (auto tokenIncorrect : tokensIncorrect)
-		{
-			if (isCorrect(tokenIncorrect))
-				continue;
-			
-			executor.addTask([this, &nb, &total, &tokensCorrect, tokenIncorrect]()
-			{
-				for (auto tokenCorrect : tokensCorrect)
+			if (!isCorrect(tokenIncorrect))
+				executor.addTask([this, &nb, &total, &tokensCorrect, tokenIncorrect]()
 				{
-					Pair p(tokenIncorrect, tokenCorrect);
-					table[p] = nb[p] / total[tokenCorrect];
-				}
-			});
-		}
+					for (auto tokenCorrect : tokensCorrect)
+						table[tokenIncorrect][tokenCorrect] =
+							nb[tokenIncorrect][tokenCorrect] / total[tokenCorrect];
+				});
 
 		executor.run();
 
-		incorrect.rewind();
-		correct.rewind();
-
-		printf("Iteration %d : OK !\n", i);
+		printf("Iteration %03d/%03d : OK !\n", i, nbIterations);
 	}
 
 	for (auto & it : table)
-		if (it.second >= minimalProb)
-		 	it.second = -log(it.second);
-		else
-			it.second = -1.0;
+		for (auto & it2 : it)
+			if (it2 >= std::max(minimalProb, initValueForTable))
+				it2 = -log(it2);
+			else
+				it2 = -1;
 }
 
 void TranslationTable::print(FILE * output)
 {
-	for (auto & it : table)
-		if (it.second >= 0)
-			fprintf(output, "%u %u %f\n", it.first.first, it.first.second, it.second.load());
+	for (unsigned int i = 0; i < table.size(); i++)
+		for (unsigned int j = 0; j < table[i].size(); j++)
+			if (table[i][j] >= 0)
+				fprintf(output, "%u %u %02.9f\n", i, j, table[i][j].load());
 }
 
 void TranslationTable::printForDebug(FILE * output, Lexicon & correctLex,
 	Lexicon & incorrectLex)
 {
-	using Elem = std::pair<std::pair<unsigned int, unsigned int>, float>;
-
-	std::vector<Elem> sortedPairs;
-
-	for (auto & it : table)
-		if (it.second >= 0)
-			sortedPairs.push_back(it);
-
-	std::sort(sortedPairs.begin(), sortedPairs.end(),
-	[](Elem & a, Elem & b)
-	{
-		if (a.first.first == b.first.first)
-			return a.second < b.second;
-
-		return a.first.first < b.first.first;
-	});
-
-	for (auto & it : sortedPairs)
-		fprintf(output, "%09f\t<%s> -> <%s>\n", it.second,
-			incorrectLex.getString(it.first.first).c_str(),
-			correctLex.getString(it.first.second).c_str());
+	for (unsigned int i = 0; i < table.size(); i++)
+		for (unsigned int j = 0; j < table[i].size(); j++)
+			if (table[i][j] >= 0)
+				fprintf(output, "%02.9f\t<%s> -> <%s>\n", table[i][j].load(),
+					incorrectLex.getString(i).c_str(),
+					correctLex.getString(j).c_str());
 }
 
 void TranslationTable::read(File & input)
 {
 	table.clear();
 	unsigned int token1, token2;
+	unsigned int maxToken1 = 0, maxToken2 = 0;
 	float proba;
 
 	while (fscanf(input.getDescriptor(), "%u %u %f", &token1, &token2, &proba) == 3)
-		table[Pair(token1, token2)] = proba;
+	{
+		if (token1 > maxToken1)
+			maxToken1 = token1;
+
+		if (token2 > maxToken2)
+			maxToken2 = token2;
+	}
+
+	table.resize(maxToken1+1, std::vector<AtomicFloat>(maxToken2+1));
+	for (auto & it : table)
+		for (auto & it2 : it)
+			it2 = -1;
+
+	input.rewind();
+
+	while (fscanf(input.getDescriptor(), "%u %u %f", &token1, &token2, &proba) == 3)
+		table[token1][token2] = proba;
+}
+
+const std::vector< std::pair<unsigned int, float> > & TranslationTable::getTranslations(unsigned int token)
+{
+	static std::vector< std::pair<unsigned int, float> > translations;
+	translations.clear();
+
+	for (unsigned int i = 0; i < table[token].size(); i++)
+		if (table[token][i] >= 0)
+			translations.emplace_back(i, table[token][i]);
+
+	return translations;
+}
+
+bool TranslationTable::isCorrect(unsigned int token)
+{
+	return token <= maxTokenCorrect;
 }
 

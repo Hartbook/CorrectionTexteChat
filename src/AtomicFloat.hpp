@@ -21,10 +21,12 @@ class AtomicFloat
 	public :
 
 	AtomicFloat(float value = 0.0f);
+	AtomicFloat(const AtomicFloat & model);
 	operator float() const;
 	float load() const;
 	AtomicFloat & operator+=(float increment);
 	AtomicFloat & operator=(float value);
+	AtomicFloat & operator=(const AtomicFloat & model);
 };
 
 #endif
