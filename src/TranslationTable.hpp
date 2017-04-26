@@ -7,7 +7,7 @@
 #include "AtomicFloat.hpp"
 #include "WordTranslator.hpp"
 
-class TranslationTable : WordTranslator
+class TranslationTable : public WordTranslator
 {
 	private :
 
@@ -28,7 +28,7 @@ class TranslationTable : WordTranslator
 	void printForDebug(FILE * output, Lexicon & correctLex,
 		Lexicon & incorrectLex);
 	void read(File & input);
-	const std::vector< std::pair<unsigned int, float> > & getTranslations(unsigned int token);
+	std::vector< std::pair<unsigned int, float> > * getTranslations(unsigned int token);
 };
 
 #endif

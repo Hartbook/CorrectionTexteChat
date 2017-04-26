@@ -12,6 +12,8 @@ class Tokenizer
 
 	public :
 
+	std::string word;
+
 	Tokenizer(Lexicon & lexicon);
 	unsigned int tokenize(File & corpus);
 	File * tokenize(File & corpus, const std::string & path);

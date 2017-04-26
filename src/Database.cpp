@@ -14,10 +14,9 @@ void Database::readFromFiles(std::string incorrectFilename, std::string correctF
 
 	correctLexicon.read(correctLexiconFile);
 	incorrectLexicon.read(incorrectLexiconFile);
+	incorrectLexicon.copy(correctLexicon);
 	gramsCounter.read(gramsCountFile);
 	translationTable.read(translationTableFile);
-
-	translationTable.printForDebug(stdout, correctLexicon, incorrectLexicon);
 }
 
 void Database::buildFromCorpus(std::string correctName, std::string incorrectName)

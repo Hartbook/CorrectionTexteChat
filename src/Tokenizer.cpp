@@ -7,7 +7,6 @@ Tokenizer::Tokenizer(Lexicon & lexicon) : lexicon(lexicon)
 
 unsigned int Tokenizer::tokenize(File & corpus)
 {
-	static std::string word;
 	word.clear();
 
 	bool firstWordOfSentence = ignoreSeparators(corpus);
@@ -49,6 +48,9 @@ File * Tokenizer::tokenize(File & corpus, const std::string & path)
 			if (realToken != Lexicon::unknown)
 				token = realToken;
 		}
+
+		if (token == Lexicon::unknown)
+			token = lexicon.addWord(word);
 
 		fprintf(file->getDescriptor(), "%d ", token);
 

@@ -2,12 +2,13 @@
 #include <cstdlib>
 #include <unordered_map>
 #include "Database.hpp"
+#include "Viterbi.hpp"
 
 void printUsageAndExit(char * argv[])
 {
 	printf("USAGE : %s OPTION [args]\n", *argv);
 	printf("--buildDatabase correctCorpus incorrectCorpus\n");
-	printf("--correct incorrectLexicon correctLexicon gramsCount translationTable\n");
+	printf("--correct incorrectLexicon correctLexicon gramsCount translationTable input\n");
 
 	exit(1);
 }
@@ -66,17 +67,24 @@ int main(int argc, char * argv[])
 	}
 	else if (option == Option::Correct)
 	{
-		if (argc != 6)
+		if (argc != 7)
 			printUsageAndExit(argv);
 
 		std::string incorrectFilename = argv[2];
 		std::string correctFilename = argv[3];
 		std::string gramsFilename = argv[4];
 		std::string tableFilename = argv[5];
+		std::string inputFilename = argv[6];
 
 		Database database;
 		database.readFromFiles(incorrectFilename, correctFilename,
 			gramsFilename, tableFilename);
+
+		Viterbi viterbi(database);
+
+		File * corrected = viterbi.correct(inputFilename);
+
+		delete corrected;
 	}
 
 	return 0;

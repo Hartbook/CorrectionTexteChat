@@ -55,11 +55,21 @@ class GramsCounter
 
 	std::unordered_map<Gram, unsigned int> nbOcc;
 
+	unsigned int nbMonograms;
+	unsigned int nbBigrams;
+	unsigned int nbTrigrams;
+
 	public :
+
+	GramsCounter();
 
 	void addGram(unsigned int t1);
 	void addGram(unsigned int t1, unsigned int t2);
 	void addGram(unsigned int t1, unsigned int t2, unsigned int t3);
+
+	float getProb(unsigned int t1);
+	float getProb(unsigned int t1, unsigned int t2);
+	float getProb(unsigned int t1, unsigned int t2, unsigned int t3);
 
 	void read(File & input);
 	void print(FILE * output);

@@ -6,6 +6,8 @@
 #include "GramsCounter.hpp"
 #include "TranslationTable.hpp"
 
+class Viterbi;
+
 class Database
 {
 	private :
@@ -22,6 +24,8 @@ class Database
 	void buildFromCorpus(std::string correctName, std::string incorrectName);
 	void readFromFiles(std::string incorrectFilename, std::string correctFilename,
 		std::string gramsFilename, std::string tableFilename);
+
+	friend Viterbi;
 };
 
 #endif

@@ -84,7 +84,7 @@ bool isUpper(char c)
 
 bool endSentence(char c)
 {
-	return c == '.' || c == '!' || c == '?' || c == '\n';
+	return c == '.' || c == '!' || c == '?' || c == '\n' || c == EOF;
 }
 
 File * cleanCorpus(File * corpus, std::string path)

@@ -30,6 +30,17 @@ File::File(const std::string & filename, const std::string & mode)
 		exit(1);
 	}
 
+	if (filename == "stdin")
+	{
+		file = stdin;
+		return;
+	}
+	else if (filename == "stdout")
+	{
+		file = stdout;
+		return;
+	}
+
 	file = fopen(filename.c_str(), mode.c_str());
 
 	if (!file)
@@ -42,7 +53,8 @@ File::File(const std::string & filename, const std::string & mode)
 
 File::~File()
 {
-	fclose(file);
+	if (file != stdin && file != stdout)
+		fclose(file);
 }
 
 bool File::isFinished()

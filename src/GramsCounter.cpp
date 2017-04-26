@@ -25,19 +25,41 @@ bool Gram::operator==(const Gram & other) const
 	return other.tokens == tokens;
 }
 
+GramsCounter::GramsCounter()
+{
+	nbMonograms = 0;
+	nbBigrams = 0;
+	nbTrigrams = 0;
+}
+
 void GramsCounter::addGram(unsigned int t1)
 {
-	nbOcc[Gram(t1)]++;
+	Gram gram(t1);
+
+	if (nbOcc.count(gram) == 0)
+		nbMonograms++;
+
+	nbOcc[gram]++;
 }
 
 void GramsCounter::addGram(unsigned int t1, unsigned int t2)
 {
-	nbOcc[Gram(t1, t2)]++;
+	Gram gram(t1, t2);
+
+	if (nbOcc.count(gram) == 0)
+		nbBigrams++;
+
+	nbOcc[gram]++;
 }
 
 void GramsCounter::addGram(unsigned int t1, unsigned int t2, unsigned int t3)
 {
-	nbOcc[Gram(t1, t2, t3)]++;
+	Gram gram(t1, t2, t3);
+
+	if (nbOcc.count(gram) == 0)
+		nbTrigrams++;
+
+	nbOcc[gram]++;
 }
 
 void GramsCounter::read(File & input)
@@ -134,5 +156,20 @@ void GramsCounter::print(FILE * output, Lexicon & lexicon)
 
 		fprintf(output, "%d\n", it.second);
 	}
+}
+
+float GramsCounter::getProb(unsigned int t1)
+{
+	return ((float)nbOcc[Gram(t1)]) / nbMonograms;
+}
+
+float GramsCounter::getProb(unsigned int t1, unsigned int t2)
+{
+	return ((float)nbOcc[Gram(t1,t2)]) / nbOcc[Gram(t1)];
+}
+
+float GramsCounter::getProb(unsigned int t1, unsigned int t2, unsigned int t3)
+{
+	return ((float)nbOcc[Gram(t1,t2,t3)]) / nbOcc[Gram(t1,t2)];
 }
 

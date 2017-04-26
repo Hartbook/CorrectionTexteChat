@@ -196,7 +196,7 @@ void TranslationTable::read(File & input)
 		table[token1][token2] = proba;
 }
 
-const std::vector< std::pair<unsigned int, float> > & TranslationTable::getTranslations(unsigned int token)
+std::vector< std::pair<unsigned int, float> > * TranslationTable::getTranslations(unsigned int token)
 {
 	static std::vector< std::pair<unsigned int, float> > translations;
 	translations.clear();
@@ -205,7 +205,7 @@ const std::vector< std::pair<unsigned int, float> > & TranslationTable::getTrans
 		if (table[token][i] >= 0)
 			translations.emplace_back(i, table[token][i]);
 
-	return translations;
+	return &translations;
 }
 
 bool TranslationTable::isCorrect(unsigned int token)
