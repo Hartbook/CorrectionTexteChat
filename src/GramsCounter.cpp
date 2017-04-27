@@ -1,4 +1,5 @@
 #include "GramsCounter.hpp"
+#include <cmath>
 #include "Lexicon.hpp"
 #include "util.hpp"
 
@@ -171,5 +172,20 @@ float GramsCounter::getProb(unsigned int t1, unsigned int t2)
 float GramsCounter::getProb(unsigned int t1, unsigned int t2, unsigned int t3)
 {
 	return ((float)nbOcc[Gram(t1,t2,t3)]) / nbOcc[Gram(t1,t2)];
+}
+
+float GramsCounter::getLogProb(unsigned int t1)
+{
+	return -log(getProb(t1));
+}
+
+float GramsCounter::getLogProb(unsigned int t1, unsigned int t2)
+{
+	return -log(getProb(t1,t2));
+}
+
+float GramsCounter::getLogProb(unsigned int t1, unsigned int t2, unsigned int t3)
+{
+	return -log(getProb(t1,t2,t3));
 }
 

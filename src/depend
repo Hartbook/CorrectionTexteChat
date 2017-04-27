@@ -1,3 +1,6 @@
+Viterbi.o: Viterbi.cpp Viterbi.hpp Database.hpp Lexicon.hpp File.hpp \
+ GramsCounter.hpp TranslationTable.hpp AtomicFloat.hpp WordTranslator.hpp \
+ util.hpp Tokenizer.hpp
 Database.o: Database.cpp Database.hpp Lexicon.hpp File.hpp \
  GramsCounter.hpp TranslationTable.hpp AtomicFloat.hpp WordTranslator.hpp \
  Tokenizer.hpp util.hpp
@@ -7,9 +10,6 @@ AtomicFloat.o: AtomicFloat.cpp AtomicFloat.hpp
 main.o: main.cpp Database.hpp Lexicon.hpp File.hpp GramsCounter.hpp \
  TranslationTable.hpp AtomicFloat.hpp WordTranslator.hpp Viterbi.hpp
 Tokenizer.o: Tokenizer.cpp Tokenizer.hpp Lexicon.hpp File.hpp util.hpp
-Viterbi.o: Viterbi.cpp Viterbi.hpp Database.hpp Lexicon.hpp File.hpp \
- GramsCounter.hpp TranslationTable.hpp AtomicFloat.hpp WordTranslator.hpp \
- util.hpp Tokenizer.hpp
 GramsCounter.o: GramsCounter.cpp GramsCounter.hpp File.hpp Lexicon.hpp \
  util.hpp
 Lexicon.o: Lexicon.cpp Lexicon.hpp File.hpp util.hpp

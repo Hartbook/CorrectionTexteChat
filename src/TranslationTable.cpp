@@ -5,6 +5,8 @@
 #include <atomic>
 #include "Executor.hpp"
 
+float TranslationTable::minimalProb = 0.1;
+
 void TranslationTable::create(const Lexicon & correctLexicon,
 	const Lexicon & incorrectLexicon, File & incorrect, File & correct)
 {
@@ -144,7 +146,7 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 
 	for (auto & it : table)
 		for (auto & it2 : it)
-			if (it2 >= std::max(minimalProb, initValueForTable))
+			if (it2 >= std::max(TranslationTable::minimalProb, initValueForTable))
 				it2 = -log(it2);
 			else
 				it2 = -1;
@@ -200,6 +202,9 @@ std::vector< std::pair<unsigned int, float> > * TranslationTable::getTranslation
 {
 	static std::vector< std::pair<unsigned int, float> > translations;
 	translations.clear();
+
+	if (token >= table.size())
+		return &translations;
 
 	for (unsigned int i = 0; i < table[token].size(); i++)
 		if (table[token][i] >= 0)

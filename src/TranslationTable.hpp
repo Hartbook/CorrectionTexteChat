@@ -12,7 +12,7 @@ class TranslationTable : public WordTranslator
 	private :
 
 	static constexpr int nbIterations = 10;
-	static constexpr float minimalProb = 0.1;
+	static float minimalProb;
 
 	std::vector< std::vector<AtomicFloat> > table;
 

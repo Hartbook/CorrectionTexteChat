@@ -36,7 +36,12 @@ void Lexicon::read(File & input)
 	unsigned int token;
 
 	while (fscanf(input.getDescriptor(), "<%u>%*[^<]<%[^>]>\n", &token, word) == 2)
+	{
 		addWord(word, token);
+		nextToken = std::max(nextToken, token);
+	}
+
+	nextToken++;
 }
 
 void Lexicon::initMaps(std::unordered_map<std::string, unsigned int> & specials)

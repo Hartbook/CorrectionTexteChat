@@ -71,6 +71,10 @@ class GramsCounter
 	float getProb(unsigned int t1, unsigned int t2);
 	float getProb(unsigned int t1, unsigned int t2, unsigned int t3);
 
+	float getLogProb(unsigned int t1);
+	float getLogProb(unsigned int t1, unsigned int t2);
+	float getLogProb(unsigned int t1, unsigned int t2, unsigned int t3);
+
 	void read(File & input);
 	void print(FILE * output);
 	void print(FILE * output, Lexicon & lexicon);

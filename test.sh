@@ -11,5 +11,5 @@
 #./main --correct data/lexicon/brut/toy2.lexicon data/lexicon/corrige/toy1.lexicon data/gramsCount/toy1.grams data/translationTable/toy1.table
 #valgrind ./main --correct data/lexicon/brut/toy2.lexicon data/lexicon/corrige/toy1.lexicon data/gramsCount/toy1.grams data/translationTable/toy1.table
 
-./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt
-#valgrind ./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt
+#./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt
+valgrind ./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt

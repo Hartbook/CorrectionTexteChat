@@ -13,7 +13,7 @@ class Database
 	private :
 
 	Lexicon correctLexicon;
-	Lexicon incorrectLexicon;
+public : Lexicon incorrectLexicon;
 	GramsCounter gramsCounter;
 	TranslationTable translationTable;
 
