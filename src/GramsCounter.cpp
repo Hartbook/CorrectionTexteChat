@@ -31,6 +31,7 @@ GramsCounter::GramsCounter()
 	nbMonograms = 0;
 	nbBigrams = 0;
 	nbTrigrams = 0;
+	nbTokensTotal = 0;
 }
 
 void GramsCounter::addGram(unsigned int t1)
@@ -41,6 +42,8 @@ void GramsCounter::addGram(unsigned int t1)
 		nbMonograms++;
 
 	nbOcc[gram]++;
+
+	nbTokensTotal++;
 }
 
 void GramsCounter::addGram(unsigned int t1, unsigned int t2)
@@ -159,32 +162,41 @@ void GramsCounter::print(FILE * output, Lexicon & lexicon)
 	}
 }
 
-float GramsCounter::getProb(unsigned int t1)
+float GramsCounter::getProb(unsigned int t1) const
 {
-	return ((float)nbOcc[Gram(t1)]) / nbMonograms;
+	if (nbOcc.count(Gram(t1)))
+		return ((float)nbOcc.at(Gram(t1))) / nbMonograms;
+
+	return alpha / (nbTokensTotal*(1+alpha));
 }
 
-float GramsCounter::getProb(unsigned int t1, unsigned int t2)
+float GramsCounter::getProb(unsigned int t1, unsigned int t2) const
 {
-	return ((float)nbOcc[Gram(t1,t2)]) / nbOcc[Gram(t1)];
+	if (nbOcc.count(Gram(t1,t2)))
+		return ((float)nbOcc.at(Gram(t1,t2))) / nbOcc.at(Gram(t1));
+
+	return alpha / ((nbOcc.count(Gram(t1)) ? nbOcc.at(Gram(t1)) : 0) + nbTokensTotal*alpha);
 }
 
-float GramsCounter::getProb(unsigned int t1, unsigned int t2, unsigned int t3)
+float GramsCounter::getProb(unsigned int t1, unsigned int t2, unsigned int t3) const
 {
-	return ((float)nbOcc[Gram(t1,t2,t3)]) / nbOcc[Gram(t1,t2)];
+	if (nbOcc.count(Gram(t1,t2,t3)))
+		return ((float)nbOcc.at(Gram(t1,t2,t3))) / nbOcc.at(Gram(t1,t2));
+
+	return alpha / ((nbOcc.count(Gram(t1,t2)) ? nbOcc.at(Gram(t1,t2)) : 0)+nbTokensTotal*alpha);
 }
 
-float GramsCounter::getLogProb(unsigned int t1)
+float GramsCounter::getLogProb(unsigned int t1) const
 {
 	return -log(getProb(t1));
 }
 
-float GramsCounter::getLogProb(unsigned int t1, unsigned int t2)
+float GramsCounter::getLogProb(unsigned int t1, unsigned int t2) const
 {
 	return -log(getProb(t1,t2));
 }
 
-float GramsCounter::getLogProb(unsigned int t1, unsigned int t2, unsigned int t3)
+float GramsCounter::getLogProb(unsigned int t1, unsigned int t2, unsigned int t3) const
 {
 	return -log(getProb(t1,t2,t3));
 }

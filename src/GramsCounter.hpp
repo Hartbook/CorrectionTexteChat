@@ -59,6 +59,9 @@ class GramsCounter
 	unsigned int nbBigrams;
 	unsigned int nbTrigrams;
 
+	float alpha = 0.1;
+	unsigned int nbTokensTotal;
+
 	public :
 
 	GramsCounter();
@@ -67,13 +70,13 @@ class GramsCounter
 	void addGram(unsigned int t1, unsigned int t2);
 	void addGram(unsigned int t1, unsigned int t2, unsigned int t3);
 
-	float getProb(unsigned int t1);
-	float getProb(unsigned int t1, unsigned int t2);
-	float getProb(unsigned int t1, unsigned int t2, unsigned int t3);
+	float getProb(unsigned int t1) const;
+	float getProb(unsigned int t1, unsigned int t2) const;
+	float getProb(unsigned int t1, unsigned int t2, unsigned int t3) const;
 
-	float getLogProb(unsigned int t1);
-	float getLogProb(unsigned int t1, unsigned int t2);
-	float getLogProb(unsigned int t1, unsigned int t2, unsigned int t3);
+	float getLogProb(unsigned int t1) const;
+	float getLogProb(unsigned int t1, unsigned int t2) const;
+	float getLogProb(unsigned int t1, unsigned int t2, unsigned int t3) const;
 
 	void read(File & input);
 	void print(FILE * output);

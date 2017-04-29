@@ -1,37 +1,17 @@
 #include "Viterbi.hpp"
 #include <algorithm>
+#include <cstring>
 #include "util.hpp"
 #include "Tokenizer.hpp"
 
-Viterbi::Viterbi(Database & database) : database(database)
+Viterbi::Viterbi(Database & database) :
+	database(database), lexicon(database.incorrectLexicon), gramsCounter(database.gramsCounter)
 {
 	translators.emplace_back(& database.translationTable);
 }
 
-const std::vector<unsigned int> & Viterbi::correctSentence(
-	const std::vector<unsigned int> & sentence)
+void Viterbi::buildLatticeFromSentence(const std::vector<unsigned int> & sentence)
 {
-	static std::vector<unsigned int> correctSentence;
-	correctSentence.clear();
-
-	using Pair = std::pair<unsigned int, unsigned int>;
-
-	struct Trio
-	{
-		Pair trad; float proba; int parent;
-		Trio(Pair trad, float proba, int parent) :
-			trad(trad),
-			proba(proba),
-			parent(parent){}
-	};
-	
-	static std::vector< std::vector<Trio> > probas;
-	probas.clear();
-	probas.resize(sentence.size());
-
-	auto & gramsCounter = database.gramsCounter;
-	auto & lexicon = database.incorrectLexicon;
-
 	std::vector< std::pair<unsigned int, float> > precedent = {{0,0}}, actual;
 
 	for (unsigned int i = 0; i < sentence.size(); i++)
@@ -58,7 +38,7 @@ const std::vector<unsigned int> & Viterbi::correctSentence(
 				}
 			}
 
-			if (probas[i].empty())
+			if (actual.empty())
 				actual.emplace_back(token, 0.0f);
 		}
 
@@ -68,6 +48,50 @@ const std::vector<unsigned int> & Viterbi::correctSentence(
 
 		precedent = actual;
 	}
+}
+
+void Viterbi::computeViterbiForRow(unsigned int row)
+{
+	auto getProbaCommingFrom = [&](unsigned int line, Trio & current)
+	{
+		float previous = probas[row-1][line].proba;
+		float gram = 0.0f;
+
+		if (row == 1)
+			gram = gramsCounter.getLogProb(probas[row-1][line].trad.second, current.trad.second);
+		else
+			gram = gramsCounter.getLogProb(probas[row-1][line].trad.first,
+				probas[row-1][line].trad.second, current.trad.second);
+
+		return previous + gram;
+	};
+
+	for (auto & p : probas[row])
+	{
+		int minIndex = -1;
+		float minProba = -1;
+
+		for (unsigned int i = 0; i < probas[row-1].size(); i++)
+			if (p.trad.first == probas[row-1][i].trad.second)
+				if (minIndex == -1 || getProbaCommingFrom(i, p) < minProba)
+				{
+					minIndex = i;
+					minProba = getProbaCommingFrom(i, p);
+				}
+
+		p.proba += minProba;
+		p.parent = minIndex;
+	}
+}
+
+const std::vector<unsigned int> & Viterbi::correctSentence(
+	const std::vector<unsigned int> & sentence)
+{
+	corrected.clear();
+	probas.clear();
+	probas.resize(sentence.size());
+
+	buildLatticeFromSentence(sentence);
 
 	for (auto & p : probas[0])
 		p.proba += gramsCounter.getLogProb(p.trad.second);
@@ -80,45 +104,13 @@ const std::vector<unsigned int> & Viterbi::correctSentence(
 			if (probas[0][i].proba < probas[0][minIndex].proba)
 				minIndex = i;
 
-		correctSentence.push_back(probas[0][minIndex].trad.second);
+		corrected.push_back(probas[0][minIndex].trad.second);
 
-		return correctSentence;
+		return corrected;
 	}
 
-	for (auto & p : probas[1])
-	{
-		int minIndex = -1;
-		float minProba = -1;
-
-		for (unsigned int i = 0; i < probas[0].size(); i++)
-			if (p.trad.first == probas[0][i].trad.second)
-				if (minIndex == -1 || probas[0][i].proba+gramsCounter.getLogProb(probas[0][i].trad.second, p.trad.second) < minProba)
-				{
-					minIndex = i;
-					minProba = probas[0][i].proba+gramsCounter.getLogProb(probas[0][i].trad.second, p.trad.second);
-				}
-
-		p.proba += minProba;
-		p.parent = minIndex;
-	}
-
-	for (unsigned int j = 2; j < probas.size(); j++)
-		for (auto & p : probas[j])
-		{
-			int minIndex = -1;
-			float minProba = -1;
-
-			for (unsigned int i = 0; i < probas[j-1].size(); i++)
-				if (p.trad.first == probas[j-1][i].trad.second)
-					if (minIndex == -1 || probas[j-1][i].proba+gramsCounter.getLogProb(probas[j-1][i].trad.first, probas[j-1][i].trad.second, p.trad.second) < minProba)
-					{
-						minIndex = i;
-						minProba = probas[j-1][i].proba+gramsCounter.getLogProb(probas[j-1][i].trad.first, probas[j-1][i].trad.second, p.trad.second);
-					}
-
-			p.proba += minProba;
-			p.parent = minIndex;
-		}
+	for (unsigned int j = 1; j < probas.size(); j++)
+		computeViterbiForRow(j);
 
 	int minIndex = 0;
 	float minProba = probas.back()[0].proba;
@@ -130,18 +122,20 @@ const std::vector<unsigned int> & Viterbi::correctSentence(
 			minProba = probas.back()[i].proba;
 		}
 
-	correctSentence.push_back(probas.back()[minIndex].trad.second);
+	corrected.push_back(probas.back()[minIndex].trad.second);
 	int parent = probas.back()[minIndex].parent;
 
 	for (int i = (int)probas.size()-2; i >= 0; i--)
 	{
-		correctSentence.push_back(probas[i][parent].trad.second);
+		corrected.push_back(probas[i][parent].trad.second);
 		parent = probas[i][parent].parent;
 	}
 
-	std::reverse(correctSentence.begin(), correctSentence.end());
+	std::reverse(corrected.begin(), corrected.end());
 
-	return correctSentence;
+	printLatticeForDebug();
+
+	return corrected;
 }
 
 File * Viterbi::correct(std::string inputFilename)
@@ -192,5 +186,43 @@ File * Viterbi::correct(std::string inputFilename)
 	delete tokenized;
 
 	return result;
+}
+
+void Viterbi::printLatticeForDebug()
+{
+	bool finished = false;
+	unsigned int index = 0;
+	int basePadding = 26;
+	char buffer[128];
+
+	while (!finished)
+	{
+		finished = true;
+
+		for (unsigned int i = 0; i < probas.size(); i++)
+		{
+			int padding = basePadding;
+
+			if (index < probas[i].size())
+			{
+				finished = false;
+
+				const std::string & word = lexicon.getString(probas[i][index].trad.second);
+				float proba = probas[i][index].proba;
+				sprintf(buffer, "%f", proba);
+				printf("<%s>(%s)", word.c_str(), buffer);
+				padding -= lengthPrinted(word) + strlen(buffer) + 4;
+			}
+
+			for (int i = 0; i < padding; i++)
+				printf(" ");
+		}
+
+		index++;
+
+		printf("\n");
+	}
+
+	printf("\n");
 }
 
