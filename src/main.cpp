@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include "Database.hpp"
 #include "Viterbi.hpp"
+#include "Layout.hpp"
 
 void printUsageAndExit(char * argv[])
 {
@@ -83,8 +84,16 @@ int main(int argc, char * argv[])
 		Viterbi viterbi(database);
 
 		File * corrected = viterbi.correct(inputFilename);
+		File * base = new File(inputFilename, "r");
+		File * target = new File(corrected->getName() + ".layout", "w");
+
+		corrected->rewind();
+		Layout layout(base, corrected);
+		layout.transferLayout(target);
 
 		delete corrected;
+		delete base;
+		delete target;
 	}
 
 	return 0;

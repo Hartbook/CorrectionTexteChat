@@ -20,7 +20,7 @@ bool isNum(char c)
 bool isNum(const std::string & s)
 {
 	for (char c : s)
-		if (isAlpha(c))
+		if (isAlpha(c) || c < 0)
 			return false;
 
 	return true;

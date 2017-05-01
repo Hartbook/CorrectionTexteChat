@@ -133,7 +133,7 @@ const std::vector<unsigned int> & Viterbi::correctSentence(
 
 	std::reverse(corrected.begin(), corrected.end());
 
-	printLatticeForDebug();
+	//printLatticeForDebug();
 
 	return corrected;
 }

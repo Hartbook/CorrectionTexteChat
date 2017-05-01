@@ -13,3 +13,4 @@
 
 ./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt
 #valgrind ./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt
+#valgrind --tool=callgrind ./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt
