@@ -20,15 +20,19 @@ class TranslationTable : public WordTranslator
 
 	bool isCorrect(unsigned int token);
 
+//	std::vector< std::pair<unsigned int, float> > translations;
+
 	public :
 
+	TranslationTable();
 	void create(const Lexicon & correctLexicon, const Lexicon & incorrectLexicon,
 		File & incorrect, File & correct);
 	void print(FILE * output);
 	void printForDebug(FILE * output, Lexicon & correctLex,
 		Lexicon & incorrectLex);
 	void read(File & input);
-	std::vector< std::pair<unsigned int, float> > * getTranslations(unsigned int token);
+	void addTranslations(std::vector< std::pair<unsigned int, float> > & actual,
+						 unsigned int token);
 };
 
 #endif

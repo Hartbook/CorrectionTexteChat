@@ -7,6 +7,11 @@
 
 float TranslationTable::minimalProb = 0.1;
 
+TranslationTable::TranslationTable()
+{
+	order = 0;
+}
+
 void TranslationTable::create(const Lexicon & correctLexicon,
 	const Lexicon & incorrectLexicon, File & incorrect, File & correct)
 {
@@ -187,7 +192,10 @@ void TranslationTable::read(File & input)
 			maxToken2 = token2;
 	}
 
-	table.resize(maxToken1+1, std::vector<AtomicFloat>(maxToken2+1));
+	table.resize(maxToken1+1);
+	for (auto & it : table)
+		it.resize(maxToken2+1);
+
 	for (auto & it : table)
 		for (auto & it2 : it)
 			it2 = -1;
@@ -198,19 +206,15 @@ void TranslationTable::read(File & input)
 		table[token1][token2] = proba;
 }
 
-std::vector< std::pair<unsigned int, float> > * TranslationTable::getTranslations(unsigned int token)
+void TranslationTable::addTranslations(std::vector< std::pair<unsigned int, float> > & actual,
+									   unsigned int token)
 {
-	static std::vector< std::pair<unsigned int, float> > translations;
-	translations.clear();
-
 	if (token >= table.size())
-		return &translations;
+		return;
 
 	for (unsigned int i = 0; i < table[token].size(); i++)
 		if (table[token][i] >= 0)
-			translations.emplace_back(i, table[token][i]);
-
-	return &translations;
+			actual.emplace_back(i, table[token][i]);
 }
 
 bool TranslationTable::isCorrect(unsigned int token)

@@ -7,7 +7,11 @@ class WordTranslator
 {
 	public :
 
-	virtual std::vector< std::pair<unsigned int, float> > * getTranslations(unsigned int token)=0;
+	unsigned int order;
+
+	virtual void addTranslations(std::vector< std::pair<unsigned int, float> > & actual,
+								 unsigned int token) = 0;
 };
 
 #endif
+

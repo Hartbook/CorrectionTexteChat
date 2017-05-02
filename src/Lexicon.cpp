@@ -171,3 +171,8 @@ unsigned int Lexicon::getMaxToken() const
 	return nextToken-1;
 }
 
+const std::unordered_map<std::string, unsigned int> & Lexicon::getTokens()
+{
+	return tokens;
+}
+

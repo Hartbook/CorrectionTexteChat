@@ -8,6 +8,13 @@ Viterbi::Viterbi(Database & database) :
 	database(database), lexicon(database.incorrectLexicon), gramsCounter(database.gramsCounter)
 {
 	translators.emplace_back(& database.translationTable);
+	translators.emplace_back(& database.levenshteinTranslator);
+
+	std::sort(translators.begin(), translators.end(),
+		[](const WordTranslator * a, const WordTranslator * b)
+		{
+			return a->order <= b->order;
+		});
 }
 
 void Viterbi::buildLatticeFromSentence(const std::vector<unsigned int> & sentence)
@@ -26,17 +33,7 @@ void Viterbi::buildLatticeFromSentence(const std::vector<unsigned int> & sentenc
 		else
 		{
 			for (auto translator : translators)
-			{
-				const auto & translations = translator->getTranslations(token);
-				
-				for (auto & p : *translations)
-				{
-					unsigned int trad = p.first;
-					float proba = p.second;
-
-					actual.emplace_back(trad, proba);
-				}
-			}
+				translator->addTranslations(actual, token);
 
 			if (actual.empty())
 				actual.emplace_back(token, 0.0f);

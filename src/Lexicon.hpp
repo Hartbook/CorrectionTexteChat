@@ -36,6 +36,7 @@ class Lexicon
 	Lexicon();
 	void initMaps(std::unordered_map<std::string, unsigned int> & specials);
 	unsigned int getToken(std::string & s);
+	const std::unordered_map<std::string, unsigned int> & getTokens();
 	const std::string & getString(unsigned int token);
 	unsigned int addWord(const std::string & word);
 	void print(FILE * output);

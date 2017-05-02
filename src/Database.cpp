@@ -4,6 +4,10 @@
 #include "util.hpp"
 #include <cstdio>
 
+Database::Database() : levenshteinTranslator(correctLexicon, incorrectLexicon)
+{
+}
+
 void Database::readFromFiles(std::string incorrectFilename, std::string correctFilename,
 	std::string gramsFilename, std::string tableFilename)
 {

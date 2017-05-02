@@ -11,7 +11,6 @@ Layout::Layout(File * baseText, File * correctedText)
 void Layout::transferLayout(File * target)
 {
 	auto isNewline = [](char c) {return c == 10 || c == 13;};
-	auto isNotNewline = [](char c) {return c != 10 && c != 13;};
 	auto isSpecial = [](const std::string & s)
 	{
 		return s == Lexicon::unknownStr || s == Lexicon::mailStr ||
