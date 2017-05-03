@@ -10,7 +10,6 @@ class LevenshteinTranslator : public WordTranslator
 
 	Lexicon & correctLexicon;
 	Lexicon & incorrectLexicon;
-	std::vector< std::pair<unsigned int, float> > translations;
 	std::vector< std::vector<float> > distances;
 
 	float getSubstitutionCost(const std::string & s1, const std::string & s2,
@@ -20,8 +19,7 @@ class LevenshteinTranslator : public WordTranslator
 	public :
 
 	LevenshteinTranslator(Lexicon & correctLexicon, Lexicon & incorrectLexicon);
-	void addTranslations(std::vector< std::pair<unsigned int, float> > & actual,
-						 unsigned int token);
+	void addTranslations(WordTranslations & actual);
 };
 
 #endif

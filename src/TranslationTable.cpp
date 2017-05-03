@@ -206,15 +206,16 @@ void TranslationTable::read(File & input)
 		table[token1][token2] = proba;
 }
 
-void TranslationTable::addTranslations(std::vector< std::pair<unsigned int, float> > & actual,
-									   unsigned int token)
+void TranslationTable::addTranslations(WordTranslations & actual)
 {
+	unsigned int token = actual.token;
+
 	if (token >= table.size())
 		return;
 
 	for (unsigned int i = 0; i < table[token].size(); i++)
 		if (table[token][i] >= 0)
-			actual.emplace_back(i, table[token][i]);
+			actual.addTranslation(i, table[token][i]);
 }
 
 bool TranslationTable::isCorrect(unsigned int token)

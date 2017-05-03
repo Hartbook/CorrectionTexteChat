@@ -31,8 +31,7 @@ class TranslationTable : public WordTranslator
 	void printForDebug(FILE * output, Lexicon & correctLex,
 		Lexicon & incorrectLex);
 	void read(File & input);
-	void addTranslations(std::vector< std::pair<unsigned int, float> > & actual,
-						 unsigned int token);
+	void addTranslations(WordTranslations & actual);
 };
 
 #endif

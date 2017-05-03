@@ -17,5 +17,6 @@ GramsCounter.o: GramsCounter.cpp GramsCounter.hpp File.hpp Lexicon.hpp \
  util.hpp
 Layout.o: Layout.cpp Layout.hpp File.hpp util.hpp Lexicon.hpp
 File.o: File.cpp File.hpp
+WordTranslator.o: WordTranslator.cpp WordTranslator.hpp
 Lexicon.o: Lexicon.cpp Lexicon.hpp File.hpp util.hpp
 util.o: util.cpp util.hpp File.hpp Lexicon.hpp

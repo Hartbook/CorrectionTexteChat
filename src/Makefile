@@ -1,7 +1,7 @@
 CC=g++
 RM=rm -f
 
-CFLAGS=-W -Wall -std=c++11 -Ofast
+CFLAGS=-W -Wall -std=c++11 -g3
 LFLAGS=-pthread
 
 SOURCES=$(wildcard *.cpp)

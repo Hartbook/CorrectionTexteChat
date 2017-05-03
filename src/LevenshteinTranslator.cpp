@@ -6,22 +6,21 @@ LevenshteinTranslator::LevenshteinTranslator(Lexicon & correctLexicon, Lexicon &
 	order = 1;
 }
 
-void LevenshteinTranslator::addTranslations(std::vector< std::pair<unsigned int, float> >&actual,
-											unsigned int token)
+
+void LevenshteinTranslator::addTranslations(WordTranslations & actual)
 {
 	static auto abs = [](int value) {return value < 0 ? -value : value;};
 	static float threshold = 2.0;
 	static int diffSizeMax = 2;
-	translations.clear();
 
-	const std::string & incorrectWord = incorrectLexicon.getString(token);
+	const std::string & incorrectWord = incorrectLexicon.getString(actual.token);
 
 	auto & correctWords = correctLexicon.getTokens();
 	float proximity;
 	for (auto & it : correctWords)
 		if (abs(incorrectWord.size() - it.first.size()) <= diffSizeMax)
 			if ((proximity = getProximity(incorrectWord, it.first)) <= threshold)
-				actual.push_back(std::pair<unsigned int, float>(it.second, proximity));
+				actual.addTranslation(it.second, proximity);
 }
 
 float LevenshteinTranslator::getSubstitutionCost(const std::string & s1, const std::string & s2,

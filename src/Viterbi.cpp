@@ -19,31 +19,34 @@ Viterbi::Viterbi(Database & database) :
 
 void Viterbi::buildLatticeFromSentence(const std::vector<unsigned int> & sentence)
 {
-	std::vector< std::pair<unsigned int, float> > precedent = {{0,0}}, actual;
+	std::vector< std::pair<unsigned int, float> > precedent = {{0,0}};
+	WordTranslations actual;
 
 	for (unsigned int i = 0; i < sentence.size(); i++)
 	{
-		actual.clear();
 		unsigned int token = sentence[i];
+		actual.initForToken(token);
 
 		if (token <= database.correctLexicon.getMaxToken())
 		{
-			actual.emplace_back(token, 0.0f);
+			actual.addTranslation(token, 0.0f);
 		}
 		else
 		{
 			for (auto translator : translators)
-				translator->addTranslations(actual, token);
+				translator->addTranslations(actual);
 
 			if (actual.empty())
-				actual.emplace_back(token, 0.0f);
+				actual.addTranslation(token, 0.0f);
 		}
 
 		for (auto & prec : precedent)
-			for (auto & act : actual)
-				probas[i].emplace_back(Pair(prec.first, act.first), act.second, -1);
+			for (auto & act : actual.translations)
+				probas[i].emplace_back(Pair(prec.first, act.get()->first),act.get()->second, -1);
 
-		precedent = actual;
+		precedent.clear();
+		for (auto & act : actual.translations)
+			precedent.push_back(*act.get());
 	}
 }
 
@@ -130,7 +133,7 @@ const std::vector<unsigned int> & Viterbi::correctSentence(
 
 	std::reverse(corrected.begin(), corrected.end());
 
-	//printLatticeForDebug();
+	printLatticeForDebug();
 
 	return corrected;
 }
