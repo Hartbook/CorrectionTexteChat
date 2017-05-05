@@ -4,6 +4,9 @@ all:
 	mkdir -p $(FOLDERS)
 	cd src && $(MAKE)
 
+doc:
+	cd src && $(MAKE) doc
+
 display:
 	cd src && $(MAKE) display
 

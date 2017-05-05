@@ -1,5 +1,7 @@
 # /bin/bash
 
+score='/home/franck/Desktop/data_chat/eval/score.sh'
+
 #./main --buildDatabase data/corpus/corrige/trainCorrige.txt data/corpus/brut/trainBrut.txt
 #valgrind ./main --buildDatabase data/corpus/corrige/trainCorrige.txt data/corpus/brut/trainBrut.txt
 
@@ -12,5 +14,7 @@
 #valgrind ./main --correct data/lexicon/brut/toy2.lexicon data/lexicon/corrige/toy1.lexicon data/gramsCount/toy1.grams data/translationTable/toy1.table
 
 #./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt
-valgrind ./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt
+#valgrind ./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt
 #valgrind --tool=callgrind ./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainCorrige.txt.lexicon data/gramsCount/trainCorrige.txt.grams data/translationTable/trainCorrige.txt.table data/corpus/brut/testBrut.txt
+
+$score data/corpus/corrige/testCorrige.txt data/output/testBrut.txt.corrected.layout

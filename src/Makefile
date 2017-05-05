@@ -13,6 +13,9 @@ EXEC=../main
 
 all: $(EXEC)
 
+doc:
+	doxygen ../documentation/config
+
 objects/%.o: %.cpp
 	@mkdir -p objects
 	@echo -e "\033[1;33m=== COMPILING $*.cpp INTO $@ ===\033[0m"
