@@ -14,7 +14,7 @@ EXEC=../main
 all: $(EXEC)
 
 doc:
-	doxygen ../documentation/config
+	doxygen ../docs/config
 
 objects/%.o: %.cpp
 	@mkdir -p objects
