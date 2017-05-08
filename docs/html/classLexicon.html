@@ -67,35 +67,41 @@ $(function() {
 <div class="title">Lexicon Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Contains known words and their corresponding token.  
+ <a href="classLexicon.html#details">More...</a></p>
+
+<p><code>#include &lt;Lexicon.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab98081cb72cada5ba51138752d81d898"><td class="memItemLeft" align="right" valign="top"><a id="ab98081cb72cada5ba51138752d81d898"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initMaps</b> (std::unordered_map&lt; std::string, unsigned int &gt; &amp;specials)</td></tr>
-<tr class="separator:ab98081cb72cada5ba51138752d81d898"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97daf7fd0ec322c4a64c94207467d9f0"><td class="memItemLeft" align="right" valign="top"><a id="a97daf7fd0ec322c4a64c94207467d9f0"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getToken</b> (std::string &amp;s)</td></tr>
+<tr class="memitem:aa62f83480879f9c6489633cb83a0736f"><td class="memItemLeft" align="right" valign="top"><a id="aa62f83480879f9c6489633cb83a0736f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#aa62f83480879f9c6489633cb83a0736f">Lexicon</a> ()</td></tr>
+<tr class="memdesc:aa62f83480879f9c6489633cb83a0736f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
+<tr class="separator:aa62f83480879f9c6489633cb83a0736f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97daf7fd0ec322c4a64c94207467d9f0"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a97daf7fd0ec322c4a64c94207467d9f0">getToken</a> (std::string &amp;s)</td></tr>
+<tr class="memdesc:a97daf7fd0ec322c4a64c94207467d9f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenize a word.  <a href="#a97daf7fd0ec322c4a64c94207467d9f0">More...</a><br /></td></tr>
 <tr class="separator:a97daf7fd0ec322c4a64c94207467d9f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a286b953dc921e936d07ba514e929fe"><td class="memItemLeft" align="right" valign="top"><a id="a7a286b953dc921e936d07ba514e929fe"></a>
-const std::unordered_map&lt; std::string, unsigned int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getTokens</b> ()</td></tr>
+<tr class="memitem:a7a286b953dc921e936d07ba514e929fe"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; std::string, unsigned int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a7a286b953dc921e936d07ba514e929fe">getTokens</a> ()</td></tr>
+<tr class="memdesc:a7a286b953dc921e936d07ba514e929fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get every word and token inside the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>.  <a href="#a7a286b953dc921e936d07ba514e929fe">More...</a><br /></td></tr>
 <tr class="separator:a7a286b953dc921e936d07ba514e929fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a328ff05786103c14ee4b0330829f3121"><td class="memItemLeft" align="right" valign="top"><a id="a328ff05786103c14ee4b0330829f3121"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getString</b> (unsigned int token)</td></tr>
+<tr class="memitem:a328ff05786103c14ee4b0330829f3121"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a328ff05786103c14ee4b0330829f3121">getString</a> (unsigned int token)</td></tr>
+<tr class="memdesc:a328ff05786103c14ee4b0330829f3121"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the word corresponding to a token.  <a href="#a328ff05786103c14ee4b0330829f3121">More...</a><br /></td></tr>
 <tr class="separator:a328ff05786103c14ee4b0330829f3121"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94b037e129bab580cdee396c8db8244c"><td class="memItemLeft" align="right" valign="top"><a id="a94b037e129bab580cdee396c8db8244c"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>addWord</b> (const std::string &amp;word)</td></tr>
+<tr class="memitem:a94b037e129bab580cdee396c8db8244c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a94b037e129bab580cdee396c8db8244c">addWord</a> (const std::string &amp;word)</td></tr>
+<tr class="memdesc:a94b037e129bab580cdee396c8db8244c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a word to the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>.  <a href="#a94b037e129bab580cdee396c8db8244c">More...</a><br /></td></tr>
 <tr class="separator:a94b037e129bab580cdee396c8db8244c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7126d888d4fceb8a58d21eb7ef95c2d6"><td class="memItemLeft" align="right" valign="top"><a id="a7126d888d4fceb8a58d21eb7ef95c2d6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (FILE *output)</td></tr>
+<tr class="memitem:a7126d888d4fceb8a58d21eb7ef95c2d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a7126d888d4fceb8a58d21eb7ef95c2d6">print</a> (FILE *output)</td></tr>
+<tr class="memdesc:a7126d888d4fceb8a58d21eb7ef95c2d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> into a <a class="el" href="classFile.html" title="Represents a file on the system. ">File</a>.  <a href="#a7126d888d4fceb8a58d21eb7ef95c2d6">More...</a><br /></td></tr>
 <tr class="separator:a7126d888d4fceb8a58d21eb7ef95c2d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b3d53999b6e75aee8ffd2bb45ffdf70"><td class="memItemLeft" align="right" valign="top"><a id="a7b3d53999b6e75aee8ffd2bb45ffdf70"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (<a class="el" href="classFile.html">File</a> &amp;input)</td></tr>
+<tr class="memitem:a7b3d53999b6e75aee8ffd2bb45ffdf70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a7b3d53999b6e75aee8ffd2bb45ffdf70">read</a> (<a class="el" href="classFile.html">File</a> &amp;input)</td></tr>
+<tr class="memdesc:a7b3d53999b6e75aee8ffd2bb45ffdf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize this <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> from a file.  <a href="#a7b3d53999b6e75aee8ffd2bb45ffdf70">More...</a><br /></td></tr>
 <tr class="separator:a7b3d53999b6e75aee8ffd2bb45ffdf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4ed9570b9575341c43442150c1a748a"><td class="memItemLeft" align="right" valign="top"><a id="af4ed9570b9575341c43442150c1a748a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>copy</b> (const <a class="el" href="classLexicon.html">Lexicon</a> &amp;other)</td></tr>
+<tr class="memitem:af4ed9570b9575341c43442150c1a748a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#af4ed9570b9575341c43442150c1a748a">copy</a> (const <a class="el" href="classLexicon.html">Lexicon</a> &amp;other)</td></tr>
+<tr class="memdesc:af4ed9570b9575341c43442150c1a748a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize this <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> so that it contains every word present in other.  <a href="#af4ed9570b9575341c43442150c1a748a">More...</a><br /></td></tr>
 <tr class="separator:af4ed9570b9575341c43442150c1a748a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25a9fff92015f05e2b315e31e74bee2f"><td class="memItemLeft" align="right" valign="top"><a id="a25a9fff92015f05e2b315e31e74bee2f"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxToken</b> () const</td></tr>
+<tr class="memitem:a25a9fff92015f05e2b315e31e74bee2f"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a25a9fff92015f05e2b315e31e74bee2f">getMaxToken</a> () const</td></tr>
+<tr class="memdesc:a25a9fff92015f05e2b315e31e74bee2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the biggest token present in this instance.  <a href="#a25a9fff92015f05e2b315e31e74bee2f">More...</a><br /></td></tr>
 <tr class="separator:a25a9fff92015f05e2b315e31e74bee2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -131,6 +137,212 @@ static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"
 static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><b>dateStr</b> [] = &quot;DATE&quot;</td></tr>
 <tr class="separator:aa4457caaac6b659b7aeb8b40490a4438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Contains known words and their corresponding token. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a94b037e129bab580cdee396c8db8244c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94b037e129bab580cdee396c8db8244c">&#9670;&nbsp;</a></span>addWord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Lexicon::addWord </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>word</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a word to the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>. </p>
+<p>The corresponding token will be chosen sequentialy so that there is no gap.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">word</td><td>Word to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The token corresponding to <code>word</code> </dd></dl>
+
+</div>
+</div>
+<a id="af4ed9570b9575341c43442150c1a748a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4ed9570b9575341c43442150c1a748a">&#9670;&nbsp;</a></span>copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Lexicon::copy </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize this <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> so that it contains every word present in other. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> to copy from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a25a9fff92015f05e2b315e31e74bee2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25a9fff92015f05e2b315e31e74bee2f">&#9670;&nbsp;</a></span>getMaxToken()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Lexicon::getMaxToken </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the biggest token present in this instance. </p>
+<p>if token &gt; lexicon.getMaxToken() then token do not belong to lexicon.</p>
+<dl class="section return"><dt>Returns</dt><dd>The biggest token present in this instance. </dd></dl>
+
+</div>
+</div>
+<a id="a328ff05786103c14ee4b0330829f3121"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a328ff05786103c14ee4b0330829f3121">&#9670;&nbsp;</a></span>getString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; Lexicon::getString </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>token</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the word corresponding to a token. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>Token of the word.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The word which token is <code>token</code>, Lexicon::unknownStr if <code>token</code> is not in the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>. </dd></dl>
+
+</div>
+</div>
+<a id="a97daf7fd0ec322c4a64c94207467d9f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97daf7fd0ec322c4a64c94207467d9f0">&#9670;&nbsp;</a></span>getToken()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Lexicon::getToken </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tokenize a word. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Word to tokenize.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Token corresponding to <code>s</code>, Lexicon::unknown if <code>s</code> is not in the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>. </dd></dl>
+
+</div>
+</div>
+<a id="a7a286b953dc921e936d07ba514e929fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a286b953dc921e936d07ba514e929fe">&#9670;&nbsp;</a></span>getTokens()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::unordered_map&lt; std::string, unsigned int &gt; &amp; Lexicon::getTokens </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get every word and token inside the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>const ref to container. </dd></dl>
+
+</div>
+</div>
+<a id="a7126d888d4fceb8a58d21eb7ef95c2d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7126d888d4fceb8a58d21eb7ef95c2d6">&#9670;&nbsp;</a></span>print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Lexicon::print </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>output</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> into a <a class="el" href="classFile.html" title="Represents a file on the system. ">File</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">output</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> descriptor the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> will be saved into. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classLexicon.html#a7b3d53999b6e75aee8ffd2bb45ffdf70" title="Initialize this Lexicon from a file. ">read()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a7b3d53999b6e75aee8ffd2bb45ffdf70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b3d53999b6e75aee8ffd2bb45ffdf70">&#9670;&nbsp;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Lexicon::read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFile.html">File</a> &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize this <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> from a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> to read the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> from, as writen by <a class="el" href="classLexicon.html#a7126d888d4fceb8a58d21eb7ef95c2d6" title="Save the Lexicon into a File. ">print()</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classLexicon.html#a7126d888d4fceb8a58d21eb7ef95c2d6" title="Save the Lexicon into a File. ">print()</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Lexicon.hpp</li>
 <li>Lexicon.cpp</li>

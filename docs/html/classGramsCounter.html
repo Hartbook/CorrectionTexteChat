@@ -66,46 +66,477 @@ $(function() {
 <div class="title">GramsCounter Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a language model.  
+ <a href="classGramsCounter.html#details">More...</a></p>
+
+<p><code>#include &lt;GramsCounter.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aedbfec5dc4db03ac98f3f28362f124a2"><td class="memItemLeft" align="right" valign="top"><a id="aedbfec5dc4db03ac98f3f28362f124a2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addGram</b> (unsigned int t1)</td></tr>
+<tr class="memitem:a01f3b9c4cb82b096bf81ea09eed155c0"><td class="memItemLeft" align="right" valign="top"><a id="a01f3b9c4cb82b096bf81ea09eed155c0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#a01f3b9c4cb82b096bf81ea09eed155c0">GramsCounter</a> ()</td></tr>
+<tr class="memdesc:a01f3b9c4cb82b096bf81ea09eed155c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
+<tr class="separator:a01f3b9c4cb82b096bf81ea09eed155c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedbfec5dc4db03ac98f3f28362f124a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#aedbfec5dc4db03ac98f3f28362f124a2">addGram</a> (unsigned int t1)</td></tr>
+<tr class="memdesc:aedbfec5dc4db03ac98f3f28362f124a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count one occurence of the monogram t1.  <a href="#aedbfec5dc4db03ac98f3f28362f124a2">More...</a><br /></td></tr>
 <tr class="separator:aedbfec5dc4db03ac98f3f28362f124a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af65dc5d8a469ed925a7b23dce0429c1c"><td class="memItemLeft" align="right" valign="top"><a id="af65dc5d8a469ed925a7b23dce0429c1c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addGram</b> (unsigned int t1, unsigned int t2)</td></tr>
+<tr class="memitem:af65dc5d8a469ed925a7b23dce0429c1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#af65dc5d8a469ed925a7b23dce0429c1c">addGram</a> (unsigned int t1, unsigned int t2)</td></tr>
+<tr class="memdesc:af65dc5d8a469ed925a7b23dce0429c1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count one occurence of the bigram (t1,t2).  <a href="#af65dc5d8a469ed925a7b23dce0429c1c">More...</a><br /></td></tr>
 <tr class="separator:af65dc5d8a469ed925a7b23dce0429c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fa78eccbb6b347f2198545b51cbdd1e"><td class="memItemLeft" align="right" valign="top"><a id="a7fa78eccbb6b347f2198545b51cbdd1e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addGram</b> (unsigned int t1, unsigned int t2, unsigned int t3)</td></tr>
+<tr class="memitem:a7fa78eccbb6b347f2198545b51cbdd1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#a7fa78eccbb6b347f2198545b51cbdd1e">addGram</a> (unsigned int t1, unsigned int t2, unsigned int t3)</td></tr>
+<tr class="memdesc:a7fa78eccbb6b347f2198545b51cbdd1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count one occurence of the trigram (t1,t2,t3).  <a href="#a7fa78eccbb6b347f2198545b51cbdd1e">More...</a><br /></td></tr>
 <tr class="separator:a7fa78eccbb6b347f2198545b51cbdd1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a532728e0311b5f5cdd0dd9f2cd0b5115"><td class="memItemLeft" align="right" valign="top"><a id="a532728e0311b5f5cdd0dd9f2cd0b5115"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getProb</b> (unsigned int t1) const</td></tr>
+<tr class="memitem:a532728e0311b5f5cdd0dd9f2cd0b5115"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115">getProb</a> (unsigned int t1) const</td></tr>
+<tr class="memdesc:a532728e0311b5f5cdd0dd9f2cd0b5115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get probability of <a class="el" href="classGram.html" title="Represents a monogram, a bigram or a trigram. ">Gram</a>.  <a href="#a532728e0311b5f5cdd0dd9f2cd0b5115">More...</a><br /></td></tr>
 <tr class="separator:a532728e0311b5f5cdd0dd9f2cd0b5115"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9cf8f02d0a2cabcd17cac6c945b3ef6"><td class="memItemLeft" align="right" valign="top"><a id="ad9cf8f02d0a2cabcd17cac6c945b3ef6"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getProb</b> (unsigned int t1, unsigned int t2) const</td></tr>
+<tr class="memitem:ad9cf8f02d0a2cabcd17cac6c945b3ef6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#ad9cf8f02d0a2cabcd17cac6c945b3ef6">getProb</a> (unsigned int t1, unsigned int t2) const</td></tr>
+<tr class="memdesc:ad9cf8f02d0a2cabcd17cac6c945b3ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get probability of <a class="el" href="classGram.html" title="Represents a monogram, a bigram or a trigram. ">Gram</a>.  <a href="#ad9cf8f02d0a2cabcd17cac6c945b3ef6">More...</a><br /></td></tr>
 <tr class="separator:ad9cf8f02d0a2cabcd17cac6c945b3ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf9e73b2f78e2e062bac7fd3892bdf62"><td class="memItemLeft" align="right" valign="top"><a id="aaf9e73b2f78e2e062bac7fd3892bdf62"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getProb</b> (unsigned int t1, unsigned int t2, unsigned int t3) const</td></tr>
+<tr class="memitem:aaf9e73b2f78e2e062bac7fd3892bdf62"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#aaf9e73b2f78e2e062bac7fd3892bdf62">getProb</a> (unsigned int t1, unsigned int t2, unsigned int t3) const</td></tr>
+<tr class="memdesc:aaf9e73b2f78e2e062bac7fd3892bdf62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get probability of <a class="el" href="classGram.html" title="Represents a monogram, a bigram or a trigram. ">Gram</a>.  <a href="#aaf9e73b2f78e2e062bac7fd3892bdf62">More...</a><br /></td></tr>
 <tr class="separator:aaf9e73b2f78e2e062bac7fd3892bdf62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6e4e5ed53e00ba86deb737e84f46372"><td class="memItemLeft" align="right" valign="top"><a id="ab6e4e5ed53e00ba86deb737e84f46372"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getLogProb</b> (unsigned int t1) const</td></tr>
+<tr class="memitem:ab6e4e5ed53e00ba86deb737e84f46372"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#ab6e4e5ed53e00ba86deb737e84f46372">getLogProb</a> (unsigned int t1) const</td></tr>
+<tr class="memdesc:ab6e4e5ed53e00ba86deb737e84f46372"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opposite of logarithm of <a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115" title="Get probability of Gram. ">getProb()</a>.  <a href="#ab6e4e5ed53e00ba86deb737e84f46372">More...</a><br /></td></tr>
 <tr class="separator:ab6e4e5ed53e00ba86deb737e84f46372"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac64cb91593a3d4b15d6821e73cfa476"><td class="memItemLeft" align="right" valign="top"><a id="aac64cb91593a3d4b15d6821e73cfa476"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getLogProb</b> (unsigned int t1, unsigned int t2) const</td></tr>
+<tr class="memitem:aac64cb91593a3d4b15d6821e73cfa476"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#aac64cb91593a3d4b15d6821e73cfa476">getLogProb</a> (unsigned int t1, unsigned int t2) const</td></tr>
+<tr class="memdesc:aac64cb91593a3d4b15d6821e73cfa476"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opposite of logarithm of <a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115" title="Get probability of Gram. ">getProb()</a>.  <a href="#aac64cb91593a3d4b15d6821e73cfa476">More...</a><br /></td></tr>
 <tr class="separator:aac64cb91593a3d4b15d6821e73cfa476"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a714193c3fb467239794fe183befff6fc"><td class="memItemLeft" align="right" valign="top"><a id="a714193c3fb467239794fe183befff6fc"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getLogProb</b> (unsigned int t1, unsigned int t2, unsigned int t3) const</td></tr>
+<tr class="memitem:a714193c3fb467239794fe183befff6fc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#a714193c3fb467239794fe183befff6fc">getLogProb</a> (unsigned int t1, unsigned int t2, unsigned int t3) const</td></tr>
+<tr class="memdesc:a714193c3fb467239794fe183befff6fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opposite of logarithm of <a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115" title="Get probability of Gram. ">getProb()</a>.  <a href="#a714193c3fb467239794fe183befff6fc">More...</a><br /></td></tr>
 <tr class="separator:a714193c3fb467239794fe183befff6fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8019ed3baf4bbf6d432177ba971095fc"><td class="memItemLeft" align="right" valign="top"><a id="a8019ed3baf4bbf6d432177ba971095fc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (<a class="el" href="classFile.html">File</a> &amp;input)</td></tr>
+<tr class="memitem:a8019ed3baf4bbf6d432177ba971095fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#a8019ed3baf4bbf6d432177ba971095fc">read</a> (<a class="el" href="classFile.html">File</a> &amp;input)</td></tr>
+<tr class="memdesc:a8019ed3baf4bbf6d432177ba971095fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the language model from a file.  <a href="#a8019ed3baf4bbf6d432177ba971095fc">More...</a><br /></td></tr>
 <tr class="separator:a8019ed3baf4bbf6d432177ba971095fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05ccff4ad467e1200e2e202e572bb2ca"><td class="memItemLeft" align="right" valign="top"><a id="a05ccff4ad467e1200e2e202e572bb2ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (FILE *output)</td></tr>
+<tr class="memitem:a05ccff4ad467e1200e2e202e572bb2ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#a05ccff4ad467e1200e2e202e572bb2ca">print</a> (FILE *output)</td></tr>
+<tr class="memdesc:a05ccff4ad467e1200e2e202e572bb2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the language model into a file.  <a href="#a05ccff4ad467e1200e2e202e572bb2ca">More...</a><br /></td></tr>
 <tr class="separator:a05ccff4ad467e1200e2e202e572bb2ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c70211f6f1c5a81bd1711f6909d914b"><td class="memItemLeft" align="right" valign="top"><a id="a1c70211f6f1c5a81bd1711f6909d914b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (FILE *output, <a class="el" href="classLexicon.html">Lexicon</a> &amp;lexicon)</td></tr>
+<tr class="memitem:a1c70211f6f1c5a81bd1711f6909d914b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#a1c70211f6f1c5a81bd1711f6909d914b">print</a> (FILE *output, <a class="el" href="classLexicon.html">Lexicon</a> &amp;lexicon)</td></tr>
+<tr class="memdesc:a1c70211f6f1c5a81bd1711f6909d914b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the language model into a file, human readable format.  <a href="#a1c70211f6f1c5a81bd1711f6909d914b">More...</a><br /></td></tr>
 <tr class="separator:a1c70211f6f1c5a81bd1711f6909d914b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a language model. </p>
+<p>Once correctly initialized it is able to give the probability of a given <a class="el" href="classGram.html" title="Represents a monogram, a bigram or a trigram. ">Gram</a>. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aedbfec5dc4db03ac98f3f28362f124a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedbfec5dc4db03ac98f3f28362f124a2">&#9670;&nbsp;</a></span>addGram() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GramsCounter::addGram </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Count one occurence of the monogram t1. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af65dc5d8a469ed925a7b23dce0429c1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af65dc5d8a469ed925a7b23dce0429c1c">&#9670;&nbsp;</a></span>addGram() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GramsCounter::addGram </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Count one occurence of the bigram (t1,t2). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token. </td></tr>
+    <tr><td class="paramname">t2</td><td>Token. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7fa78eccbb6b347f2198545b51cbdd1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fa78eccbb6b347f2198545b51cbdd1e">&#9670;&nbsp;</a></span>addGram() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GramsCounter::addGram </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Count one occurence of the trigram (t1,t2,t3). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token. </td></tr>
+    <tr><td class="paramname">t2</td><td>Token. </td></tr>
+    <tr><td class="paramname">t3</td><td>Token. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab6e4e5ed53e00ba86deb737e84f46372"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6e4e5ed53e00ba86deb737e84f46372">&#9670;&nbsp;</a></span>getLogProb() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GramsCounter::getLogProb </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opposite of logarithm of <a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115" title="Get probability of Gram. ">getProb()</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-log(<a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115" title="Get probability of Gram. ">getProb()</a>). </dd></dl>
+
+</div>
+</div>
+<a id="aac64cb91593a3d4b15d6821e73cfa476"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac64cb91593a3d4b15d6821e73cfa476">&#9670;&nbsp;</a></span>getLogProb() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GramsCounter::getLogProb </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opposite of logarithm of <a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115" title="Get probability of Gram. ">getProb()</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token. </td></tr>
+    <tr><td class="paramname">t2</td><td>Token.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-log(<a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115" title="Get probability of Gram. ">getProb()</a>). </dd></dl>
+
+</div>
+</div>
+<a id="a714193c3fb467239794fe183befff6fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a714193c3fb467239794fe183befff6fc">&#9670;&nbsp;</a></span>getLogProb() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GramsCounter::getLogProb </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opposite of logarithm of <a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115" title="Get probability of Gram. ">getProb()</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token. </td></tr>
+    <tr><td class="paramname">t2</td><td>Token. </td></tr>
+    <tr><td class="paramname">t3</td><td>Token.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-log(<a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115" title="Get probability of Gram. ">getProb()</a>). </dd></dl>
+
+</div>
+</div>
+<a id="a532728e0311b5f5cdd0dd9f2cd0b5115"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a532728e0311b5f5cdd0dd9f2cd0b5115">&#9670;&nbsp;</a></span>getProb() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GramsCounter::getProb </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get probability of <a class="el" href="classGram.html" title="Represents a monogram, a bigram or a trigram. ">Gram</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Probability of monogram t1. </dd></dl>
+
+</div>
+</div>
+<a id="ad9cf8f02d0a2cabcd17cac6c945b3ef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9cf8f02d0a2cabcd17cac6c945b3ef6">&#9670;&nbsp;</a></span>getProb() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GramsCounter::getProb </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get probability of <a class="el" href="classGram.html" title="Represents a monogram, a bigram or a trigram. ">Gram</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token. </td></tr>
+    <tr><td class="paramname">t2</td><td>Token.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Probability of bigram (t1,t2). </dd></dl>
+
+</div>
+</div>
+<a id="aaf9e73b2f78e2e062bac7fd3892bdf62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf9e73b2f78e2e062bac7fd3892bdf62">&#9670;&nbsp;</a></span>getProb() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GramsCounter::getProb </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get probability of <a class="el" href="classGram.html" title="Represents a monogram, a bigram or a trigram. ">Gram</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token. </td></tr>
+    <tr><td class="paramname">t2</td><td>Token. </td></tr>
+    <tr><td class="paramname">t3</td><td>Token.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Probability of trigram (t1,t2,t3). </dd></dl>
+
+</div>
+</div>
+<a id="a05ccff4ad467e1200e2e202e572bb2ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05ccff4ad467e1200e2e202e572bb2ca">&#9670;&nbsp;</a></span>print() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GramsCounter::print </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>output</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the language model into a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">output</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> descriptor the language model will be saved into. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGramsCounter.html#a8019ed3baf4bbf6d432177ba971095fc" title="Read the language model from a file. ">read</a> </dd></dl>
+
+</div>
+</div>
+<a id="a1c70211f6f1c5a81bd1711f6909d914b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c70211f6f1c5a81bd1711f6909d914b">&#9670;&nbsp;</a></span>print() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GramsCounter::print </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td>
+          <td class="paramname"><em>lexicon</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print the language model into a file, human readable format. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">output</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> descriptor the language model will be savec into. </td></tr>
+    <tr><td class="paramname">lexicon</td><td><a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> containing every token of the language model. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8019ed3baf4bbf6d432177ba971095fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8019ed3baf4bbf6d432177ba971095fc">&#9670;&nbsp;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GramsCounter::read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFile.html">File</a> &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read the language model from a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>Path to file containing language model, as created by <a class="el" href="classGramsCounter.html#a05ccff4ad467e1200e2e202e572bb2ca" title="Save the language model into a file. ">print()</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGramsCounter.html#a05ccff4ad467e1200e2e202e572bb2ca" title="Save the language model into a file. ">print</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>GramsCounter.hpp</li>
 <li>GramsCounter.cpp</li>

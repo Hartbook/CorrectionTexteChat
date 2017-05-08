@@ -62,6 +62,8 @@ class Database
 	/// \param correctName Path to the file containing the corrected corpus.
 	/// \param incorrectName Path to the file containing the un-corrected corpus.
 	///
+	/// \see readFromFiles
+	///
 	////////////////////////////////////////////////////////////////////////////
 	void buildFromCorpus(std::string correctName, std::string incorrectName);
 
@@ -72,6 +74,8 @@ class Database
 	/// \param correctFilename Path to the file containing Lexicon correctLexicon.
 	/// \param gramsFilename Path to the file containing the GramsCounter.
 	/// \param tableFilename Path to the file containing the TranslationTable.
+	///
+	/// \see buildFromCorpus
 	///
 	////////////////////////////////////////////////////////////////////////////
 	void readFromFiles(std::string incorrectFilename, std::string correctFilename,

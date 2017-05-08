@@ -67,17 +67,22 @@ $(function() {
 <div class="title">Tokenizer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Tokenize a word or an entire text file.  
+ <a href="classTokenizer.html#details">More...</a></p>
+
+<p><code>#include &lt;Tokenizer.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a82cea761b17a4a704faaab9531c3c501"><td class="memItemLeft" align="right" valign="top"><a id="a82cea761b17a4a704faaab9531c3c501"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Tokenizer</b> (<a class="el" href="classLexicon.html">Lexicon</a> &amp;lexicon)</td></tr>
+<tr class="memitem:a82cea761b17a4a704faaab9531c3c501"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTokenizer.html#a82cea761b17a4a704faaab9531c3c501">Tokenizer</a> (<a class="el" href="classLexicon.html">Lexicon</a> &amp;lexicon)</td></tr>
+<tr class="memdesc:a82cea761b17a4a704faaab9531c3c501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a82cea761b17a4a704faaab9531c3c501">More...</a><br /></td></tr>
 <tr class="separator:a82cea761b17a4a704faaab9531c3c501"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af918888efe8c82cf983c13c675535859"><td class="memItemLeft" align="right" valign="top"><a id="af918888efe8c82cf983c13c675535859"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>tokenize</b> (<a class="el" href="classFile.html">File</a> &amp;corpus)</td></tr>
+<tr class="memitem:af918888efe8c82cf983c13c675535859"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTokenizer.html#af918888efe8c82cf983c13c675535859">tokenize</a> (<a class="el" href="classFile.html">File</a> &amp;corpus)</td></tr>
+<tr class="memdesc:af918888efe8c82cf983c13c675535859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenize a word from corpus.  <a href="#af918888efe8c82cf983c13c675535859">More...</a><br /></td></tr>
 <tr class="separator:af918888efe8c82cf983c13c675535859"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9aaf23dcd5b05bebc558f78f7be99ea0"><td class="memItemLeft" align="right" valign="top"><a id="a9aaf23dcd5b05bebc558f78f7be99ea0"></a>
-<a class="el" href="classFile.html">File</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>tokenize</b> (<a class="el" href="classFile.html">File</a> &amp;corpus, const std::string &amp;path)</td></tr>
+<tr class="memitem:a9aaf23dcd5b05bebc558f78f7be99ea0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFile.html">File</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTokenizer.html#a9aaf23dcd5b05bebc558f78f7be99ea0">tokenize</a> (<a class="el" href="classFile.html">File</a> &amp;corpus, const std::string &amp;path)</td></tr>
+<tr class="memdesc:a9aaf23dcd5b05bebc558f78f7be99ea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenize an entire text file.  <a href="#a9aaf23dcd5b05bebc558f78f7be99ea0">More...</a><br /></td></tr>
 <tr class="separator:a9aaf23dcd5b05bebc558f78f7be99ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -86,6 +91,102 @@ Public Attributes</h2></td></tr>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>word</b></td></tr>
 <tr class="separator:a18b615fd0e04452cbc124a595ee5d372"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Tokenize a word or an entire text file. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a82cea761b17a4a704faaab9531c3c501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82cea761b17a4a704faaab9531c3c501">&#9670;&nbsp;</a></span>Tokenizer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Tokenizer::Tokenizer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td>
+          <td class="paramname"><em>lexicon</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lexicon</td><td><a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> that will be used to tokenize. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af918888efe8c82cf983c13c675535859"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af918888efe8c82cf983c13c675535859">&#9670;&nbsp;</a></span>tokenize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Tokenizer::tokenize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFile.html">File</a> &amp;&#160;</td>
+          <td class="paramname"><em>corpus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tokenize a word from corpus. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">corpus</td><td>The file from which to read.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Token corresponding to the word read from corpus. </dd></dl>
+
+</div>
+</div>
+<a id="a9aaf23dcd5b05bebc558f78f7be99ea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aaf23dcd5b05bebc558f78f7be99ea0">&#9670;&nbsp;</a></span>tokenize() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classFile.html">File</a> * Tokenizer::tokenize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFile.html">File</a> &amp;&#160;</td>
+          <td class="paramname"><em>corpus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tokenize an entire text file. </p>
+<p>If during the tokenization a word is not inside the <code>lexicon</code>, it is added.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">corpus</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> containing the text to tokenize. </td></tr>
+    <tr><td class="paramname">path</td><td>Path to the file the function will write into.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> containing the tokenized text. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Tokenizer.hpp</li>
 <li>Tokenizer.cpp</li>

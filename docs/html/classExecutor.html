@@ -67,6 +67,11 @@ $(function() {
 <div class="title">Executor&lt; ReturnType, ArgType &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Concurrent execution of tasks using fixed threads pool.  
+ <a href="classExecutor.html#details">More...</a></p>
+
+<p><code>#include &lt;Executor.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -83,7 +88,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
 <tr class="separator:a3e13df6ead70066b3b26c3e83233e9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename ReturnType, typename ArgType&gt;<br />
+class Executor&lt; ReturnType, ArgType &gt;</h3>
+
+<p>Concurrent execution of tasks using fixed threads pool. </p>
+<p>Similar to <a class="el" href="classExecutor_3_01void_00_01void_01_4.html" title="Concurrent execution of tasks using fixed threads pool. ">Executor&lt;void,void&gt;</a> but here functions to execute must have a parameter and return something.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ReturnType</td><td>Return type of tasks to perform. Not void. </td></tr>
+    <tr><td class="paramname">ArgType</td><td>Type of the parameter the tasks take. Not void.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classExecutor_3_01void_00_01void_01_4.html" title="Concurrent execution of tasks using fixed threads pool. ">Executor&lt;void, void&gt;</a> </dd></dl>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Executor.hpp</li>
 </ul>
 </div><!-- contents -->

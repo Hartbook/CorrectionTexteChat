@@ -67,16 +67,78 @@ $(function() {
 <div class="title">Viterbi Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Used to correct a <a class="el" href="classFile.html" title="Represents a file on the system. ">File</a>, using <a class="el" href="classViterbi.html" title="Used to correct a File, using Viterbi algorithm. ">Viterbi</a> algorithm.  
+ <a href="classViterbi.html#details">More...</a></p>
+
+<p><code>#include &lt;Viterbi.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae99b04e927af06a69689ad333f6069b5"><td class="memItemLeft" align="right" valign="top"><a id="ae99b04e927af06a69689ad333f6069b5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Viterbi</b> (<a class="el" href="classDatabase.html">Database</a> &amp;database)</td></tr>
+<tr class="memitem:ae99b04e927af06a69689ad333f6069b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classViterbi.html#ae99b04e927af06a69689ad333f6069b5">Viterbi</a> (<a class="el" href="classDatabase.html">Database</a> &amp;database)</td></tr>
+<tr class="memdesc:ae99b04e927af06a69689ad333f6069b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#ae99b04e927af06a69689ad333f6069b5">More...</a><br /></td></tr>
 <tr class="separator:ae99b04e927af06a69689ad333f6069b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7b573f62eea989f1abbfbabb0bcdaa0"><td class="memItemLeft" align="right" valign="top"><a id="ac7b573f62eea989f1abbfbabb0bcdaa0"></a>
-<a class="el" href="classFile.html">File</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>correct</b> (std::string inputFilename)</td></tr>
+<tr class="memitem:ac7b573f62eea989f1abbfbabb0bcdaa0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFile.html">File</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classViterbi.html#ac7b573f62eea989f1abbfbabb0bcdaa0">correct</a> (std::string inputFilename)</td></tr>
+<tr class="memdesc:ac7b573f62eea989f1abbfbabb0bcdaa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Correct a text file.  <a href="#ac7b573f62eea989f1abbfbabb0bcdaa0">More...</a><br /></td></tr>
 <tr class="separator:ac7b573f62eea989f1abbfbabb0bcdaa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Used to correct a <a class="el" href="classFile.html" title="Represents a file on the system. ">File</a>, using <a class="el" href="classViterbi.html" title="Used to correct a File, using Viterbi algorithm. ">Viterbi</a> algorithm. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae99b04e927af06a69689ad333f6069b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae99b04e927af06a69689ad333f6069b5">&#9670;&nbsp;</a></span>Viterbi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Viterbi::Viterbi </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDatabase.html">Database</a> &amp;&#160;</td>
+          <td class="paramname"><em>database</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">database</td><td><a class="el" href="classDatabase.html" title="Contains necessary data to perform a correction. ">Database</a>, has to be initialized prior to any call to <a class="el" href="classViterbi.html#ac7b573f62eea989f1abbfbabb0bcdaa0" title="Correct a text file. ">correct()</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac7b573f62eea989f1abbfbabb0bcdaa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7b573f62eea989f1abbfbabb0bcdaa0">&#9670;&nbsp;</a></span>correct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classFile.html">File</a> * Viterbi::correct </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>inputFilename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Correct a text file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputFilename</td><td>Path to file containing the text to correct.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> containing the corrected text. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Viterbi.hpp</li>
 <li>Viterbi.cpp</li>

@@ -68,6 +68,11 @@ $(function() {
 <div class="title">WordTranslations Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents possible corrections for a given word.  
+ <a href="classWordTranslations.html#details">More...</a></p>
+
+<p><code>#include &lt;WordTranslator.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -77,17 +82,17 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>Pair</b> = std::pair
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac0f45e5c4155787ca85297cd82df3c6c"><td class="memItemLeft" align="right" valign="top"><a id="ac0f45e5c4155787ca85297cd82df3c6c"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>combineProbas</b> (float p1, float p2)</td></tr>
+<tr class="memitem:ac0f45e5c4155787ca85297cd82df3c6c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWordTranslations.html#ac0f45e5c4155787ca85297cd82df3c6c">combineProbas</a> (float p1, float p2)</td></tr>
+<tr class="memdesc:ac0f45e5c4155787ca85297cd82df3c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kind of combine logprob so that if two possible corrections are identical they only appear one time with a stronger probability.  <a href="#ac0f45e5c4155787ca85297cd82df3c6c">More...</a><br /></td></tr>
 <tr class="separator:ac0f45e5c4155787ca85297cd82df3c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac43127bc3f117331995c214f94ac92f"><td class="memItemLeft" align="right" valign="top"><a id="aac43127bc3f117331995c214f94ac92f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initForToken</b> (unsigned int token)</td></tr>
+<tr class="memitem:aac43127bc3f117331995c214f94ac92f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWordTranslations.html#aac43127bc3f117331995c214f94ac92f">initForToken</a> (unsigned int token)</td></tr>
+<tr class="memdesc:aac43127bc3f117331995c214f94ac92f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the token of the word this instance will hold possible correcitons of.  <a href="#aac43127bc3f117331995c214f94ac92f">More...</a><br /></td></tr>
 <tr class="separator:aac43127bc3f117331995c214f94ac92f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf8af6a16f9831e622c23eca84608e0f"><td class="memItemLeft" align="right" valign="top"><a id="aaf8af6a16f9831e622c23eca84608e0f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addTranslation</b> (unsigned int token, float proba)</td></tr>
+<tr class="memitem:aaf8af6a16f9831e622c23eca84608e0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWordTranslations.html#aaf8af6a16f9831e622c23eca84608e0f">addTranslation</a> (unsigned int token, float proba)</td></tr>
+<tr class="memdesc:aaf8af6a16f9831e622c23eca84608e0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a probable correction, associated with its probability.  <a href="#aaf8af6a16f9831e622c23eca84608e0f">More...</a><br /></td></tr>
 <tr class="separator:aaf8af6a16f9831e622c23eca84608e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e4f3e0e4c51b4aac6a60a3dd16001f7"><td class="memItemLeft" align="right" valign="top"><a id="a5e4f3e0e4c51b4aac6a60a3dd16001f7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>empty</b> ()</td></tr>
+<tr class="memitem:a5e4f3e0e4c51b4aac6a60a3dd16001f7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWordTranslations.html#a5e4f3e0e4c51b4aac6a60a3dd16001f7">empty</a> ()</td></tr>
+<tr class="memdesc:a5e4f3e0e4c51b4aac6a60a3dd16001f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if this instance doesn't contain any probable correction.  <a href="#a5e4f3e0e4c51b4aac6a60a3dd16001f7">More...</a><br /></td></tr>
 <tr class="separator:a5e4f3e0e4c51b4aac6a60a3dd16001f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -102,6 +107,133 @@ std::vector&lt; std::unique_ptr&lt; Pair &gt; &gt;&#160;</td><td class="memItemR
 std::unordered_map&lt; unsigned int, Pair * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>positions</b></td></tr>
 <tr class="separator:a825d6d8ded379c5b19b3fd53d2a2faaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents possible corrections for a given word. </p>
+<p>Each possible translation is associated with a -logprob (the lesser the likeliest).</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classWordTranslator.html" title="Interface. Represent an object that is able to propose probable corrections of a given word...">WordTranslator</a> </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aaf8af6a16f9831e622c23eca84608e0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf8af6a16f9831e622c23eca84608e0f">&#9670;&nbsp;</a></span>addTranslation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WordTranslations::addTranslation </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>proba</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a probable correction, associated with its probability. </p>
+<p>If the token given as parameter is already a part of possible corrections, it will not be added twice but instead its probability will be strengthened using <a class="el" href="classWordTranslations.html#ac0f45e5c4155787ca85297cd82df3c6c" title="Kind of combine logprob so that if two possible corrections are identical they only appear one time w...">combineProbas()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>The probable correction. </td></tr>
+    <tr><td class="paramname">proba</td><td>Its probability. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac0f45e5c4155787ca85297cd82df3c6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0f45e5c4155787ca85297cd82df3c6c">&#9670;&nbsp;</a></span>combineProbas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float WordTranslations::combineProbas </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kind of combine logprob so that if two possible corrections are identical they only appear one time with a stronger probability. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>First -log probability. </td></tr>
+    <tr><td class="paramname">p2</td><td>Second -log probability.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-log probability at least better or equal than the best of the two parameters. </dd></dl>
+
+</div>
+</div>
+<a id="a5e4f3e0e4c51b4aac6a60a3dd16001f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e4f3e0e4c51b4aac6a60a3dd16001f7">&#9670;&nbsp;</a></span>empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool WordTranslations::empty </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if this instance doesn't contain any probable correction. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if this instance doesn't contain any probable correction. </dd></dl>
+
+</div>
+</div>
+<a id="aac43127bc3f117331995c214f94ac92f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac43127bc3f117331995c214f94ac92f">&#9670;&nbsp;</a></span>initForToken()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WordTranslations::initForToken </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>token</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the token of the word this instance will hold possible correcitons of. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>WordTranslator.hpp</li>
 <li>WordTranslator.cpp</li>

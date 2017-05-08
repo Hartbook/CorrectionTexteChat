@@ -4,16 +4,94 @@
 #include <string>
 #include "File.hpp"
 
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Check if parameter can separate words.
+///
+/// \param c
+///
+/// \return true if `c` can separate words, like ' '.
+///
+////////////////////////////////////////////////////////////////////////////
 bool isSeparator(char c);
-bool containsLetter(char * buffer);
-bool equalsChar(char a, char b);
+
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Given a path to a file, return the filename.
+///
+/// \param s Path to file.
+///
+/// \return Filename.
+///
+////////////////////////////////////////////////////////////////////////////
 std::string getFilenameFromPath(std::string s);
+
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Number of characters that would be printed, used for alignment.
+///
+/// \param s 
+///
+/// \return 
+///
+////////////////////////////////////////////////////////////////////////////
 unsigned int lengthPrinted(const std::string & s);
+
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Check if string is a number.
+///
+/// \param s String to check.
+///
+/// \return True if s is a number.
+///
+////////////////////////////////////////////////////////////////////////////
 bool isNum(const std::string & s);
-bool isUpper(char c);
+
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Check if a `char` can end a sentence, like '.'.
+///
+/// \param c `char` to check.
+///
+/// \return True if `c` can end a sentence.
+///
+////////////////////////////////////////////////////////////////////////////
 bool endSentence(char c);
+
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Remove unrelevant information from a corpus.
+///
+/// Cleaning is
+/// - removing comments , message sender and time
+/// - One line per sentence.
+///
+/// \param corpus Corpus to clean.
+/// \param path Path to file the result will be written into.
+///
+/// \return A File containing a clean version of the original corpus.
+///
+////////////////////////////////////////////////////////////////////////////
 File * cleanCorpus(File * corpus, std::string path);
+
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Read a File until the beginning of a word.
+///
+/// Ignore spaces, newline, punctuation...
+///
+/// \param corpus File to read from.
+///
+/// \return True if the next word to be read from `corpus` is the first of a sentence.
+///
+////////////////////////////////////////////////////////////////////////////
 bool ignoreSeparators(File & corpus);
+
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Read a word from a File.
+///
+/// \param corpus File to read from.
+/// \param word String to store the read word into.
+/// \param sentenceBegin True if the word to read is the first of a sentence.
+///
+/// \return Lexicon::unknown if the word was not recognized as a special pattern.
+/// Lexicon::number if the word has been recognized as a number,...
+///
+////////////////////////////////////////////////////////////////////////////
 unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin);
 
 #endif

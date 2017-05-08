@@ -66,16 +66,92 @@ $(function() {
 <div class="title">Layout Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Transfers the punctuation from one file to another.  
+ <a href="classLayout.html#details">More...</a></p>
+
+<p><code>#include &lt;Layout.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a668390329ed1b47bb509773c5af6bab4"><td class="memItemLeft" align="right" valign="top"><a id="a668390329ed1b47bb509773c5af6bab4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Layout</b> (<a class="el" href="classFile.html">File</a> *baseText, <a class="el" href="classFile.html">File</a> *correctedText)</td></tr>
+<tr class="memitem:a668390329ed1b47bb509773c5af6bab4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayout.html#a668390329ed1b47bb509773c5af6bab4">Layout</a> (<a class="el" href="classFile.html">File</a> *baseText, <a class="el" href="classFile.html">File</a> *correctedText)</td></tr>
+<tr class="memdesc:a668390329ed1b47bb509773c5af6bab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a668390329ed1b47bb509773c5af6bab4">More...</a><br /></td></tr>
 <tr class="separator:a668390329ed1b47bb509773c5af6bab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b4a785ff44fa3c68a06a5ba21fe8a3a"><td class="memItemLeft" align="right" valign="top"><a id="a3b4a785ff44fa3c68a06a5ba21fe8a3a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>transferLayout</b> (<a class="el" href="classFile.html">File</a> *target)</td></tr>
+<tr class="memitem:a3b4a785ff44fa3c68a06a5ba21fe8a3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLayout.html#a3b4a785ff44fa3c68a06a5ba21fe8a3a">transferLayout</a> (<a class="el" href="classFile.html">File</a> *target)</td></tr>
+<tr class="memdesc:a3b4a785ff44fa3c68a06a5ba21fe8a3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the contents of correctedText with the syntax of baseText.  <a href="#a3b4a785ff44fa3c68a06a5ba21fe8a3a">More...</a><br /></td></tr>
 <tr class="separator:a3b4a785ff44fa3c68a06a5ba21fe8a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Transfers the punctuation from one file to another. </p>
+<p>Example :</p>
+<p>if <code>file1</code> contains "[06:20:44] _CLIENT_ : Sesi est une frase... pleines de fotes !" and <code>file2</code> contains "ceci est une phrase pleine de fautes"</p>
+<div class="fragment"><div class="line"><a class="code" href="classLayout.html">Layout</a> layout(file1, file2);</div><div class="line"><a class="code" href="classFile.html">File</a> file3(<span class="stringliteral">&quot;path/to/file3.txt&quot;</span>, <span class="stringliteral">&quot;w&quot;</span>);</div><div class="line">layout.transferLayout(file3);</div></div><!-- fragment --><p> Will produce a file containing "[06:20:44] _CLIENT_ : ceci est une phrase... pleine de fautes !"</p>
+<p>The purpose is to re-introduce the syntax from original un-corrected text to the syntax-less corrected text. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a668390329ed1b47bb509773c5af6bab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a668390329ed1b47bb509773c5af6bab4">&#9670;&nbsp;</a></span>Layout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Layout::Layout </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFile.html">File</a> *&#160;</td>
+          <td class="paramname"><em>baseText</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classFile.html">File</a> *&#160;</td>
+          <td class="paramname"><em>correctedText</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">baseText</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> containing text with syntax. </td></tr>
+    <tr><td class="paramname">correctedText</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> containing text without syntax. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3b4a785ff44fa3c68a06a5ba21fe8a3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b4a785ff44fa3c68a06a5ba21fe8a3a">&#9670;&nbsp;</a></span>transferLayout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Layout::transferLayout </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFile.html">File</a> *&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write the contents of correctedText with the syntax of baseText. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> in which to write. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Layout.hpp</li>
 <li>Layout.cpp</li>

@@ -1376,3 +1376,7 @@ tr.heading h2 {
     display: inline-block;
 }
 
+code {
+    color: #008000;
+}
+

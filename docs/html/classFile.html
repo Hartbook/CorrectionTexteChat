@@ -66,40 +66,275 @@ $(function() {
 <div class="title">File Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a file on the system.  
+ <a href="classFile.html#details">More...</a></p>
+
+<p><code>#include &lt;File.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8574f47a4eff4fc44bd60919c61610d3"><td class="memItemLeft" align="right" valign="top"><a id="a8574f47a4eff4fc44bd60919c61610d3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>File</b> (const std::string &amp;filename, const std::string &amp;mode)</td></tr>
+<tr class="memitem:a8574f47a4eff4fc44bd60919c61610d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#a8574f47a4eff4fc44bd60919c61610d3">File</a> (const std::string &amp;filename, const std::string &amp;mode)</td></tr>
+<tr class="memdesc:a8574f47a4eff4fc44bd60919c61610d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a8574f47a4eff4fc44bd60919c61610d3">More...</a><br /></td></tr>
 <tr class="separator:a8574f47a4eff4fc44bd60919c61610d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60b843d95156968bb69e26e9171b2c57"><td class="memItemLeft" align="right" valign="top"><a id="a60b843d95156968bb69e26e9171b2c57"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>peek</b> ()</td></tr>
+<tr class="memitem:ac704ebdf5f57d7a1c5ddf409d797fb69"><td class="memItemLeft" align="right" valign="top"><a id="ac704ebdf5f57d7a1c5ddf409d797fb69"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#ac704ebdf5f57d7a1c5ddf409d797fb69">~File</a> ()</td></tr>
+<tr class="memdesc:ac704ebdf5f57d7a1c5ddf409d797fb69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, taking care of closing the file descriptor. <br /></td></tr>
+<tr class="separator:ac704ebdf5f57d7a1c5ddf409d797fb69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60b843d95156968bb69e26e9171b2c57"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#a60b843d95156968bb69e26e9171b2c57">peek</a> ()</td></tr>
+<tr class="memdesc:a60b843d95156968bb69e26e9171b2c57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peek the next <code>char</code> to be read from the file.  <a href="#a60b843d95156968bb69e26e9171b2c57">More...</a><br /></td></tr>
 <tr class="separator:a60b843d95156968bb69e26e9171b2c57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93457cfa8895f0eb185f4b47d3f36fd9"><td class="memItemLeft" align="right" valign="top"><a id="a93457cfa8895f0eb185f4b47d3f36fd9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFinished</b> ()</td></tr>
+<tr class="memitem:a93457cfa8895f0eb185f4b47d3f36fd9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#a93457cfa8895f0eb185f4b47d3f36fd9">isFinished</a> ()</td></tr>
+<tr class="memdesc:a93457cfa8895f0eb185f4b47d3f36fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is there nothing more to read from this file ?  <a href="#a93457cfa8895f0eb185f4b47d3f36fd9">More...</a><br /></td></tr>
 <tr class="separator:a93457cfa8895f0eb185f4b47d3f36fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9377d79b66b40cef676db07e67871ca8"><td class="memItemLeft" align="right" valign="top"><a id="a9377d79b66b40cef676db07e67871ca8"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>getChar</b> ()</td></tr>
+<tr class="memitem:a9377d79b66b40cef676db07e67871ca8"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#a9377d79b66b40cef676db07e67871ca8">getChar</a> ()</td></tr>
+<tr class="memdesc:a9377d79b66b40cef676db07e67871ca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a <code>char</code> from the file.  <a href="#a9377d79b66b40cef676db07e67871ca8">More...</a><br /></td></tr>
 <tr class="separator:a9377d79b66b40cef676db07e67871ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad8d72b0d1ebd8f10f6b031065c9271e"><td class="memItemLeft" align="right" valign="top"><a id="aad8d72b0d1ebd8f10f6b031065c9271e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ungetChar</b> (char c)</td></tr>
+<tr class="memitem:aad8d72b0d1ebd8f10f6b031065c9271e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#aad8d72b0d1ebd8f10f6b031065c9271e">ungetChar</a> (char c)</td></tr>
+<tr class="memdesc:aad8d72b0d1ebd8f10f6b031065c9271e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Put back a <code>char</code> in the file.  <a href="#aad8d72b0d1ebd8f10f6b031065c9271e">More...</a><br /></td></tr>
 <tr class="separator:aad8d72b0d1ebd8f10f6b031065c9271e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa538ff162143bbfe6782b9ebe33426b4"><td class="memItemLeft" align="right" valign="top"><a id="aa538ff162143bbfe6782b9ebe33426b4"></a>
-FILE *&#160;</td><td class="memItemRight" valign="bottom"><b>getDescriptor</b> ()</td></tr>
+<tr class="memitem:aa538ff162143bbfe6782b9ebe33426b4"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#aa538ff162143bbfe6782b9ebe33426b4">getDescriptor</a> ()</td></tr>
+<tr class="memdesc:aa538ff162143bbfe6782b9ebe33426b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the file file descirptor.  <a href="#aa538ff162143bbfe6782b9ebe33426b4">More...</a><br /></td></tr>
 <tr class="separator:aa538ff162143bbfe6782b9ebe33426b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6d74a81bad59ad73501c3b89280b7e3"><td class="memItemLeft" align="right" valign="top"><a id="ac6d74a81bad59ad73501c3b89280b7e3"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
+<tr class="memitem:ac6d74a81bad59ad73501c3b89280b7e3"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#ac6d74a81bad59ad73501c3b89280b7e3">getName</a> ()</td></tr>
+<tr class="memdesc:ac6d74a81bad59ad73501c3b89280b7e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the file.  <a href="#ac6d74a81bad59ad73501c3b89280b7e3">More...</a><br /></td></tr>
 <tr class="separator:ac6d74a81bad59ad73501c3b89280b7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86532a7e52e5c6a75ec98b3c46f77376"><td class="memItemLeft" align="right" valign="top"><a id="a86532a7e52e5c6a75ec98b3c46f77376"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>readUntil</b> (char c)</td></tr>
+<tr class="memitem:a86532a7e52e5c6a75ec98b3c46f77376"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#a86532a7e52e5c6a75ec98b3c46f77376">readUntil</a> (char c)</td></tr>
+<tr class="memdesc:a86532a7e52e5c6a75ec98b3c46f77376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the file until c is encountered.  <a href="#a86532a7e52e5c6a75ec98b3c46f77376">More...</a><br /></td></tr>
 <tr class="separator:a86532a7e52e5c6a75ec98b3c46f77376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5878720bf6a72548ec8f2fa5598ed45"><td class="memItemLeft" align="right" valign="top"><a id="ad5878720bf6a72548ec8f2fa5598ed45"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>readUntil</b> (const std::function&lt; bool(char)&gt; &amp;condition)</td></tr>
+<tr class="memitem:ad5878720bf6a72548ec8f2fa5598ed45"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#ad5878720bf6a72548ec8f2fa5598ed45">readUntil</a> (const std::function&lt; bool(char)&gt; &amp;condition)</td></tr>
+<tr class="memdesc:ad5878720bf6a72548ec8f2fa5598ed45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the file until a <code>char</code> that satisfies condition is encountered.  <a href="#ad5878720bf6a72548ec8f2fa5598ed45">More...</a><br /></td></tr>
 <tr class="separator:ad5878720bf6a72548ec8f2fa5598ed45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80c6611e0e9e89f45307f7606e643cfa"><td class="memItemLeft" align="right" valign="top"><a id="a80c6611e0e9e89f45307f7606e643cfa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>rewind</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFile.html#a80c6611e0e9e89f45307f7606e643cfa">rewind</a> ()</td></tr>
+<tr class="memdesc:a80c6611e0e9e89f45307f7606e643cfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rewind the <a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> as if it was freshly constructed in "r" mode. <br /></td></tr>
 <tr class="separator:a80c6611e0e9e89f45307f7606e643cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a file on the system. </p>
+<p>This is an enhancement of the c-style <code>FILE</code> file descriptor. The main target is to allow for consecutives <code>ungetChar</code> using a stack.</p>
+<p>Usage example : </p><div class="fragment"><div class="line"><a class="code" href="classFile.html">File</a> file(<span class="stringliteral">&quot;relative/path/to/file&quot;</span>, <span class="stringliteral">&quot;w&quot;</span>); <span class="comment">// Create a new empty file on system</span></div><div class="line">fprintf(file.getDescriptor(), <span class="stringliteral">&quot;This file is %s\n&quot;</span>, file.getName().c_str());</div><div class="line"></div><div class="line">file.rewind(); <span class="comment">// Same as opening in &quot;r&quot; read mode</span></div><div class="line">file.ungetChar(<span class="charliteral">&#39;b&#39;</span>); <span class="comment">//</span></div><div class="line">file.ungetChar(<span class="charliteral">&#39;a&#39;</span>); <span class="comment">// legit</span></div><div class="line"></div><div class="line"><span class="keywordtype">char</span> c = file.getChar(); <span class="comment">// c == &#39;a&#39;</span></div><div class="line">c = file.getChar(); <span class="comment">// c == &#39;b&#39;</span></div><div class="line">c = file.getChar(); <span class="comment">// c == &#39;T&#39;</span></div><div class="line"></div><div class="line">c = file.readUntil(<span class="charliteral">&#39; &#39;</span>); <span class="comment">// c == &#39; &#39;</span></div><div class="line">c = file.getChar(); <span class="comment">// c == &#39;f&#39;</span></div><div class="line">c = file.readUntil([](<span class="keywordtype">char</span> c){<span class="keywordflow">return</span> !std::isalpha(c);}); <span class="comment">// c == &#39; &#39;</span></div><div class="line">c = file.getChar(); <span class="comment">// c == &#39;i&#39;</span></div><div class="line"></div><div class="line"><span class="comment">// How to read the entire file</span></div><div class="line"><span class="keywordflow">while</span> (!file.isFinished())</div><div class="line">{</div><div class="line">    <span class="keywordtype">char</span> c = file.getChar();</div><div class="line">    <span class="keywordflow">if</span> (file.peek() == <span class="charliteral">&#39;Z&#39;</span>)</div><div class="line">        doStuff(...);</div><div class="line">}</div></div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8574f47a4eff4fc44bd60919c61610d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8574f47a4eff4fc44bd60919c61610d3">&#9670;&nbsp;</a></span>File()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">File::File </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>path to the file to be created or opened. </td></tr>
+    <tr><td class="paramname">mode</td><td>"r" or "w" for reading an existing file or creating a new file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9377d79b66b40cef676db07e67871ca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9377d79b66b40cef676db07e67871ca8">&#9670;&nbsp;</a></span>getChar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char File::getChar </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a <code>char</code> from the file. </p>
+<dl class="section return"><dt>Returns</dt><dd>The <code>char</code> that has been read, is EOF if the file has been read entirely. </dd></dl>
+
+</div>
+</div>
+<a id="aa538ff162143bbfe6782b9ebe33426b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa538ff162143bbfe6782b9ebe33426b4">&#9670;&nbsp;</a></span>getDescriptor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FILE * File::getDescriptor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the file file descirptor. </p>
+<p>Can be used to read / write from the file using <code>fprintf</code> family functions.</p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> descirptor. </dd></dl>
+
+</div>
+</div>
+<a id="ac6d74a81bad59ad73501c3b89280b7e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6d74a81bad59ad73501c3b89280b7e3">&#9670;&nbsp;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; File::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the name of the file. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return a reference to the path of the file. </dd></dl>
+
+</div>
+</div>
+<a id="a93457cfa8895f0eb185f4b47d3f36fd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93457cfa8895f0eb185f4b47d3f36fd9">&#9670;&nbsp;</a></span>isFinished()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool File::isFinished </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is there nothing more to read from this file ? </p>
+<dl class="section return"><dt>Returns</dt><dd>Return true if the next call to <a class="el" href="classFile.html#a9377d79b66b40cef676db07e67871ca8" title="Read a char from the file. ">getChar()</a> will return EOF. </dd></dl>
+
+</div>
+</div>
+<a id="a60b843d95156968bb69e26e9171b2c57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60b843d95156968bb69e26e9171b2c57">&#9670;&nbsp;</a></span>peek()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char File::peek </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Peek the next <code>char</code> to be read from the file. </p>
+<p>This is better than doing <code>ungetChar(getChar())</code> since it does not fill the stack.</p>
+<dl class="section return"><dt>Returns</dt><dd>The <code>char</code> that <a class="el" href="classFile.html#a9377d79b66b40cef676db07e67871ca8" title="Read a char from the file. ">getChar()</a> will return if called. </dd></dl>
+
+</div>
+</div>
+<a id="a86532a7e52e5c6a75ec98b3c46f77376"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86532a7e52e5c6a75ec98b3c46f77376">&#9670;&nbsp;</a></span>readUntil() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char File::readUntil </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read the file until c is encountered. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>The function will stop reading if this <code>char</code> is read.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>c </dd></dl>
+
+</div>
+</div>
+<a id="ad5878720bf6a72548ec8f2fa5598ed45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5878720bf6a72548ec8f2fa5598ed45">&#9670;&nbsp;</a></span>readUntil() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char File::readUntil </td>
+          <td>(</td>
+          <td class="paramtype">const std::function&lt; bool(char)&gt; &amp;&#160;</td>
+          <td class="paramname"><em>condition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read the file until a <code>char</code> that satisfies condition is encountered. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">condition</td><td>A <code>boolean</code> function that takes a <code>char</code> as parameter.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <code>char</code> that met the condition. </dd></dl>
+
+</div>
+</div>
+<a id="aad8d72b0d1ebd8f10f6b031065c9271e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad8d72b0d1ebd8f10f6b031065c9271e">&#9670;&nbsp;</a></span>ungetChar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void File::ungetChar </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Put back a <code>char</code> in the file. </p>
+<p>This does not write into the file. The next call to <a class="el" href="classFile.html#a9377d79b66b40cef676db07e67871ca8" title="Read a char from the file. ">getChar()</a> will return c.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td><code>char</code> to be put inside the file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>File.hpp</li>
 <li>File.cpp</li>

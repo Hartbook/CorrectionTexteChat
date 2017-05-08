@@ -1,3 +1,6 @@
+/// \file 
+/// \author Franck Dary
+/// \author Cindy Aloui
 #ifndef VITERBI__H
 #define VITERBI__H
 
@@ -5,6 +8,10 @@
 #include "Database.hpp"
 #include "WordTranslator.hpp"
 
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Used to correct a File, using Viterbi algorithm.
+///
+////////////////////////////////////////////////////////////////////////////
 class Viterbi
 {
 	private :
@@ -29,16 +36,63 @@ class Viterbi
 
 	private :
 
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Build a lattice representing every probable correction of the sentence.
+	///
+	/// The constructed lattice is stored into `probas`
+	///
+	/// \param sentence Sentence to build the correction lattice from.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	void buildLatticeFromSentence(const std::vector<unsigned int> & sentence);
+
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Perform the Viterbi algorithm for the specified row of the lattice.
+	///
+	/// \param row Row the algorithm will be performed on.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	void computeViterbiForRow(unsigned int row);
+
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Neatly output the current lattice into `stdout`, human readable.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	void printLatticeForDebug();
 
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Correct a sentence.
+	///
+	/// Correction of words are taken from every instances of WordTranslator found
+	/// as a member of `database`.
+	///
+	/// \param sentence Sentence to be corrected, tokenized.
+	///
+	/// \return Corrected sentence, tokenized.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	const std::vector<unsigned int> & correctSentence(
 		const std::vector<unsigned int> & sentence);
 
 	public :
 
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Constructor.
+	///
+	/// \param database Database, has to be initialized prior to any call 
+	///	to correct()
+	///
+	////////////////////////////////////////////////////////////////////////////
 	Viterbi(Database & database);
+
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Correct a text file.
+	///
+	/// \param inputFilename Path to file containing the text to correct.
+	///
+	/// \return File containing the corrected text.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	File * correct(std::string inputFilename);
 };
 

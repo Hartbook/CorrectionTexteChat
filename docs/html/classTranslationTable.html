@@ -66,32 +66,41 @@ $(function() {
 <div class="title">TranslationTable Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Proposes corrections of a word based on a model learned from manually corrected corpus.  
+ <a href="classTranslationTable.html#details">More...</a></p>
+
+<p><code>#include &lt;TranslationTable.hpp&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for TranslationTable:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classTranslationTable.png" usemap="#TranslationTable_map" alt=""/>
   <map id="TranslationTable_map" name="TranslationTable_map">
-<area href="classWordTranslator.html" alt="WordTranslator" shape="rect" coords="0,0,105,24"/>
+<area href="classWordTranslator.html" title="Interface. Represent an object that is able to propose probable corrections of a given word..." alt="WordTranslator" shape="rect" coords="0,0,105,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a194a18a3efa0ad776e99e73c6a385bca"><td class="memItemLeft" align="right" valign="top"><a id="a194a18a3efa0ad776e99e73c6a385bca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>create</b> (const <a class="el" href="classLexicon.html">Lexicon</a> &amp;correctLexicon, const <a class="el" href="classLexicon.html">Lexicon</a> &amp;incorrectLexicon, <a class="el" href="classFile.html">File</a> &amp;incorrect, <a class="el" href="classFile.html">File</a> &amp;correct)</td></tr>
+<tr class="memitem:a86dccb9d84b0c655ad9fdda17636caab"><td class="memItemLeft" align="right" valign="top"><a id="a86dccb9d84b0c655ad9fdda17636caab"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTranslationTable.html#a86dccb9d84b0c655ad9fdda17636caab">TranslationTable</a> ()</td></tr>
+<tr class="memdesc:a86dccb9d84b0c655ad9fdda17636caab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct empty <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a>. <br /></td></tr>
+<tr class="separator:a86dccb9d84b0c655ad9fdda17636caab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a194a18a3efa0ad776e99e73c6a385bca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTranslationTable.html#a194a18a3efa0ad776e99e73c6a385bca">create</a> (const <a class="el" href="classLexicon.html">Lexicon</a> &amp;correctLexicon, const <a class="el" href="classLexicon.html">Lexicon</a> &amp;incorrectLexicon, <a class="el" href="classFile.html">File</a> &amp;incorrect, <a class="el" href="classFile.html">File</a> &amp;correct)</td></tr>
+<tr class="memdesc:a194a18a3efa0ad776e99e73c6a385bca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> from manually corrected corpus.  <a href="#a194a18a3efa0ad776e99e73c6a385bca">More...</a><br /></td></tr>
 <tr class="separator:a194a18a3efa0ad776e99e73c6a385bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d06855e760f3d39c57a188b0059e99a"><td class="memItemLeft" align="right" valign="top"><a id="a1d06855e760f3d39c57a188b0059e99a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (FILE *output)</td></tr>
+<tr class="memitem:a1d06855e760f3d39c57a188b0059e99a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTranslationTable.html#a1d06855e760f3d39c57a188b0059e99a">print</a> (FILE *output)</td></tr>
+<tr class="memdesc:a1d06855e760f3d39c57a188b0059e99a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save this <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> into a file.  <a href="#a1d06855e760f3d39c57a188b0059e99a">More...</a><br /></td></tr>
 <tr class="separator:a1d06855e760f3d39c57a188b0059e99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8e6848bfd3221e1ba0c9cada67222c6"><td class="memItemLeft" align="right" valign="top"><a id="ae8e6848bfd3221e1ba0c9cada67222c6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printForDebug</b> (FILE *output, <a class="el" href="classLexicon.html">Lexicon</a> &amp;correctLex, <a class="el" href="classLexicon.html">Lexicon</a> &amp;incorrectLex)</td></tr>
+<tr class="memitem:ae8e6848bfd3221e1ba0c9cada67222c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTranslationTable.html#ae8e6848bfd3221e1ba0c9cada67222c6">printForDebug</a> (FILE *output, <a class="el" href="classLexicon.html">Lexicon</a> &amp;correctLex, <a class="el" href="classLexicon.html">Lexicon</a> &amp;incorrectLex)</td></tr>
+<tr class="memdesc:ae8e6848bfd3221e1ba0c9cada67222c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print human readable representation of this <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a>.  <a href="#ae8e6848bfd3221e1ba0c9cada67222c6">More...</a><br /></td></tr>
 <tr class="separator:ae8e6848bfd3221e1ba0c9cada67222c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0856b27e0567627e2fc625dbc92a2d7a"><td class="memItemLeft" align="right" valign="top"><a id="a0856b27e0567627e2fc625dbc92a2d7a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (<a class="el" href="classFile.html">File</a> &amp;input)</td></tr>
+<tr class="memitem:a0856b27e0567627e2fc625dbc92a2d7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTranslationTable.html#a0856b27e0567627e2fc625dbc92a2d7a">read</a> (<a class="el" href="classFile.html">File</a> &amp;input)</td></tr>
+<tr class="memdesc:a0856b27e0567627e2fc625dbc92a2d7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize this <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> from a file.  <a href="#a0856b27e0567627e2fc625dbc92a2d7a">More...</a><br /></td></tr>
 <tr class="separator:a0856b27e0567627e2fc625dbc92a2d7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa16adfec6d2f059c26460e824d33ed9f"><td class="memItemLeft" align="right" valign="top"><a id="aa16adfec6d2f059c26460e824d33ed9f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addTranslations</b> (<a class="el" href="classWordTranslations.html">WordTranslations</a> &amp;actual)</td></tr>
+<tr class="memitem:aa16adfec6d2f059c26460e824d33ed9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTranslationTable.html#aa16adfec6d2f059c26460e824d33ed9f">addTranslations</a> (<a class="el" href="classWordTranslations.html">WordTranslations</a> &amp;actual)</td></tr>
+<tr class="memdesc:aa16adfec6d2f059c26460e824d33ed9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proposes corrections for an incorrect word, using what has been learned from the corpora.  <a href="#aa16adfec6d2f059c26460e824d33ed9f">More...</a><br /></td></tr>
 <tr class="separator:aa16adfec6d2f059c26460e824d33ed9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -101,6 +110,198 @@ Additional Inherited Members</h2></td></tr>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>order</b></td></tr>
 <tr class="separator:a179d2bbd6de97dc89397ed0b6322de76 inherit pub_attribs_classWordTranslator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Proposes corrections of a word based on a model learned from manually corrected corpus. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classWordTranslator.html" title="Interface. Represent an object that is able to propose probable corrections of a given word...">WordTranslator</a>, <a class="el" href="classViterbi.html" title="Used to correct a File, using Viterbi algorithm. ">Viterbi</a> </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa16adfec6d2f059c26460e824d33ed9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa16adfec6d2f059c26460e824d33ed9f">&#9670;&nbsp;</a></span>addTranslations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TranslationTable::addTranslations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWordTranslations.html">WordTranslations</a> &amp;&#160;</td>
+          <td class="paramname"><em>actual</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Proposes corrections for an incorrect word, using what has been learned from the corpora. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actual</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classWordTranslator.html#a21d741b1316bdf315a4c9346900e1846" title="Proposes corrections for an incorrect word and add them to actual. ">WordTranslator::addTranslations()</a> </dd></dl>
+
+<p>Implements <a class="el" href="classWordTranslator.html#a21d741b1316bdf315a4c9346900e1846">WordTranslator</a>.</p>
+
+</div>
+</div>
+<a id="a194a18a3efa0ad776e99e73c6a385bca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a194a18a3efa0ad776e99e73c6a385bca">&#9670;&nbsp;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TranslationTable::create </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td>
+          <td class="paramname"><em>correctLexicon</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td>
+          <td class="paramname"><em>incorrectLexicon</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classFile.html">File</a> &amp;&#160;</td>
+          <td class="paramname"><em>incorrect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classFile.html">File</a> &amp;&#160;</td>
+          <td class="paramname"><em>correct</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> from manually corrected corpus. </p>
+<p>This can be very slow depending on the size of the corpus. However it should only be used once per corpus since it can be stored and loaded from a file.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">correctLexicon</td><td><a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> containing only correct words. </td></tr>
+    <tr><td class="paramname">incorrectLexicon</td><td><a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> containing both correct and incorrect words. </td></tr>
+    <tr><td class="paramname">incorrect</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> containing the un-corrected version of the corpus. </td></tr>
+    <tr><td class="paramname">correct</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> containing the corrected version of the corpus. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1d06855e760f3d39c57a188b0059e99a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d06855e760f3d39c57a188b0059e99a">&#9670;&nbsp;</a></span>print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TranslationTable::print </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>output</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save this <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> into a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">output</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> descriptor the <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> will be written into. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTranslationTable.html#a0856b27e0567627e2fc625dbc92a2d7a" title="Initialize this TranslationTable from a file. ">read()</a> </dd></dl>
+
+</div>
+</div>
+<a id="ae8e6848bfd3221e1ba0c9cada67222c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8e6848bfd3221e1ba0c9cada67222c6">&#9670;&nbsp;</a></span>printForDebug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TranslationTable::printForDebug </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td>
+          <td class="paramname"><em>correctLex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td>
+          <td class="paramname"><em>incorrectLex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print human readable representation of this <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a>. </p>
+<p>Useful only for debug purpose.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">output</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> descriptor the <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> will be written into. </td></tr>
+    <tr><td class="paramname">correctLex</td><td><a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> containing only correct words. </td></tr>
+    <tr><td class="paramname">incorrectLex</td><td><a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> containing both correct and incorrect words. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0856b27e0567627e2fc625dbc92a2d7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0856b27e0567627e2fc625dbc92a2d7a">&#9670;&nbsp;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TranslationTable::read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFile.html">File</a> &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize this <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> from a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> containing the <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTranslationTable.html#a1d06855e760f3d39c57a188b0059e99a" title="Save this TranslationTable into a file. ">print()</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>TranslationTable.hpp</li>
 <li>TranslationTable.cpp</li>

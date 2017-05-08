@@ -143,14 +143,15 @@ friend&#160;</td><td class="memItemRight" valign="bottom"><b>Viterbi</b></td></t
 </div><div class="memdoc">
 
 <p>Build the <a class="el" href="classDatabase.html" title="Contains necessary data to perform a correction. ">Database</a>, long process. </p>
-<p>Construct <a class="el" href="classLexicon.html">Lexicon</a>, <a class="el" href="classGramsCounter.html">GramsCounter</a>, <a class="el" href="classTranslationTable.html">TranslationTable</a> using the files passed as parameters. Creates a number of files, that can later be used for readFromFiles.</p>
+<p>Construct <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>, <a class="el" href="classGramsCounter.html" title="Represents a language model. ">GramsCounter</a>, <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> using the files passed as parameters. Creates a number of files, that can later be used for readFromFiles.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">correctName</td><td>Path to the file containing the corrected corpus. </td></tr>
-    <tr><td class="paramname">incorrectName</td><td>Path to the file containing the un-corrected corpus. </td></tr>
+    <tr><td class="paramname">incorrectName</td><td>Path to the file containing the un-corrected corpus.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classDatabase.html#a3dbadcd3a09ae36cb36c73519e34b328" title="Read the Database from files created by buildFromCorpus. ">readFromFiles</a> </dd></dl>
 
 </div>
 </div>
@@ -195,13 +196,14 @@ friend&#160;</td><td class="memItemRight" valign="bottom"><b>Viterbi</b></td></t
 <p>Read the <a class="el" href="classDatabase.html" title="Contains necessary data to perform a correction. ">Database</a> from files created by buildFromCorpus. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">incorrectFilename</td><td>Path to the file containing <a class="el" href="classLexicon.html">Lexicon</a> incorrectLexicon. </td></tr>
-    <tr><td class="paramname">correctFilename</td><td>Path to the file containing <a class="el" href="classLexicon.html">Lexicon</a> correctLexicon. </td></tr>
-    <tr><td class="paramname">gramsFilename</td><td>Path to the file containing the <a class="el" href="classGramsCounter.html">GramsCounter</a>. </td></tr>
-    <tr><td class="paramname">tableFilename</td><td>Path to the file containing the <a class="el" href="classTranslationTable.html">TranslationTable</a>. </td></tr>
+    <tr><td class="paramname">incorrectFilename</td><td>Path to the file containing <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> incorrectLexicon. </td></tr>
+    <tr><td class="paramname">correctFilename</td><td>Path to the file containing <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> correctLexicon. </td></tr>
+    <tr><td class="paramname">gramsFilename</td><td>Path to the file containing the <a class="el" href="classGramsCounter.html" title="Represents a language model. ">GramsCounter</a>. </td></tr>
+    <tr><td class="paramname">tableFilename</td><td>Path to the file containing the <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a>.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classDatabase.html#a98b7974dc1e1b76456fa35cc2665e6f9" title="Build the Database, long process. ">buildFromCorpus</a> </dd></dl>
 
 </div>
 </div>

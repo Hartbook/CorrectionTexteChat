@@ -1,9 +1,16 @@
+/// \file 
+/// \author Franck Dary
+/// \author Cindy Aloui
 #ifndef TOKENIZER__H
 #define TOKENIZER__H
 
 #include "Lexicon.hpp"
 #include "File.hpp"
 
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Tokenize a word or an entire text file.
+///
+////////////////////////////////////////////////////////////////////////////
 class Tokenizer
 {
 	private :
@@ -14,8 +21,35 @@ class Tokenizer
 
 	std::string word;
 
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Constructor.
+	///
+	/// \param lexicon Lexicon that will be used to tokenize.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	Tokenizer(Lexicon & lexicon);
+
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Tokenize a word from corpus.
+	///
+	/// \param corpus The file from which to read.
+	///
+	/// \return Token corresponding to the word read from corpus.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	unsigned int tokenize(File & corpus);
+
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Tokenize an entire text file.
+	///
+	/// If during the tokenization a word is not inside the `lexicon`, it is added.
+	///
+	/// \param corpus File containing the text to tokenize.
+	/// \param path Path to the file the function will write into.
+	///
+	/// \return File containing the tokenized text.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	File * tokenize(File & corpus, const std::string & path);
 };
 

@@ -67,22 +67,158 @@ $(function() {
 <div class="title">Executor&lt; void, void &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Concurrent execution of tasks using fixed threads pool.  
+ <a href="classExecutor_3_01void_00_01void_01_4.html#details">More...</a></p>
+
+<p><code>#include &lt;Executor.hpp&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1f924354573e9debd3cc97ff2378bb3b"><td class="memItemLeft" align="right" valign="top"><a id="a1f924354573e9debd3cc97ff2378bb3b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Executor</b> (int nbThreads=std::thread::hardware_concurrency())</td></tr>
+<tr class="memitem:a1f924354573e9debd3cc97ff2378bb3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor_3_01void_00_01void_01_4.html#a1f924354573e9debd3cc97ff2378bb3b">Executor</a> (int nbThreads=std::thread::hardware_concurrency())</td></tr>
+<tr class="memdesc:a1f924354573e9debd3cc97ff2378bb3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a1f924354573e9debd3cc97ff2378bb3b">More...</a><br /></td></tr>
 <tr class="separator:a1f924354573e9debd3cc97ff2378bb3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdc61e42ff31fb4a18562cf4d3d5e0b3"><td class="memItemLeft" align="right" valign="top"><a id="afdc61e42ff31fb4a18562cf4d3d5e0b3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addTask</b> (std::function&lt; void(void)&gt; func)</td></tr>
+<tr class="memitem:afdc61e42ff31fb4a18562cf4d3d5e0b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor_3_01void_00_01void_01_4.html#afdc61e42ff31fb4a18562cf4d3d5e0b3">addTask</a> (std::function&lt; void(void)&gt; func)</td></tr>
+<tr class="memdesc:afdc61e42ff31fb4a18562cf4d3d5e0b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a Task to perform.  <a href="#afdc61e42ff31fb4a18562cf4d3d5e0b3">More...</a><br /></td></tr>
 <tr class="separator:afdc61e42ff31fb4a18562cf4d3d5e0b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba601150cd9b408bf858f4ad15b64ed4"><td class="memItemLeft" align="right" valign="top"><a id="aba601150cd9b408bf858f4ad15b64ed4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
+<tr class="memitem:aba601150cd9b408bf858f4ad15b64ed4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor_3_01void_00_01void_01_4.html#aba601150cd9b408bf858f4ad15b64ed4">run</a> ()</td></tr>
+<tr class="memdesc:aba601150cd9b408bf858f4ad15b64ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run every Task.  <a href="#aba601150cd9b408bf858f4ad15b64ed4">More...</a><br /></td></tr>
 <tr class="separator:aba601150cd9b408bf858f4ad15b64ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1ae73ad5bdca1a0a71084bfef74e016"><td class="memItemLeft" align="right" valign="top"><a id="ac1ae73ad5bdca1a0a71084bfef74e016"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+<tr class="memitem:ac1ae73ad5bdca1a0a71084bfef74e016"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor_3_01void_00_01void_01_4.html#ac1ae73ad5bdca1a0a71084bfef74e016">clear</a> ()</td></tr>
+<tr class="memdesc:ac1ae73ad5bdca1a0a71084bfef74e016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete threads and tasks.  <a href="#ac1ae73ad5bdca1a0a71084bfef74e016">More...</a><br /></td></tr>
 <tr class="separator:ac1ae73ad5bdca1a0a71084bfef74e016"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;&gt;<br />
+class Executor&lt; void, void &gt;</h3>
+
+<p>Concurrent execution of tasks using fixed threads pool. </p>
+<p>Usage example : </p><div class="fragment"><div class="line"><span class="comment">// Increment atomic variable using 8 threads</span></div><div class="line"><span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nbThreads = 8;</div><div class="line"><a class="code" href="classExecutor_3_01void_00_01void_01_4.html">Executor&lt;void,void&gt;</a> executor(nbThreads);</div><div class="line"></div><div class="line">std::atomic&lt;int&gt; value = 0;</div><div class="line"></div><div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; 1000; i++)</div><div class="line">    executor.addTask([&amp;value]()</div><div class="line">    {</div><div class="line">        for (unsigned int i = 0; i &lt; 10; i++)</div><div class="line">            value++;</div><div class="line">    });</div><div class="line"></div><div class="line">executor.run(); <span class="comment">// Blocking until every task has been completed.</span></div></div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a1f924354573e9debd3cc97ff2378bb3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f924354573e9debd3cc97ff2378bb3b">&#9670;&nbsp;</a></span>Executor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classExecutor.html">Executor</a>&lt; void, void &gt;::<a class="el" href="classExecutor.html">Executor</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nbThreads</em> = <code>std::thread::hardware_concurrency()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nbThreads</td><td>Number of threads to use, by default it uses every thread of the machine. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="afdc61e42ff31fb4a18562cf4d3d5e0b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdc61e42ff31fb4a18562cf4d3d5e0b3">&#9670;&nbsp;</a></span>addTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classExecutor.html">Executor</a>&lt; void, void &gt;::addTask </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void(void)&gt;&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add a Task to perform. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>A function that will be ran when <a class="el" href="classExecutor_3_01void_00_01void_01_4.html#aba601150cd9b408bf858f4ad15b64ed4" title="Run every Task. ">run()</a> is called. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac1ae73ad5bdca1a0a71084bfef74e016"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1ae73ad5bdca1a0a71084bfef74e016">&#9670;&nbsp;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classExecutor.html">Executor</a>&lt; void, void &gt;::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delete threads and tasks. </p>
+<p>Call this function before adding new Task to the executor if <a class="el" href="classExecutor_3_01void_00_01void_01_4.html#aba601150cd9b408bf858f4ad15b64ed4" title="Run every Task. ">run()</a> has already been called. </p>
+
+</div>
+</div>
+<a id="aba601150cd9b408bf858f4ad15b64ed4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba601150cd9b408bf858f4ad15b64ed4">&#9670;&nbsp;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classExecutor.html">Executor</a>&lt; void, void &gt;::run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Run every Task. </p>
+<p>Task are equally distributed between the nbThreads threads, then ran. This function return only when every Task has been ran. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Executor.hpp</li>
 </ul>

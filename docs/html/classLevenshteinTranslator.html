@@ -66,23 +66,28 @@ $(function() {
 <div class="title">LevenshteinTranslator Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Proposes corrections of a word based on Levenshtein distances from correct words.  
+ <a href="classLevenshteinTranslator.html#details">More...</a></p>
+
+<p><code>#include &lt;LevenshteinTranslator.hpp&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for LevenshteinTranslator:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classLevenshteinTranslator.png" usemap="#LevenshteinTranslator_map" alt=""/>
   <map id="LevenshteinTranslator_map" name="LevenshteinTranslator_map">
-<area href="classWordTranslator.html" alt="WordTranslator" shape="rect" coords="0,0,137,24"/>
+<area href="classWordTranslator.html" title="Interface. Represent an object that is able to propose probable corrections of a given word..." alt="WordTranslator" shape="rect" coords="0,0,137,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a549cbb265018570510b836e2cc5c8128"><td class="memItemLeft" align="right" valign="top"><a id="a549cbb265018570510b836e2cc5c8128"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LevenshteinTranslator</b> (<a class="el" href="classLexicon.html">Lexicon</a> &amp;correctLexicon, <a class="el" href="classLexicon.html">Lexicon</a> &amp;incorrectLexicon)</td></tr>
+<tr class="memitem:a549cbb265018570510b836e2cc5c8128"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevenshteinTranslator.html#a549cbb265018570510b836e2cc5c8128">LevenshteinTranslator</a> (<a class="el" href="classLexicon.html">Lexicon</a> &amp;correctLexicon, <a class="el" href="classLexicon.html">Lexicon</a> &amp;incorrectLexicon)</td></tr>
+<tr class="memdesc:a549cbb265018570510b836e2cc5c8128"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a549cbb265018570510b836e2cc5c8128">More...</a><br /></td></tr>
 <tr class="separator:a549cbb265018570510b836e2cc5c8128"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af78505539527d0678ca35d9cb63910d4"><td class="memItemLeft" align="right" valign="top"><a id="af78505539527d0678ca35d9cb63910d4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addTranslations</b> (<a class="el" href="classWordTranslations.html">WordTranslations</a> &amp;actual)</td></tr>
+<tr class="memitem:af78505539527d0678ca35d9cb63910d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevenshteinTranslator.html#af78505539527d0678ca35d9cb63910d4">addTranslations</a> (<a class="el" href="classWordTranslations.html">WordTranslations</a> &amp;actual)</td></tr>
+<tr class="memdesc:af78505539527d0678ca35d9cb63910d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proposes corrections for an incorrect word, using getProximity() with correct words from <code>correctLexicon</code>.  <a href="#af78505539527d0678ca35d9cb63910d4">More...</a><br /></td></tr>
 <tr class="separator:af78505539527d0678ca35d9cb63910d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -92,6 +97,85 @@ Additional Inherited Members</h2></td></tr>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>order</b></td></tr>
 <tr class="separator:a179d2bbd6de97dc89397ed0b6322de76 inherit pub_attribs_classWordTranslator"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Proposes corrections of a word based on Levenshtein distances from correct words. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classWordTranslator.html" title="Interface. Represent an object that is able to propose probable corrections of a given word...">WordTranslator</a>, <a class="el" href="classViterbi.html" title="Used to correct a File, using Viterbi algorithm. ">Viterbi</a> </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a549cbb265018570510b836e2cc5c8128"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a549cbb265018570510b836e2cc5c8128">&#9670;&nbsp;</a></span>LevenshteinTranslator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LevenshteinTranslator::LevenshteinTranslator </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td>
+          <td class="paramname"><em>correctLexicon</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td>
+          <td class="paramname"><em>incorrectLexicon</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">correctLexicon</td><td>A <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> containing every correct word. </td></tr>
+    <tr><td class="paramname">incorrectLexicon</td><td>A <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> containing corrects and incorrects words. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af78505539527d0678ca35d9cb63910d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af78505539527d0678ca35d9cb63910d4">&#9670;&nbsp;</a></span>addTranslations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevenshteinTranslator::addTranslations </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWordTranslations.html">WordTranslations</a> &amp;&#160;</td>
+          <td class="paramname"><em>actual</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Proposes corrections for an incorrect word, using getProximity() with correct words from <code>correctLexicon</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actual</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classWordTranslator.html#a21d741b1316bdf315a4c9346900e1846" title="Proposes corrections for an incorrect word and add them to actual. ">WordTranslator::addTranslations()</a> </dd></dl>
+
+<p>Implements <a class="el" href="classWordTranslator.html#a21d741b1316bdf315a4c9346900e1846">WordTranslator</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>LevenshteinTranslator.hpp</li>
 <li>LevenshteinTranslator.cpp</li>
