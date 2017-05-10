@@ -2,8 +2,11 @@
 #include "File.hpp"
 #include "Tokenizer.hpp"
 #include "util.hpp"
+#include "Executor.hpp"
 #include <cstdio>
 #include <memory>
+#include <stack>
+#include <mutex>
 
 Database::Database() : levenshteinTranslator(correctLexicon, incorrectLexicon)
 {
@@ -35,25 +38,29 @@ void Database::buildFromCorpus(const std::vector<std::string> & lexicons,
 	static const char * pathToGramsCount = "data/gramsCount/";
 	static const char * pathToTranslationTable = "data/translationTable/";
 
-	buildLexiconFromCorpora(lexicons);
-	buildGramsCounterFromCorpora(corpora);
-	buildTranslationTableFromCorpora(pairs);
-
 	std::string baseName = getFilenameFromPath(pairs[0].first);
 	std::string correctLexiconName = pathToCorrectLexicon + baseName + ".lexicon";
 	std::string incorrectLexiconName = pathToIncorrectLexicon + baseName + ".lexicon";
 	std::string gramsCounterName = pathToGramsCount + baseName + ".grams";
 	std::string translationTableName = pathToTranslationTable + baseName + ".table";
 
-	File correctLexiconFile(correctLexiconName, "w");
-	File incorrectLexiconFile(incorrectLexiconName, "w");
-	File gramsCounterFile(gramsCounterName, "w");
-	File translationTableFile(translationTableName, "w");
+	buildLexiconFromCorpora(lexicons);
 
-	correctLexicon.print(correctLexiconFile.getDescriptor());
-	incorrectLexicon.print(incorrectLexiconFile.getDescriptor());
+	buildGramsCounterFromCorpora(corpora);
+	File gramsCounterFile(gramsCounterName, "w");
+	printf("Debut print\n");
 	gramsCounter.print(gramsCounterFile.getDescriptor());
+	printf("Fin print\n");
+
+	buildTranslationTableFromCorpora(pairs);
+	File translationTableFile(translationTableName, "w");
 	translationTable.print(translationTableFile.getDescriptor());
+
+	File correctLexiconFile(correctLexiconName, "w");
+	correctLexicon.print(correctLexiconFile.getDescriptor());
+
+	File incorrectLexiconFile(incorrectLexiconName, "w");
+	incorrectLexicon.print(incorrectLexiconFile.getDescriptor());
 }
 
 void Database::buildTranslationTableFromCorpora(
@@ -100,104 +107,89 @@ void Database::buildTranslationTableFromCorpora(
 
 void Database::buildGramsCounterFromCorpora(const std::vector<std::string> & filenames)
 {
-	std::vector< std::unique_ptr<File> > files;
-
-	for (auto & name : filenames)
-		files.emplace_back(new File(name, "r"));
-
-	std::string word;
-	bool firstWordOfSentence = true;
-
-	for (auto & filePtr : files)
-	{
-		File & file = *filePtr;
-		unsigned int t1 = Lexicon::unknown, t2 = Lexicon::unknown, t3 = Lexicon::unknown;
-
-		while (!file.isFinished())
-		{
-			firstWordOfSentence = ignoreSeparators(file);
-
-			unsigned int token = readWord(file, word, firstWordOfSentence);
-
-			if (token == Lexicon::unknown)
-				token = correctLexicon.getToken(word);
-
-			t1 = t2;
-			t2 = t3;
-			t3 = token;
-
-			if (t3 != Lexicon::unknown)
-			{
-				gramsCounter.addGram(t3);
-				if (t2 != Lexicon::unknown)
-				{
-					gramsCounter.addGram(t2, t3);
-					if (t1 != Lexicon::unknown)
-						gramsCounter.addGram(t1, t2, t3);
-				}
-			}
-
-			word.clear();
-		}
-	}
-}
-
-/*
-{
-	static const char * pathToCorrectLexicon = "data/lexicon/corrige/";
-	static const char * pathToIncorrectLexicon = "data/lexicon/brut/";
-	static const char * pathToGramsCount = "data/gramsCount/";
-	static const char * pathToTranslationTable = "data/translationTable/";
+	static unsigned int linesPerSplit = 1000 * 1000;
 	static const char * pathToTemp = "data/corpus/temp/";
 
-	File * correctUncleaned = new File(correctName, "r");
-	File * incorrectUncleaned = new File(incorrectName, "r");
+	printf("Debut buildGramsCounter\n");
+	std::stack< std::unique_ptr<File> > inputFiles;
+	std::vector< std::unique_ptr<File> > splittedFiles;
 
-	File * correct = cleanCorpus(correctUncleaned, pathToTemp);
-	File * incorrect = cleanCorpus(incorrectUncleaned, pathToTemp);
+	for (auto & name : filenames)
+		inputFiles.emplace(new File(name, "r"));
 
-	delete correctUncleaned;
-	delete incorrectUncleaned;
+	unsigned int linesCount = 0;
+	char buffer[10000];
 
-	buildLexiconFromCorpus(correctLexicon, *correct, true);
-	incorrectLexicon.copy(correctLexicon);
-	buildLexiconFromCorpus(incorrectLexicon, *incorrect, false);
+	while (!inputFiles.empty())
+	{
+		File & inputFile = *inputFiles.top().get();
 
-	correct->rewind();
-	incorrect->rewind();
+		while (!inputFile.isFinished())
+		{
+			if (linesCount % linesPerSplit == 0)
+				splittedFiles.emplace_back(new File(pathToTemp+std::to_string(linesCount), "w"));
 
-	Tokenizer correctTokenizer(correctLexicon);
-	Tokenizer incorrectTokenizer(incorrectLexicon);
-	File * correctTokenized = correctTokenizer.tokenize(*correct, pathToTemp + getFilenameFromPath(correctName) + ".tokenized");
-	File * incorrectTokenized = incorrectTokenizer.tokenize(*incorrect, pathToTemp + getFilenameFromPath(incorrectName) + ".tokenized");
+			FILE * destDesc = splittedFiles.back().get()->getDescriptor();
 
-	delete correct;
-	delete incorrect;
+			if (fscanf(inputFile.getDescriptor(), "%[^\n]\n", buffer) != 1)
+				break;
 
-	translationTable.create(correctLexicon, incorrectLexicon, *incorrectTokenized, *correctTokenized);
-	File translationTableFile(pathToTranslationTable + getFilenameFromPath(correctName) + ".table", "w");
+			fprintf(destDesc, "%s\n", buffer);
 
-	translationTable.print(translationTableFile.getDescriptor());
+			linesCount++;
+		}
 
-	delete correctTokenized;
-	delete incorrectTokenized;
+		inputFiles.pop();
+	}
 
-	std::string gramsFilename = pathToGramsCount + getFilenameFromPath(correctName) + ".grams";
-	correctName = pathToCorrectLexicon + getFilenameFromPath(correctName) + ".lexicon";
-	incorrectName = pathToIncorrectLexicon + getFilenameFromPath(incorrectName) + ".lexicon";
-	
-	correct = new File(correctName, "w");
-	incorrect = new File(incorrectName, "w");
-	File gramsFile(gramsFilename, "w");
+	std::mutex counterMutex;
+	Executor<void,void> executor;
 
-	correctLexicon.print(correct->getDescriptor());
-	incorrectLexicon.print(incorrect->getDescriptor());
-	gramsCounter.print(gramsFile.getDescriptor());
+	for (auto & filePtr : splittedFiles)
+		executor.addTask([&]()
+		{
+			std::string word;
+			bool firstWordOfSentence = true;
+			File & file = *filePtr;
+			unsigned int t1 = Lexicon::unknown, t2 = Lexicon::unknown, t3 = Lexicon::unknown;
 
-	delete correct;
-	delete incorrect;
+			file.rewind();
+
+			while (!file.isFinished())
+			{
+				firstWordOfSentence = ignoreSeparators(file);
+
+				unsigned int token = readWord(file, word, firstWordOfSentence);
+
+				if (token == Lexicon::unknown)
+					token = correctLexicon.getToken(word);
+
+				t1 = t2;
+				t2 = t3;
+				t3 = token;
+
+				counterMutex.lock();
+				if (t3 != Lexicon::unknown)
+				{
+					gramsCounter.addGram(t3);
+					if (t2 != Lexicon::unknown)
+					{
+						gramsCounter.addGram(t2, t3);
+						if (t1 != Lexicon::unknown)
+							gramsCounter.addGram(t1, t2, t3);
+					}
+				}
+				counterMutex.unlock();
+
+				word.clear();
+			}
+		});
+
+	executor.run();
+
+	printf("FIN gramsCount\n");
 }
-*/
+
 void Database::buildLexiconFromCorpora(const std::vector<std::string> & filenames)
 {
 	std::vector< std::unique_ptr<File> > files;

@@ -1,5 +1,6 @@
 #include "TranslationTable.hpp"
 #include "Executor.hpp"
+#include <algorithm>
 
 float TranslationTable::minimalProb = 0.1;
 
@@ -174,12 +175,33 @@ void TranslationTable::print(FILE * output)
 void TranslationTable::printForDebug(FILE * output, Lexicon & correctLex,
 	Lexicon & incorrectLex)
 {
+	using Pair = std::pair<const std::string*, const std::string*>;
+	using PairOfPair = std::pair<Pair, float>;
+	std::vector<PairOfPair> sorted;
+	sorted.reserve(table.size());
+
 	for (auto & it : table)
 		if (it.second >= 0)
-			fprintf(output, "%02.9f\t<%s> -> <%s>\n",
-				it.second.load(),
-				incorrectLex.getString(it.first.first).c_str(),
-				correctLex.getString(it.first.second).c_str());
+		{
+			const std::string * s1 = &incorrectLex.getString(it.first.first);
+			const std::string * s2 = &correctLex.getString(it.first.second);
+			sorted.emplace_back(Pair(s1,s2), it.second);
+		}
+
+	std::sort(sorted.begin(), sorted.end(),
+		[](const PairOfPair & a, const PairOfPair & b)
+		{
+			if (*a.first.first != *b.first.first)
+				return *a.first.first < *b.first.first;
+
+			return a.second < b.second;
+		});
+
+	for (auto & it : sorted)
+		fprintf(output, "%02.9f\t<%s> -> <%s>\n",
+			it.second,
+			it.first.first->c_str(),
+			it.first.second->c_str());
 }
 
 void TranslationTable::read(File & input)
