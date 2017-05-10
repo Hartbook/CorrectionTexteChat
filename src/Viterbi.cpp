@@ -149,14 +149,18 @@ File * Viterbi::correct(std::string inputFilename)
 	Tokenizer tokenizer(lexicon);
 
 	File * input = new File(inputFilename, "r");
+	File * cleanInput = new File(pathToTemp + getFilenameFromPath(inputFilename), "w");
 
-	File * cleanInput = cleanCorpus(input, pathToTemp);
+	cleanCorpus(*input, *cleanInput);
+	cleanInput->rewind();
 
 	delete input;
 
 	std::string tempFilename = pathToTemp + getFilenameFromPath(inputFilename) + ".tokenized";
 
-	File * tokenized = tokenizer.tokenize(*cleanInput, tempFilename);
+	File * tokenized = new File(tempFilename, "w");
+	tokenizer.tokenize(*cleanInput, *tokenized);
+	tokenized->rewind();
 
 	delete cleanInput;
 

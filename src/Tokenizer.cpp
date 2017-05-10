@@ -23,23 +23,21 @@ unsigned int Tokenizer::tokenize(File & corpus)
 	return token;
 }
 
-File * Tokenizer::tokenize(File & corpus, const std::string & path)
+void Tokenizer::tokenize(File & src, File & dest)
 {
-	File * file = new File(path, "w");
-
 	std::string word;
 
 	unsigned int token;
-	bool firstWordOfSentence = ignoreSeparators(corpus);
+	bool firstWordOfSentence = ignoreSeparators(src);
 
-	while (!corpus.isFinished())
+	while (!src.isFinished())
 	{
 		word.clear();
 
 		if (firstWordOfSentence)
-			fprintf(file->getDescriptor(), "\n");
+			fprintf(dest.getDescriptor(), "\n");
 
-		token = readWord(corpus, word, firstWordOfSentence);
+		token = readWord(src, word, firstWordOfSentence);
 
 		if (token == Lexicon::unknown || token == Lexicon::properNoun)
 		{
@@ -52,13 +50,9 @@ File * Tokenizer::tokenize(File & corpus, const std::string & path)
 		if (token == Lexicon::unknown)
 			token = lexicon.addWord(word);
 
-		fprintf(file->getDescriptor(), "%d ", token);
+		fprintf(dest.getDescriptor(), "%d ", token);
 
-		firstWordOfSentence = ignoreSeparators(corpus);
+		firstWordOfSentence = ignoreSeparators(src);
 	}
-
-	delete file;
-
-	return new File(path, "r");
 }
 

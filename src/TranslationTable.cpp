@@ -1,8 +1,4 @@
 #include "TranslationTable.hpp"
-#include <vector>
-#include <cmath>
-#include <algorithm>
-#include <atomic>
 #include "Executor.hpp"
 
 float TranslationTable::minimalProb = 0.1;
@@ -26,7 +22,8 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 		{
 			unsigned int token;
 
-			fscanf(file.getDescriptor(), "%u", &token);
+			if (fscanf(file.getDescriptor(), "%u", &token) != 1)
+				break;
 
 			sentence.push_back(token);
 			tokens.insert(token);
@@ -49,8 +46,11 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 			{
 				if (incorrect[i] == correct[j])
 				{
+					if (incorrect[i] == 84047 && correct[j] == 28003)
+						printf("OUI\n");
+
 					incorrect[i] = incorrect.back();
-					correct[i] = correct.back();
+					correct[j] = correct.back();
 
 					incorrect.pop_back();
 					correct.pop_back();
@@ -68,6 +68,8 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 	std::set<unsigned int> tokensCorrect;
 	std::set<unsigned int> tokensIncorrect;
 
+	using Pair = std::pair<unsigned int, unsigned int>;
+
 	while (!incorrect.isFinished() && !correct.isFinished())
 	{
 		correctSentences.emplace_back();
@@ -79,19 +81,19 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 		cleanSentences(correctSentences.back(), incorrectSentences.back());
 	}
 
-	unsigned int nbSentences = std::max(correctSentences.size(), incorrectSentences.size());
-
 	float initValueForTable = 1.0 / (incorrectLexicon.getMaxToken()+1);
 
+	table.reserve(tokensCorrect.size() * tokensIncorrect.size());
+
+	for (unsigned int t1 : tokensIncorrect)
+		for (unsigned int t2 : tokensCorrect)
+			table[Pair(t1,t2)] = initValueForTable;
+
+	unsigned int nbSentences = std::max(correctSentences.size(), incorrectSentences.size());
+
 	std::vector<AtomicFloat> total(correctLexicon.getMaxToken()+1);
-	std::vector< std::vector<AtomicFloat> > nb(incorrectLexicon.getMaxToken()+1,
-		std::vector<AtomicFloat>(correctLexicon.getMaxToken()+1));
 
-	table = nb;
-
-	for (auto & it : table)
-		for (auto & it2 : it)
-			it2 = initValueForTable;
+	std::unordered_map<Pair, AtomicFloat> nb = table;
 
 	Executor<void,void> executor;
 
@@ -100,8 +102,7 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 		executor.clear();
 	
 		for (auto & it : nb)
-			for (auto & it2 : it)
-				it2 = 0.0f;
+			it.second = 0.0f;
 
 		for (auto & it : total)
 			it = 0.0f;
@@ -118,16 +119,17 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 				for (auto tokenIncorrect : sentenceIncorrect)
 					if (!isCorrect(tokenIncorrect))
 						for (auto tokenCorrect : sentenceCorrect)
-							s_total[tokenIncorrect] += table[tokenIncorrect][tokenCorrect];
+							s_total[tokenIncorrect] +=
+								table.at(Pair(tokenIncorrect,tokenCorrect));
 
 				for (auto tokenIncorrect : sentenceIncorrect)
 					if (!isCorrect(tokenIncorrect))
 						for (auto tokenCorrect : sentenceCorrect)
 						{
-							nb[tokenIncorrect][tokenCorrect] +=
-								table[tokenIncorrect][tokenCorrect] / s_total[tokenIncorrect];
-							total[tokenCorrect] += table[tokenIncorrect][tokenCorrect] /
-								s_total[tokenIncorrect];
+							Pair p(tokenIncorrect, tokenCorrect);
+
+							nb.at(p) += table.at(p) / s_total[tokenIncorrect];
+							total[tokenCorrect] += table.at(p) / s_total[tokenIncorrect];
 						}
 			});
 
@@ -140,86 +142,78 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 				executor.addTask([this, &nb, &total, &tokensCorrect, tokenIncorrect]()
 				{
 					for (auto tokenCorrect : tokensCorrect)
-						table[tokenIncorrect][tokenCorrect] =
-							nb[tokenIncorrect][tokenCorrect] / total[tokenCorrect];
+					{
+						Pair p(tokenIncorrect, tokenCorrect);
+						table.at(p) = nb.at(p) / total[tokenCorrect];
+					}
 				});
 
 		executor.run();
 
-		printf("Iteration %03d/%03d : OK !\n", i, nbIterations);
+		printf("Iteration %03d/%03d : OK !\n", i+1, nbIterations);
 	}
 
 	for (auto & it : table)
-		for (auto & it2 : it)
-			if (it2 >= std::max(TranslationTable::minimalProb, initValueForTable))
-				it2 = -log(it2);
-			else
-				it2 = -1;
+		if (it.second >= std::max(TranslationTable::minimalProb, initValueForTable))
+			it.second = -log(it.second);
+		else
+			it.second = -1;
+
+	printf("%u -> %u = %f\n", 84047, 28003, table[Pair(84047, 28003)].load());
+
+	arrangeTranslations();
 }
 
 void TranslationTable::print(FILE * output)
 {
-	for (unsigned int i = 0; i < table.size(); i++)
-		for (unsigned int j = 0; j < table[i].size(); j++)
-			if (table[i][j] >= 0)
-				fprintf(output, "%u %u %02.9f\n", i, j, table[i][j].load());
+	for (auto & it : table)
+		if (it.second >= 0)
+			fprintf(output, "%u %u %02.9f\n", it.first.first, it.first.second, it.second.load());
 }
 
 void TranslationTable::printForDebug(FILE * output, Lexicon & correctLex,
 	Lexicon & incorrectLex)
 {
-	for (unsigned int i = 0; i < table.size(); i++)
-		for (unsigned int j = 0; j < table[i].size(); j++)
-			if (table[i][j] >= 0)
-				fprintf(output, "%02.9f\t<%s> -> <%s>\n", table[i][j].load(),
-					incorrectLex.getString(i).c_str(),
-					correctLex.getString(j).c_str());
+	for (auto & it : table)
+		if (it.second >= 0)
+			fprintf(output, "%02.9f\t<%s> -> <%s>\n",
+				it.second.load(),
+				incorrectLex.getString(it.first.first).c_str(),
+				correctLex.getString(it.first.second).c_str());
 }
 
 void TranslationTable::read(File & input)
 {
-	table.clear();
 	unsigned int token1, token2;
-	unsigned int maxToken1 = 0, maxToken2 = 0;
 	float proba;
 
 	while (fscanf(input.getDescriptor(), "%u %u %f", &token1, &token2, &proba) == 3)
-	{
-		if (token1 > maxToken1)
-			maxToken1 = token1;
+		table[std::pair<unsigned int, unsigned int>(token1, token2)] = proba;
 
-		if (token2 > maxToken2)
-			maxToken2 = token2;
-	}
-
-	table.resize(maxToken1+1);
-	for (auto & it : table)
-		it.resize(maxToken2+1);
-
-	for (auto & it : table)
-		for (auto & it2 : it)
-			it2 = -1;
-
-	input.rewind();
-
-	while (fscanf(input.getDescriptor(), "%u %u %f", &token1, &token2, &proba) == 3)
-		table[token1][token2] = proba;
+	arrangeTranslations();
 }
 
 void TranslationTable::addTranslations(WordTranslations & actual)
 {
 	unsigned int token = actual.token;
 
-	if (token >= table.size())
+	const auto & it = translations.find(token);
+
+	if (it == translations.end())
 		return;
 
-	for (unsigned int i = 0; i < table[token].size(); i++)
-		if (table[token][i] >= 0)
-			actual.addTranslation(i, table[token][i]);
+	for (auto & translation : it->second)
+	actual.addTranslation(translation.first, translation.second);
 }
 
 bool TranslationTable::isCorrect(unsigned int token)
 {
 	return token <= maxTokenCorrect;
+}
+
+void TranslationTable::arrangeTranslations()
+{
+	for (auto & it : table)
+		translations[it.first.first].emplace_back(it.first.second, it.second);
 }
 

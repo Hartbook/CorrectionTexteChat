@@ -31,15 +31,30 @@ class Database
 	TranslationTable translationTable;
 	LevenshteinTranslator levenshteinTranslator;
 
-	////////////////////////////////////////////////////////////////////////////
-	/// \brief WILL BE CHANGED SOON
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Construct lexicons from files.
 	///
-	/// \param lexicon
-	/// \param corpus
-	/// \param countGrams
+	/// \param filenames List of paths to file that contains lexicons.
 	///
 	////////////////////////////////////////////////////////////////////////////
-	void buildLexiconFromCorpus(Lexicon & lexicon, File & corpus, bool countGrams);
+	void buildLexiconFromCorpora(const std::vector<std::string> & filenames);
+
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Build the language model from files.
+	///
+	/// \param filenames List of paths to file that contains corpora to learn from.
+	///
+	////////////////////////////////////////////////////////////////////////////
+	void buildGramsCounterFromCorpora(const std::vector<std::string> & filenames);
+
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Build the TranslationTable from files.
+	///
+	/// \param filenames List of pairs of paths to files consisting of un-corrected and
+	/// corrected versions of the same text.
+	///
+	////////////////////////////////////////////////////////////////////////////
+	void buildTranslationTableFromCorpora(const std::vector< std::pair<std::string, std::string> > & filenames);
 
 	public :
 
@@ -52,20 +67,22 @@ class Database
 	////////////////////////////////////////////////////////////////////////////
 	Database();
 
-	////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Build the Database, long process.
 	///
 	/// Construct Lexicon, GramsCounter, TranslationTable using the files passed
 	/// as parameters.
-	/// Creates a number of files, that can later be used for readFromFiles.
+	/// Creates a number of files, that can later be used for readFromFiles().
 	///
-	/// \param correctName Path to the file containing the corrected corpus.
-	/// \param incorrectName Path to the file containing the un-corrected corpus.
-	///
-	/// \see readFromFiles
+	/// \param lexicons List of paths to files that contain a lexicon.
+	/// \param corpora List of paths to files that contain text to learn ngrams from.
+	/// \param pairs List of pairs of paths to files consisting of un-corrected and
+	/// corrected versions of the same text.
 	///
 	////////////////////////////////////////////////////////////////////////////
-	void buildFromCorpus(std::string correctName, std::string incorrectName);
+	void buildFromCorpus(const std::vector<std::string> & lexicons,
+		const std::vector<std::string> & corpora,
+		const std::vector< std::pair<std::string, std::string> > & pairs);
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Read the Database from files created by buildFromCorpus

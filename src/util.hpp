@@ -15,6 +15,16 @@
 bool isSeparator(char c);
 
 /////////////////////////////////////////////////////////////////////////////
+/// \brief Check if `c` end a line.
+///
+/// \param c Char to check.
+///
+/// \return True if 'c' end a line, like '\n'.
+///
+////////////////////////////////////////////////////////////////////////////
+bool isNewline(char c);
+
+/////////////////////////////////////////////////////////////////////////////
 /// \brief Given a path to a file, return the filename.
 ///
 /// \param s Path to file.
@@ -55,19 +65,17 @@ bool isNum(const std::string & s);
 bool endSentence(char c);
 
 /////////////////////////////////////////////////////////////////////////////
-/// \brief Remove unrelevant information from a corpus.
+/// \brief Copy cleaned version of a file into another.
 ///
 /// Cleaning is
 /// - removing comments , message sender and time
 /// - One line per sentence.
 ///
-/// \param corpus Corpus to clean.
-/// \param path Path to file the result will be written into.
-///
-/// \return A File containing a clean version of the original corpus.
+/// \param source Corpus to clean.
+/// \param dest File the result will be written into.
 ///
 ////////////////////////////////////////////////////////////////////////////
-File * cleanCorpus(File * corpus, std::string path);
+void cleanCorpus(File & source, File & dest);
 
 /////////////////////////////////////////////////////////////////////////////
 /// \brief Read a File until the beginning of a word.

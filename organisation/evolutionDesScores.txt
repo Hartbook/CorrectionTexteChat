@@ -1,0 +1,5 @@
+09/05/2017 : Levenshtein + TranslationTable, lexique et grams crées avec que le texte correct.
+	Perplexité : Correct VS Corrigé -> 25.08
+
+10/05/2017 : Levenshtein, grand lexique et grams.
+	Perplexité : Correct VS Corrigé -> 24.94

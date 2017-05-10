@@ -4,9 +4,8 @@ AtomicFloat::AtomicFloat(float value) : value(scale(value))
 {
 }
 
-AtomicFloat::AtomicFloat(const AtomicFloat & model)
+AtomicFloat::AtomicFloat(const AtomicFloat & model) : AtomicFloat(model.load())
 {
-	AtomicFloat(model.value);
 }
 
 AtomicFloat::operator float() const

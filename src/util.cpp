@@ -69,32 +69,32 @@ bool endSentence(char c)
 	return c == '.' || c == '!' || c == '?' || c == '\n' || c == EOF;
 }
 
-File * cleanCorpus(File * corpus, std::string path)
+bool isNewline(char c)
 {
-	auto isNewline = [](char c) {return c == 10 || c == 13;};
+	return c == 10 || c == 13;
+}
+
+void cleanCorpus(File & source, File & dest)
+{
 	auto isNotNewline = [](char c) {return c != 10 && c != 13;};
 	auto skipNewlines = [&]()
 	{
-		char c = corpus->readUntil(isNotNewline);
+		char c = source.readUntil(isNotNewline);
 		if (!isNewline(c))
-			corpus->ungetChar(c);
+			source.ungetChar(c);
 	};
 	auto skipControlCharacters = [&]()
 	{
-		while (((unsigned char)corpus->peek()) == 194)
+		while (((unsigned char)source.peek()) == 194)
 		{
-			corpus->getChar();
-			corpus->getChar();
+			source.getChar();
+			source.getChar();
 		}
 	};
 
-	std::string pathName = path + getFilenameFromPath(corpus->getName());
-
-	File * result = new File(pathName, "w");
-
 	char read = '\n';
 
-	while (!corpus->isFinished())
+	while (!source.isFinished())
 	{
 		if (isNewline(read))
 			skipNewlines();
@@ -107,58 +107,54 @@ File * cleanCorpus(File * corpus, std::string path)
 
 			skipControlCharacters();
 
-			while (isNewline(read) && corpus->peek() == '#')
+			while (isNewline(read) && source.peek() == '#')
 			{
 				triggered = true;
 
-				read = corpus->readUntil(isNewline);
+				read = source.readUntil(isNewline);
 
 				if (isNewline(read))
 					skipNewlines();
 			}
 
-			while (isNewline(read) && corpus->peek() == '[')
+			while (isNewline(read) && source.peek() == '[')
 			{
 				triggered = true;
 
-				read = corpus->readUntil(']');
+				read = source.readUntil(']');
 
-				read = corpus->readUntil([&](char c)
+				read = source.readUntil([&](char c)
 				{
 					return isNewline(c) || c == ':';
 				});
 
 				if (read == ':')
-					fprintf(result->getDescriptor(), "\n");
+					fprintf(dest.getDescriptor(), "\n");
 
-				if (corpus->peek() == ' ')
-					read = corpus->getChar();
+				if (source.peek() == ' ')
+					read = source.getChar();
 
 				if (isNewline(read))
 					skipNewlines();
 			}
 
-			if (corpus->isFinished())
+			if (source.isFinished())
 				break;
 		}
 
-		read = corpus->getChar();
+		read = source.getChar();
 
-		if (corpus->isFinished())
+		if (source.isFinished())
 			break;
 
 		if (isNewline(read))
 			read = '\n';
 
 		if (!isNewline(read))
-			fprintf(result->getDescriptor(), "%c", read);
+			fprintf(dest.getDescriptor(), "%c", read);
 	}
 
-	fprintf(result->getDescriptor(), "\n");
-
-	delete result;
-
-	return new File(pathName, "r");
+	fprintf(dest.getDescriptor(), "\n");
 }
 
 unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
@@ -192,7 +188,7 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 	{
 		bool containsAtSign = false;
 
-		while (!corpus.isFinished() && corpus.peek() != ' ')
+		while (!corpus.isFinished() && corpus.peek() != ' ' && !isNewline(corpus.peek()))
 		{
 			char c = corpus.getChar();
 
@@ -207,9 +203,14 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 
 		unsigned int nbToUnget = word.size() - indexOfFirstSeparator;
 
+		if (nbToUnget >= word.size())
+			printf("toUnget = %d, size = %d\n", nbToUnget, word.size());
+
 		for (unsigned int i = 0; i < nbToUnget; i++)
 		{
-			corpus.ungetChar(word[word.size()-1]);
+			if (word.empty())
+				printf("toUnget = %d, size = %d\n", nbToUnget, word.size());
+			corpus.ungetChar(word.back());
 			word.pop_back();
 		}
 
@@ -219,7 +220,10 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 	auto removeEndingDashes = [&]()
 	{
 		while (!word.empty() && word.back() == '-')
+		{
 			word.pop_back();
+			indexOfFirstSeparator = std::min(indexOfFirstSeparator, word.size());
+		}
 	};
 
 	while (!corpus.isFinished() && !isSeparator(corpus.peek()))
@@ -227,6 +231,9 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 		word.push_back(corpus.getChar());
 		indexOfFirstSeparator++;
 	}
+
+	if (word.empty())
+		return Lexicon::unknown;
 
 	removeEndingDashes();
 

@@ -1,6 +1,7 @@
 #include "Lexicon.hpp"
 #include <vector>
 #include <algorithm>
+#include <cassert>
 #include "util.hpp"
 
 constexpr unsigned int Lexicon::unknown;
@@ -53,7 +54,7 @@ void Lexicon::initMaps(std::unordered_map<std::string, unsigned int> & specials)
 	}
 }
 
-std::string & Lexicon::normalize(std::string & s)
+std::string & Lexicon::normalize(std::string & s) const
 {
 	for (unsigned int i = 0; i < s.size(); i++)
 	{
@@ -79,9 +80,10 @@ std::string & Lexicon::normalize(std::string & s)
 	return s;
 }
 
-unsigned int Lexicon::getToken(std::string & s)
+unsigned int Lexicon::getToken(std::string & s) const
 {
-	s = normalize(s);
+	if (s != unknownStr && s != mailStr && s != numberStr && s != properNounStr && s != dateStr)
+		s = normalize(s);
 
 	if (isNum(s))
 		return number;
@@ -158,9 +160,7 @@ void Lexicon::copy(const Lexicon & other)
 	for (auto & it : other.tokens)
 	{
 		addWord(it.first, it.second);
-
-		if (it.second > nextToken)
-			nextToken = it.second;
+		nextToken = std::max(nextToken, it.second);
 	}
 
 	nextToken++;

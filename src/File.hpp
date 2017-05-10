@@ -63,6 +63,10 @@ class File
 	////////////////////////////////////////////////////////////////////////////
 	File(const std::string & filename, const std::string & mode);
 
+	File(File && model) = delete;
+
+	File & operator=(const File & model) = delete;
+
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Destructor, taking care of closing the file descriptor.
 	///

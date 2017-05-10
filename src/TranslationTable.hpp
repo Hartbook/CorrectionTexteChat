@@ -4,11 +4,33 @@
 #ifndef TRANSLATIONTABLE__H
 #define TRANSLATIONTABLE__H
 
+#include <vector>
 #include <set>
+#include <unordered_map>
 #include "File.hpp"
 #include "Lexicon.hpp"
 #include "AtomicFloat.hpp"
 #include "WordTranslator.hpp"
+
+namespace std
+{
+	template <>
+	struct hash< pair<unsigned int, unsigned int> >
+	{
+		size_t operator()(const pair<unsigned int, unsigned int> & p) const
+		{
+    		static hash<unsigned int> hasher;
+
+			size_t seed = 0;
+
+			// From Boost
+	    	seed ^= hasher(p.first) + 0x9e3779b9 + (seed<<6) + (seed>>2);
+	    	seed ^= hasher(p.second) + 0x9e3779b9 + (seed<<6) + (seed>>2);
+
+			return seed;
+		}
+	};
+}
 
 /////////////////////////////////////////////////////////////////////////////
 /// \brief Proposes corrections of a word based on a model learned from 
@@ -21,10 +43,12 @@ class TranslationTable : public WordTranslator
 {
 	private :
 
-	static constexpr int nbIterations = 10;
+	static constexpr int nbIterations = 1;
 	static float minimalProb;
 
-	std::vector< std::vector<AtomicFloat> > table;
+	std::unordered_map<std::pair<unsigned int, unsigned int>, AtomicFloat> table;
+
+	std::unordered_map< unsigned int,std::vector< std::pair<unsigned int,float> > > translations;
 
 	unsigned int maxTokenCorrect;
 
@@ -37,6 +61,14 @@ class TranslationTable : public WordTranslator
 	///
 	////////////////////////////////////////////////////////////////////////////
 	bool isCorrect(unsigned int token);
+
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Transfer contents of `table` into `translations` for faster lookup.
+	///
+	/// To be called before the first call to addTranslations().
+	///
+	////////////////////////////////////////////////////////////////////////////
+	void arrangeTranslations();
 
 	public :
 

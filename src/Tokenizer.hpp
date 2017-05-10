@@ -44,13 +44,11 @@ class Tokenizer
 	///
 	/// If during the tokenization a word is not inside the `lexicon`, it is added.
 	///
-	/// \param corpus File containing the text to tokenize.
-	/// \param path Path to the file the function will write into.
-	///
-	/// \return File containing the tokenized text.
+	/// \param src File containing the text to tokenize.
+	/// \param dest File the result will be written into.
 	///
 	////////////////////////////////////////////////////////////////////////////
-	File * tokenize(File & corpus, const std::string & path);
+	void tokenize(File & src, File & dest);
 };
 
 #endif
