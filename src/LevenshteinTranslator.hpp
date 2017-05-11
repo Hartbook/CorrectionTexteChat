@@ -20,6 +20,8 @@ class LevenshteinTranslator : public WordTranslator
 	Lexicon & correctLexicon;
 	Lexicon & incorrectLexicon;
 	std::vector< std::vector<float> > distances;
+	bool delHasOccured;
+	bool addHasOccured;
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Return the cost of substituing i-th element of s1 by the j-th 
@@ -39,6 +41,33 @@ class LevenshteinTranslator : public WordTranslator
 	///
 	////////////////////////////////////////////////////////////////////////////
 	float getSubstitutionCost(const std::string & s1, const std::string & s2,
+							  unsigned int i, unsigned int j);
+
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Return the cost of adding j-th element of s2 at i position in s1.
+	///
+	/// \param s1 String containing the original letter.
+	/// \param s2 String containing the transformed letter.
+	/// \param i Index of the insertion.
+	/// \param j Index of the letter to insert.
+	///
+	/// \return the more it's high the less likely the insertion is.
+	///
+	////////////////////////////////////////////////////////////////////////////
+	float getAddCost(const std::string & s1, const std::string & s2,
+							  unsigned int i, unsigned int j);
+
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Return the cost of deleting i-th element of s1.
+	///
+	/// \param s1 String containing the original letter.
+	/// \param s2 String containing the transformed letter.
+	/// \param i Index of the deletion.
+	///
+	/// \return the more it's high the less likely the deletion is.
+	///
+	////////////////////////////////////////////////////////////////////////////
+	float getDelCost(const std::string & s1, const std::string & s2,
 							  unsigned int i, unsigned int j);
 
 	/////////////////////////////////////////////////////////////////////////////

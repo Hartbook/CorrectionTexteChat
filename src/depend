@@ -12,7 +12,8 @@ main.o: main.cpp Database.hpp Lexicon.hpp File.hpp GramsCounter.hpp \
  LevenshteinTranslator.hpp Viterbi.hpp Layout.hpp
 Tokenizer.o: Tokenizer.cpp Tokenizer.hpp Lexicon.hpp File.hpp util.hpp
 LevenshteinTranslator.o: LevenshteinTranslator.cpp \
- LevenshteinTranslator.hpp Lexicon.hpp File.hpp WordTranslator.hpp
+ LevenshteinTranslator.hpp Lexicon.hpp File.hpp WordTranslator.hpp \
+ util.hpp
 GramsCounter.o: GramsCounter.cpp GramsCounter.hpp File.hpp Lexicon.hpp \
  util.hpp
 Layout.o: Layout.cpp Layout.hpp File.hpp util.hpp Lexicon.hpp

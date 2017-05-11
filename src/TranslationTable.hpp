@@ -43,7 +43,7 @@ class TranslationTable : public WordTranslator
 {
 	private :
 
-	static constexpr int nbIterations = 10;
+	static constexpr int nbIterations = 20;
 	static float minimalProb;
 
 	std::unordered_map<std::pair<unsigned int, unsigned int>, AtomicFloat> table;

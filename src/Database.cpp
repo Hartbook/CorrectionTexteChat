@@ -48,9 +48,7 @@ void Database::buildFromCorpus(const std::vector<std::string> & lexicons,
 
 	buildGramsCounterFromCorpora(corpora);
 	File gramsCounterFile(gramsCounterName, "w");
-	printf("Debut print\n");
 	gramsCounter.print(gramsCounterFile.getDescriptor());
-	printf("Fin print\n");
 
 	buildTranslationTableFromCorpora(pairs);
 	File translationTableFile(translationTableName, "w");
@@ -95,8 +93,11 @@ void Database::buildTranslationTableFromCorpora(
 	File correctTokenized(correctCleanedName + ".tokenized", "w");
 	File incorrectTokenized(incorrectCleanedName + ".tokenized", "w");
 
-	t1.tokenize(incorrectCleaned, incorrectTokenized);
 	t2.tokenize(correctCleaned, correctTokenized);
+
+	incorrectLexicon.copy(correctLexicon);
+
+	t1.tokenize(incorrectCleaned, incorrectTokenized);
 
 	correctTokenized.rewind();
 	incorrectTokenized.rewind();
@@ -110,7 +111,6 @@ void Database::buildGramsCounterFromCorpora(const std::vector<std::string> & fil
 	static unsigned int linesPerSplit = 1000 * 1000;
 	static const char * pathToTemp = "data/corpus/temp/";
 
-	printf("Debut buildGramsCounter\n");
 	std::stack< std::unique_ptr<File> > inputFiles;
 	std::vector< std::unique_ptr<File> > splittedFiles;
 
@@ -186,8 +186,6 @@ void Database::buildGramsCounterFromCorpora(const std::vector<std::string> & fil
 		});
 
 	executor.run();
-
-	printf("FIN gramsCount\n");
 }
 
 void Database::buildLexiconFromCorpora(const std::vector<std::string> & filenames)
@@ -215,7 +213,5 @@ void Database::buildLexiconFromCorpora(const std::vector<std::string> & filename
 			word.clear();
 		}
 	}
-
-	incorrectLexicon.copy(correctLexicon);
 }
 

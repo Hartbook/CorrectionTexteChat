@@ -47,9 +47,6 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 			{
 				if (incorrect[i] == correct[j])
 				{
-					if (incorrect[i] == 84047 && correct[j] == 28003)
-						printf("OUI\n");
-
 					incorrect[i] = incorrect.back();
 					correct[j] = correct.back();
 
@@ -159,8 +156,6 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 			it.second = -log(it.second);
 		else
 			it.second = -1;
-
-	printf("%u -> %u = %f\n", 84047, 28003, table[Pair(84047, 28003)].load());
 
 	arrangeTranslations();
 }

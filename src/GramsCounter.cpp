@@ -38,8 +38,7 @@ void GramsCounter::addGram(unsigned int t1)
 {
 	Gram gram(t1);
 
-	if (nbOcc.count(gram) == 0)
-		nbMonograms++;
+	nbMonograms++;
 
 	nbOcc[gram]++;
 
@@ -50,8 +49,7 @@ void GramsCounter::addGram(unsigned int t1, unsigned int t2)
 {
 	Gram gram(t1, t2);
 
-	if (nbOcc.count(gram) == 0)
-		nbBigrams++;
+	nbBigrams++;
 
 	nbOcc[gram]++;
 }
@@ -60,8 +58,7 @@ void GramsCounter::addGram(unsigned int t1, unsigned int t2, unsigned int t3)
 {
 	Gram gram(t1, t2, t3);
 
-	if (nbOcc.count(gram) == 0)
-		nbTrigrams++;
+	nbTrigrams++;
 
 	nbOcc[gram]++;
 }
@@ -188,6 +185,9 @@ float GramsCounter::getProb(unsigned int t1, unsigned int t2, unsigned int t3) c
 
 float GramsCounter::getLogProb(unsigned int t1) const
 {
+	if (-log(getProb(t1)) < 0)
+		fprintf(stderr,"BUG NEG ! nbOcc = %u et nbMonograms = %u donc la div = %f\n", ((nbOcc.count(Gram(t1)) ? nbOcc.at(Gram(t1)) : 0)), nbMonograms, ((float)(nbOcc.count(Gram(t1)) ? nbOcc.at(Gram(t1)) : 0))/nbMonograms);
+
 	return -log(getProb(t1));
 }
 
