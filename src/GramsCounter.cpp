@@ -65,68 +65,61 @@ void GramsCounter::addGram(unsigned int t1, unsigned int t2, unsigned int t3)
 
 void GramsCounter::read(File & input)
 {
-	std::vector<unsigned int> tokens;
+	FILE * desc = input.getDescriptor();
+	nbOcc.clear();
+	unsigned int nbElems = 0;
+	fread(&nbElems, sizeof nbElems, 1, desc);
 
-	unsigned int ridden = 0;
+	nbOcc.reserve(nbElems);
 
-	while (!input.isFinished())
+	Gram gram(0,0,0);
+
+	for (unsigned int i = 0; i < nbElems; i++)
 	{
-		if (input.peek() == '<')
+		unsigned int nbTokens = 0;
+
+		fread(&nbTokens, sizeof nbTokens, 1, desc);
+
+		gram.tokens.clear();
+
+		for (unsigned int j = 0; j < nbTokens; j++)
 		{
-			tokens.clear();
-			input.getChar();
-			fscanf(input.getDescriptor(), "%u", &ridden);
-			tokens.push_back(ridden);
+			unsigned int token;
+			fread(&token, sizeof token, 1, desc);
+			gram.tokens.emplace_back(token);
 		}
-		else if (input.peek() == ',')
-		{
-			input.getChar();
-			fscanf(input.getDescriptor(), "%u", &ridden);
-			tokens.push_back(ridden);
-		}
-		else if (input.peek() == '>')
-		{
-			input.getChar();
-			fscanf(input.getDescriptor(), "%u", &ridden);
-			
-			if (tokens.size() == 1)
-				for (unsigned int i = 0; i < ridden; i++)
-					addGram(tokens[0]);
-			else if (tokens.size() == 2)
-				for (unsigned int i = 0; i < ridden; i++)
-					addGram(tokens[0], tokens[1]);
-			else if (tokens.size() == 3)
-				for (unsigned int i = 0; i < ridden; i++)
-					addGram(tokens[0], tokens[1], tokens[2]);
-		}
-		else
-			input.getChar();
+
+		int nb = 0;
+		fread(&nb, sizeof nb, 1, desc);
+
+		nbOcc[gram] = nb;
 	}
+
+	fread(&nbMonograms, sizeof nbMonograms, 1, desc);
+	fread(&nbBigrams, sizeof nbBigrams, 1, desc);
+	fread(&nbTrigrams, sizeof nbTrigrams, 1, desc);
+	fread(&alpha, sizeof alpha, 1, desc);
+	fread(&nbTokensTotal, sizeof nbTokensTotal, 1, desc);
 }
 
 void GramsCounter::print(FILE * output)
 {
-	for (auto it : nbOcc)
+	unsigned int nbElems = nbOcc.size();
+	fwrite(&nbElems, sizeof nbElems, 1, output);
+
+	for (auto & it : nbOcc)
 	{
-		fprintf(output, "<");
-
-		unsigned int padding = 50;
-
-		for (unsigned int i = 0; i < it.first.tokens.size(); i++)
-		{
-			unsigned int token = it.first.tokens[i];
-
-			fprintf(output, "%06d%s", token, i == it.first.tokens.size()-1 ? ">" : ", ");
-
-			padding -= 2;
-			padding -= 6;
-		}
-
-		for (unsigned int i = 0; i < padding; i++)
-			fprintf(output, " ");
-
-		fprintf(output, "%d\n", it.second);
+		unsigned int nbTokens = it.first.tokens.size();
+		fwrite(&nbTokens, sizeof nbTokens, 1, output);
+		fwrite(&it.first.tokens[0], sizeof it.first.tokens[0], nbTokens, output);
+		fwrite(&it.second, sizeof it.second, 1, output);
 	}
+
+	fwrite(&nbMonograms, sizeof nbMonograms, 1, output);
+	fwrite(&nbBigrams, sizeof nbBigrams, 1, output);
+	fwrite(&nbTrigrams, sizeof nbTrigrams, 1, output);
+	fwrite(&alpha, sizeof alpha, 1, output);
+	fwrite(&nbTokensTotal, sizeof nbTokensTotal, 1, output);
 }
 
 void GramsCounter::print(FILE * output, Lexicon & lexicon)

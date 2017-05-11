@@ -19,9 +19,6 @@ class LevenshteinTranslator : public WordTranslator
 
 	Lexicon & correctLexicon;
 	Lexicon & incorrectLexicon;
-	std::vector< std::vector<float> > distances;
-	bool delHasOccured;
-	bool addHasOccured;
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Return the cost of substituing i-th element of s1 by the j-th 
@@ -50,12 +47,13 @@ class LevenshteinTranslator : public WordTranslator
 	/// \param s2 String containing the transformed letter.
 	/// \param i Index of the insertion.
 	/// \param j Index of the letter to insert.
+	/// \param addHasOccured
 	///
 	/// \return the more it's high the less likely the insertion is.
 	///
 	////////////////////////////////////////////////////////////////////////////
 	float getAddCost(const std::string & s1, const std::string & s2,
-							  unsigned int i, unsigned int j);
+							  unsigned int i, unsigned int j, bool & addHasOccured);
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Return the cost of deleting i-th element of s1.
@@ -63,12 +61,13 @@ class LevenshteinTranslator : public WordTranslator
 	/// \param s1 String containing the original letter.
 	/// \param s2 String containing the transformed letter.
 	/// \param i Index of the deletion.
+	/// \param delHasOccured
 	///
 	/// \return the more it's high the less likely the deletion is.
 	///
 	////////////////////////////////////////////////////////////////////////////
 	float getDelCost(const std::string & s1, const std::string & s2,
-							  unsigned int i, unsigned int j);
+							  unsigned int i, unsigned int j, bool & delHasOccured);
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Get the distance between two strings.

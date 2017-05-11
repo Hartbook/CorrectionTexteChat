@@ -3,6 +3,7 @@
 #include <cstring>
 #include "util.hpp"
 #include "Tokenizer.hpp"
+#include "Executor.hpp"
 
 Viterbi::Viterbi(Database & database) :
 	database(database), lexicon(database.incorrectLexicon), gramsCounter(database.gramsCounter)
@@ -17,7 +18,7 @@ Viterbi::Viterbi(Database & database) :
 		});
 }
 
-void Viterbi::buildLatticeFromSentence(const std::vector<unsigned int> & sentence)
+void Viterbi::buildLatticeFromSentence(std::vector< std::vector<Trio> > & probas, const std::vector<unsigned int> & sentence)
 {
 	std::vector< std::pair<unsigned int, float> > precedent = {{0,0}};
 	WordTranslations actual;
@@ -50,7 +51,8 @@ void Viterbi::buildLatticeFromSentence(const std::vector<unsigned int> & sentenc
 	}
 }
 
-void Viterbi::computeViterbiForRow(unsigned int row)
+
+void Viterbi::computeViterbiForRow(std::vector< std::vector<Trio> > & probas, unsigned int row)
 {
 	auto getProbaCommingFrom = [&](unsigned int line, Trio & current)
 	{
@@ -84,14 +86,12 @@ void Viterbi::computeViterbiForRow(unsigned int row)
 	}
 }
 
-const std::vector<unsigned int> & Viterbi::correctSentence(
-	const std::vector<unsigned int> & sentence)
+void Viterbi::correctSentence(std::vector<unsigned int> & dest, const std::vector<unsigned int> & sentence)
 {
-	corrected.clear();
-	probas.clear();
+	std::vector< std::vector<Trio> > probas;
 	probas.resize(sentence.size());
 
-	buildLatticeFromSentence(sentence);
+	buildLatticeFromSentence(probas, sentence);
 
 	for (auto & p : probas[0])
 		p.proba += gramsCounter.getLogProb(p.trad.second);
@@ -104,13 +104,13 @@ const std::vector<unsigned int> & Viterbi::correctSentence(
 			if (probas[0][i].proba < probas[0][minIndex].proba)
 				minIndex = i;
 
-		corrected.push_back(probas[0][minIndex].trad.second);
+		dest.push_back(probas[0][minIndex].trad.second);
 
-		return corrected;
+		return;
 	}
 
 	for (unsigned int j = 1; j < probas.size(); j++)
-		computeViterbiForRow(j);
+		computeViterbiForRow(probas, j);
 
 	int minIndex = 0;
 	float minProba = probas.back()[0].proba;
@@ -122,20 +122,18 @@ const std::vector<unsigned int> & Viterbi::correctSentence(
 			minProba = probas.back()[i].proba;
 		}
 
-	corrected.push_back(probas.back()[minIndex].trad.second);
+	dest.push_back(probas.back()[minIndex].trad.second);
 	int parent = probas.back()[minIndex].parent;
 
 	for (int i = (int)probas.size()-2; i >= 0; i--)
 	{
-		corrected.push_back(probas[i][parent].trad.second);
+		dest.push_back(probas[i][parent].trad.second);
 		parent = probas[i][parent].parent;
 	}
 
-	std::reverse(corrected.begin(), corrected.end());
+	std::reverse(dest.begin(), dest.end());
 
-	printLatticeForDebug();
-
-	return corrected;
+	//printLatticeForDebug();
 }
 
 File * Viterbi::correct(std::string inputFilename)
@@ -164,6 +162,59 @@ File * Viterbi::correct(std::string inputFilename)
 
 	delete cleanInput;
 
+	auto readSentence = [](std::vector<unsigned int> & sentence, File & file)
+	{
+		sentence.clear();
+
+		while (!file.isFinished() && file.peek() != '\n')
+		{
+			unsigned int token;
+
+			if (fscanf(file.getDescriptor(), "%u", &token) != 1)
+				break;
+
+			sentence.push_back(token);
+			file.getChar();
+		}
+
+		file.getChar();
+	};
+
+	auto printSentence = [&lexicon](std::vector<unsigned int> & sentence, File & file)
+	{
+		for (unsigned int token : sentence)
+			fprintf(file.getDescriptor(), "%s ", lexicon.getString(token).c_str());
+
+		fprintf(file.getDescriptor(), "\n");
+	};
+
+	std::vector< std::vector<unsigned int> > sentences;
+
+	while (!tokenized->isFinished())
+	{
+		sentences.emplace_back();
+		readSentence(sentences.back(), *tokenized);
+		if (sentences.back().empty())
+			sentences.pop_back();
+	}
+
+	delete tokenized;
+
+	Executor<void,void> executor;
+
+	for (auto & sentence : sentences)
+		executor.addTask([&]()
+		{
+			std::vector<unsigned int> corrected;
+			correctSentence(corrected, sentence);
+			sentence = corrected;
+		});
+
+	executor.run();
+
+	for (auto & sentence : sentences)
+		printSentence(sentence, *result);
+/*
 	std::vector<unsigned int> sentence;
 
 	while (!tokenized->isFinished())
@@ -186,13 +237,13 @@ File * Viterbi::correct(std::string inputFilename)
 			fprintf(result->getDescriptor(), "\n");
 		}
 	}
-
-	delete tokenized;
+*/
 
 	return result;
 }
 
-void Viterbi::printLatticeForDebug()
+
+void Viterbi::printLatticeForDebug(std::vector< std::vector<Trio> > & probas)
 {
 	bool finished = false;
 	unsigned int index = 0;

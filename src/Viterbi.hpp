@@ -31,9 +31,6 @@ class Viterbi
 			parent(parent){}
 	};
 	
-	std::vector< std::vector<Trio> > probas;
-	std::vector<unsigned int> corrected;
-
 	private :
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -41,24 +38,28 @@ class Viterbi
 	///
 	/// The constructed lattice is stored into `probas`
 	///
+	/// \param probas Lattice to construct into.
 	/// \param sentence Sentence to build the correction lattice from.
 	///
 	////////////////////////////////////////////////////////////////////////////
-	void buildLatticeFromSentence(const std::vector<unsigned int> & sentence);
+	void buildLatticeFromSentence(std::vector< std::vector<Trio> > & probas, const std::vector<unsigned int> & sentence);
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Perform the Viterbi algorithm for the specified row of the lattice.
 	///
+	/// \param probas Lattice the algorithm will be performed on.
 	/// \param row Row the algorithm will be performed on.
 	///
 	////////////////////////////////////////////////////////////////////////////
-	void computeViterbiForRow(unsigned int row);
+	void computeViterbiForRow(std::vector< std::vector<Trio> > & probas, unsigned int row);
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Neatly output the current lattice into `stdout`, human readable.
 	///
+	/// \param probas Lattice to print.
+	///
 	////////////////////////////////////////////////////////////////////////////
-	void printLatticeForDebug();
+	void printLatticeForDebug(std::vector< std::vector<Trio> > & probas);
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Correct a sentence.
@@ -66,13 +67,11 @@ class Viterbi
 	/// Correction of words are taken from every instances of WordTranslator found
 	/// as a member of `database`.
 	///
+	/// \param dest Where to put the corrected sentence.
 	/// \param sentence Sentence to be corrected, tokenized.
 	///
-	/// \return Corrected sentence, tokenized.
-	///
 	////////////////////////////////////////////////////////////////////////////
-	const std::vector<unsigned int> & correctSentence(
-		const std::vector<unsigned int> & sentence);
+	void correctSentence(std::vector<unsigned int> & dest, const std::vector<unsigned int> & sentence);
 
 	public :
 

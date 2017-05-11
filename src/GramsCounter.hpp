@@ -223,6 +223,9 @@ class GramsCounter
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Read the language model from a file.
 	///
+	/// File is saved on the disk in binary format, read() is only compatible with
+	/// files saved from a print() made by a computer with the same architecture.
+	///
 	/// \param input Path to file containing language model, as created by print()
 	/// \see print
 	///
@@ -230,7 +233,7 @@ class GramsCounter
 	void read(File & input);
 
 	/////////////////////////////////////////////////////////////////////////////
-	/// \brief Save the language model into a file.
+	/// \brief Save the language model into a file. Binary format.
 	///
 	/// \param output File descriptor the language model will be saved into.
 	/// \see read

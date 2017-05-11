@@ -36,7 +36,7 @@ float LevenshteinTranslator::getSubstitutionCost(const std::string & s1, const s
 }
 
 float LevenshteinTranslator::getAddCost(const std::string & s1, const std::string & s2,
-												 unsigned int i, unsigned int j)
+												 unsigned int i, unsigned int j, bool & addHasOccured)
 {
 	if (!addHasOccured && i == s1.size())
 	{
@@ -54,7 +54,7 @@ float LevenshteinTranslator::getAddCost(const std::string & s1, const std::strin
 }
 
 float LevenshteinTranslator::getDelCost(const std::string & s1, const std::string & s2,
-												 unsigned int i, unsigned int j)
+												 unsigned int i, unsigned int j, bool & delHasOccured)
 {
 	if (!delHasOccured && j == s2.size())
 	{
@@ -73,8 +73,9 @@ float LevenshteinTranslator::getDelCost(const std::string & s1, const std::strin
 
 float LevenshteinTranslator::getProximity(const std::string & s1, const std::string & s2)
 {
-	addHasOccured = false;
-	delHasOccured = false;
+	std::vector< std::vector<float> > distances;
+	bool delHasOccured = false;
+	bool addHasOccured = false;
 
 	distances.resize(s1.size()+1);
 
@@ -95,8 +96,8 @@ float LevenshteinTranslator::getProximity(const std::string & s1, const std::str
 		for (unsigned int j = 1; j <= s2.size(); j++)
 		{
 			subCost = getSubstitutionCost(s1, s2, i-1, j-1);
-			addCost = getAddCost(s1, s2, i, j-1);
-			delCost = getDelCost(s1, s2, i-1, j);
+			addCost = getAddCost(s1, s2, i, j-1, addHasOccured);
+			delCost = getDelCost(s1, s2, i-1, j, delHasOccured);
 
 			distances[i][j] = std::min(distances[i-1][j]+delCost, distances[i][j-1]+addCost);
 			distances[i][j] = std::min(distances[i][j], distances[i-1][j-1]+subCost);
