@@ -102,4 +102,24 @@ bool ignoreSeparators(File & corpus);
 ////////////////////////////////////////////////////////////////////////////
 unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin);
 
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Convert a certain letter of a string to lower case.
+///
+/// \param s String containing the letter (will be altered).
+/// \param i Index of the letter.
+///
+////////////////////////////////////////////////////////////////////////////
+void toLowerCase(std::string & s, unsigned int i);
+
+/////////////////////////////////////////////////////////////////////////////
+/// \brief Convert a certain letter of a string to upper case.
+///
+/// \param s String containing the letter (will be altered).
+/// \param i Index of the letter.
+///
+/// \todo Make this works for letter with accents.
+///
+////////////////////////////////////////////////////////////////////////////
+void toUpperCase(std::string & s, unsigned int i);
+
 #endif

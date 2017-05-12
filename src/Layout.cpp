@@ -23,6 +23,7 @@ void Layout::transferLayout(File * target)
 	char read = '\n';
 
 	bool mustReadWord = true;
+	bool firstWordOfSentence = true;
 
 	while (!baseText->isFinished())
 	{
@@ -78,9 +79,16 @@ void Layout::transferLayout(File * target)
 			if (!wordIncorrect.empty())
 			{
 				if (!isSpecial(wordCorrect))
+				{
+					if (firstWordOfSentence)
+						toUpperCase(wordCorrect, 0);
+
 					fprintf(target->getDescriptor(), "%s", wordCorrect.c_str());
+				}
 				else
 					fprintf(target->getDescriptor(), "%s", wordIncorrect.c_str());
+
+				firstWordOfSentence = false;
 				mustReadWord = true;
 				wordIncorrect.clear();
 			}
@@ -91,6 +99,9 @@ void Layout::transferLayout(File * target)
 		{
 			wordIncorrect.push_back(read);
 		}
+
+		if (endSentence(read))
+			firstWordOfSentence = true;
 	}
 }
 

@@ -266,3 +266,34 @@ bool ignoreSeparators(File & corpus)
 	return sentenceBegin;
 }
 
+void toLowerCase(std::string & s, unsigned int i)
+{
+	// Uncapitalize basic letters
+	if (s[i] >= 'A' && s[i] <= 'Z')
+	{
+		s[i] += -'A' + 'a';
+		return;
+	}
+
+	// Uncapitalize accentuated letters
+	if (i == s.size()-1)
+		return;
+	unsigned char s1 = s[i], s2 = s[i+1];
+	if (s1 == 195 && s2 >= 128 && s2 <= 158)
+	{
+		s2 += 32;
+		s[i+1] = s2;
+		return;
+	}
+}
+
+void toUpperCase(std::string & s, unsigned int i)
+{
+	// Cpitalize basic letters
+	if (s[i] >= 'a' && s[i] <= 'z')
+	{
+		s[i] += 'A' - 'a';
+		return;
+	}
+}
+
