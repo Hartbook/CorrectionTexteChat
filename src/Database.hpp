@@ -4,7 +4,9 @@
 #ifndef DATABASE__H
 #define DATABASE__H
 
+#include <memory>
 #include <string>
+#include <vector>
 #include "Lexicon.hpp"
 #include "GramsCounter.hpp"
 #include "TranslationTable.hpp"

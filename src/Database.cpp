@@ -4,7 +4,6 @@
 #include "util.hpp"
 #include "Executor.hpp"
 #include <cstdio>
-#include <memory>
 #include <stack>
 #include <mutex>
 
@@ -66,10 +65,15 @@ void Database::buildTranslationTableFromCorpora(
 {
 	static const char * pathToTemp = "data/corpus/temp/";
 
-	std::vector< std::pair< std::unique_ptr<File>, std::unique_ptr<File> > > files;
+	using FileUptr = std::unique_ptr<File>;
+	std::vector< std::pair<FileUptr,FileUptr> > files;
 
 	for (auto & name : filenames)
-		files.emplace_back(new File(name.first, "r"), new File(name.second, "r"));
+	{
+		std::pair<FileUptr,FileUptr>
+			p(FileUptr(new File(name.first, "r")), FileUptr(new File(name.second, "r")));
+		files.push_back(std::move(p));
+	}
 
 	std::string baseName = getFilenameFromPath(filenames[0].first);
 	std::string correctCleanedName = pathToTemp + baseName + ".clean";

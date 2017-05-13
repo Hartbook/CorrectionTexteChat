@@ -203,13 +203,8 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 
 		unsigned int nbToUnget = word.size() - indexOfFirstSeparator;
 
-		if (nbToUnget >= word.size())
-			printf("toUnget = %d, size = %d\n", nbToUnget, word.size());
-
 		for (unsigned int i = 0; i < nbToUnget; i++)
 		{
-			if (word.empty())
-				printf("toUnget = %d, size = %d\n", nbToUnget, word.size());
 			corpus.ungetChar(word.back());
 			word.pop_back();
 		}
@@ -222,7 +217,8 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 		while (!word.empty() && word.back() == '-')
 		{
 			word.pop_back();
-			indexOfFirstSeparator = std::min(indexOfFirstSeparator, word.size());
+			indexOfFirstSeparator =
+				std::min<std::string::size_type>(indexOfFirstSeparator, word.size());
 		}
 	};
 
@@ -289,7 +285,7 @@ void toLowerCase(std::string & s, unsigned int i)
 
 void toUpperCase(std::string & s, unsigned int i)
 {
-	// Cpitalize basic letters
+	// Capitalize basic letters
 	if (s[i] >= 'a' && s[i] <= 'z')
 	{
 		s[i] += 'A' - 'a';
