@@ -61,7 +61,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classDatabase-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Database Class Reference</div>  </div>
@@ -78,18 +77,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4703c80e6969d33565ea340f768fdadf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a4703c80e6969d33565ea340f768fdadf">Database</a> ()</td></tr>
 <tr class="memdesc:a4703c80e6969d33565ea340f768fdadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a4703c80e6969d33565ea340f768fdadf">More...</a><br /></td></tr>
 <tr class="separator:a4703c80e6969d33565ea340f768fdadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98b7974dc1e1b76456fa35cc2665e6f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a98b7974dc1e1b76456fa35cc2665e6f9">buildFromCorpus</a> (std::string correctName, std::string incorrectName)</td></tr>
-<tr class="memdesc:a98b7974dc1e1b76456fa35cc2665e6f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the <a class="el" href="classDatabase.html" title="Contains necessary data to perform a correction. ">Database</a>, long process.  <a href="#a98b7974dc1e1b76456fa35cc2665e6f9">More...</a><br /></td></tr>
-<tr class="separator:a98b7974dc1e1b76456fa35cc2665e6f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb1c9b10f9ff0834d01ef0f448f65f97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#aeb1c9b10f9ff0834d01ef0f448f65f97">buildFromCorpus</a> (const std::vector&lt; std::string &gt; &amp;lexicons, const std::vector&lt; std::string &gt; &amp;corpora, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;pairs)</td></tr>
+<tr class="memdesc:aeb1c9b10f9ff0834d01ef0f448f65f97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the <a class="el" href="classDatabase.html" title="Contains necessary data to perform a correction. ">Database</a>, long process.  <a href="#aeb1c9b10f9ff0834d01ef0f448f65f97">More...</a><br /></td></tr>
+<tr class="separator:aeb1c9b10f9ff0834d01ef0f448f65f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3dbadcd3a09ae36cb36c73519e34b328"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a3dbadcd3a09ae36cb36c73519e34b328">readFromFiles</a> (std::string incorrectFilename, std::string correctFilename, std::string gramsFilename, std::string tableFilename)</td></tr>
 <tr class="memdesc:a3dbadcd3a09ae36cb36c73519e34b328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the <a class="el" href="classDatabase.html" title="Contains necessary data to perform a correction. ">Database</a> from files created by buildFromCorpus.  <a href="#a3dbadcd3a09ae36cb36c73519e34b328">More...</a><br /></td></tr>
 <tr class="separator:a3dbadcd3a09ae36cb36c73519e34b328"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:affb4d666b7bac4f76aca3863e158cf11"><td class="memItemLeft" align="right" valign="top"><a id="affb4d666b7bac4f76aca3863e158cf11"></a>
-friend&#160;</td><td class="memItemRight" valign="bottom"><b>Viterbi</b></td></tr>
-<tr class="separator:affb4d666b7bac4f76aca3863e158cf11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains necessary data to perform a correction. </p>
@@ -116,8 +109,8 @@ friend&#160;</td><td class="memItemRight" valign="bottom"><b>Viterbi</b></td></t
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a98b7974dc1e1b76456fa35cc2665e6f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98b7974dc1e1b76456fa35cc2665e6f9">&#9670;&nbsp;</a></span>buildFromCorpus()</h2>
+<a id="aeb1c9b10f9ff0834d01ef0f448f65f97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb1c9b10f9ff0834d01ef0f448f65f97">&#9670;&nbsp;</a></span>buildFromCorpus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,14 +118,20 @@ friend&#160;</td><td class="memItemRight" valign="bottom"><b>Viterbi</b></td></t
         <tr>
           <td class="memname">void Database::buildFromCorpus </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>correctName</em>, </td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lexicons</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>incorrectName</em>&#160;</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>corpora</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>pairs</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -143,15 +142,15 @@ friend&#160;</td><td class="memItemRight" valign="bottom"><b>Viterbi</b></td></t
 </div><div class="memdoc">
 
 <p>Build the <a class="el" href="classDatabase.html" title="Contains necessary data to perform a correction. ">Database</a>, long process. </p>
-<p>Construct <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>, <a class="el" href="classGramsCounter.html" title="Represents a language model. ">GramsCounter</a>, <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> using the files passed as parameters. Creates a number of files, that can later be used for readFromFiles.</p>
+<p>Construct <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>, <a class="el" href="classGramsCounter.html" title="Represents a language model. ">GramsCounter</a>, <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> using the files passed as parameters. Creates a number of files, that can later be used for <a class="el" href="classDatabase.html#a3dbadcd3a09ae36cb36c73519e34b328" title="Read the Database from files created by buildFromCorpus. ">readFromFiles()</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">correctName</td><td>Path to the file containing the corrected corpus. </td></tr>
-    <tr><td class="paramname">incorrectName</td><td>Path to the file containing the un-corrected corpus.</td></tr>
+    <tr><td class="paramname">lexicons</td><td>List of paths to files that contain a lexicon. </td></tr>
+    <tr><td class="paramname">corpora</td><td>List of paths to files that contain text to learn ngrams from. </td></tr>
+    <tr><td class="paramname">pairs</td><td>List of pairs of paths to files consisting of un-corrected and corrected versions of the same text. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classDatabase.html#a3dbadcd3a09ae36cb36c73519e34b328" title="Read the Database from files created by buildFromCorpus. ">readFromFiles</a> </dd></dl>
 
 </div>
 </div>
@@ -203,7 +202,7 @@ friend&#160;</td><td class="memItemRight" valign="bottom"><b>Viterbi</b></td></t
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classDatabase.html#a98b7974dc1e1b76456fa35cc2665e6f9" title="Build the Database, long process. ">buildFromCorpus</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classDatabase.html#aeb1c9b10f9ff0834d01ef0f448f65f97" title="Build the Database, long process. ">buildFromCorpus</a> </dd></dl>
 
 </div>
 </div>

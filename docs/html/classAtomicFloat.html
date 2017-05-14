@@ -61,8 +61,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classAtomicFloat-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">AtomicFloat Class Reference</div>  </div>
@@ -97,18 +95,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abe03f0bf79b3f0eebcfec3110dfa0cd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAtomicFloat.html">AtomicFloat</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAtomicFloat.html#abe03f0bf79b3f0eebcfec3110dfa0cd1">operator=</a> (const <a class="el" href="classAtomicFloat.html">AtomicFloat</a> &amp;model)</td></tr>
 <tr class="memdesc:abe03f0bf79b3f0eebcfec3110dfa0cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment operator.  <a href="#abe03f0bf79b3f0eebcfec3110dfa0cd1">More...</a><br /></td></tr>
 <tr class="separator:abe03f0bf79b3f0eebcfec3110dfa0cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ab842d3b53d55a84deac19875cb861cf2"><td class="memItemLeft" align="right" valign="top">static constexpr long long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAtomicFloat.html#ab842d3b53d55a84deac19875cb861cf2">scale</a> (float f)</td></tr>
-<tr class="memdesc:ab842d3b53d55a84deac19875cb861cf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts <code>float</code> value to <code>long long int</code> for storage.  <a href="#ab842d3b53d55a84deac19875cb861cf2">More...</a><br /></td></tr>
-<tr class="separator:ab842d3b53d55a84deac19875cb861cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:a1070b6e6618d84e7008f3a87d229420d"><td class="memItemLeft" align="right" valign="top"><a id="a1070b6e6618d84e7008f3a87d229420d"></a>
-static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><b>scaling</b> = 1000 * 1000</td></tr>
-<tr class="separator:a1070b6e6618d84e7008f3a87d229420d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An atomic <code>float</code>, replaces <code>std::atomic&lt;float&gt;</code> </p>
@@ -205,7 +191,7 @@ static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><b>sca
 <p>Restitution of the <code>float</code> value. </p>
 <p>This is the function that restitutes the <code>float</code> value represented by the <code>std::atomic&lt;long long int&gt;</code> member.</p>
 <dl class="section return"><dt>Returns</dt><dd>The current value of this <a class="el" href="classAtomicFloat.html" title="An atomic float, replaces std::atomic&lt;float&gt; ">AtomicFloat</a> instance.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classAtomicFloat.html#ab842d3b53d55a84deac19875cb861cf2" title="Converts float value to long long int for storage. ">scale</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>scale </dd></dl>
 
 </div>
 </div>
@@ -255,7 +241,7 @@ static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><b>sca
 <p>Assign <code>float</code> value. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>to assgin.</td></tr>
+    <tr><td class="paramname">value</td><td>Value to assgin.</td></tr>
   </table>
   </dd>
 </dl>
@@ -282,47 +268,11 @@ static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><b>sca
 <p>Copy assignment operator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>to assign.</td></tr>
+    <tr><td class="paramname">model</td><td>Value to assign.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to self. </dd></dl>
-
-</div>
-</div>
-<a id="ab842d3b53d55a84deac19875cb861cf2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab842d3b53d55a84deac19875cb861cf2">&#9670;&nbsp;</a></span>scale()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static constexpr long long int AtomicFloat::scale </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>f</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Converts <code>float</code> value to <code>long long int</code> for storage. </p>
-<p>We're storing a <code>float</code> inside a <code>atomic&lt;long long int&gt;</code> so we need a bijection between <code>float</code> and <code>long long int</code>, this is the function that send <code>float</code> to <code>long long int</code>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">f</td><td><code>float</code> to be converted</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>long long int</code> storing the <code>float</code> value f </dd></dl>
 
 </div>
 </div>

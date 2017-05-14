@@ -109,7 +109,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a8019ed3baf4bbf6d432177ba971095fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the language model from a file.  <a href="#a8019ed3baf4bbf6d432177ba971095fc">More...</a><br /></td></tr>
 <tr class="separator:a8019ed3baf4bbf6d432177ba971095fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05ccff4ad467e1200e2e202e572bb2ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#a05ccff4ad467e1200e2e202e572bb2ca">print</a> (FILE *output)</td></tr>
-<tr class="memdesc:a05ccff4ad467e1200e2e202e572bb2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the language model into a file.  <a href="#a05ccff4ad467e1200e2e202e572bb2ca">More...</a><br /></td></tr>
+<tr class="memdesc:a05ccff4ad467e1200e2e202e572bb2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the language model into a file. Binary format.  <a href="#a05ccff4ad467e1200e2e202e572bb2ca">More...</a><br /></td></tr>
 <tr class="separator:a05ccff4ad467e1200e2e202e572bb2ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c70211f6f1c5a81bd1711f6909d914b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#a1c70211f6f1c5a81bd1711f6909d914b">print</a> (FILE *output, <a class="el" href="classLexicon.html">Lexicon</a> &amp;lexicon)</td></tr>
 <tr class="memdesc:a1c70211f6f1c5a81bd1711f6909d914b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the language model into a file, human readable format.  <a href="#a1c70211f6f1c5a81bd1711f6909d914b">More...</a><br /></td></tr>
@@ -462,7 +462,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Save the language model into a file. </p>
+<p>Save the language model into a file. Binary format. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">output</td><td><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> descriptor the language model will be saved into. </td></tr>
@@ -527,13 +527,14 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read the language model from a file. </p>
+<p><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> is saved on the disk in binary format, <a class="el" href="classGramsCounter.html#a8019ed3baf4bbf6d432177ba971095fc" title="Read the language model from a file. ">read()</a> is only compatible with files saved from a <a class="el" href="classGramsCounter.html#a05ccff4ad467e1200e2e202e572bb2ca" title="Save the language model into a file. Binary format. ">print()</a> made by a computer with the same architecture.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">input</td><td>Path to file containing language model, as created by <a class="el" href="classGramsCounter.html#a05ccff4ad467e1200e2e202e572bb2ca" title="Save the language model into a file. ">print()</a> </td></tr>
+    <tr><td class="paramname">input</td><td>Path to file containing language model, as created by <a class="el" href="classGramsCounter.html#a05ccff4ad467e1200e2e202e572bb2ca" title="Save the language model into a file. Binary format. ">print()</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGramsCounter.html#a05ccff4ad467e1200e2e202e572bb2ca" title="Save the language model into a file. ">print</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGramsCounter.html#a05ccff4ad467e1200e2e202e572bb2ca" title="Save the language model into a file. Binary format. ">print</a> </dd></dl>
 
 </div>
 </div>

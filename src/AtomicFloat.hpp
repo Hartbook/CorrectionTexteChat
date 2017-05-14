@@ -30,7 +30,7 @@
 ////////////////////////////////////////////////////////////////////////////
 class AtomicFloat
 {
-	public :
+	private :
 
 	static constexpr float scaling = 1000 * 1000;
 
@@ -107,7 +107,7 @@ class AtomicFloat
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Assign `float` value.
 	///
-	/// \param value to assgin.
+	/// \param value Value to assgin.
 	///
 	/// \return Reference to self.
 	///
@@ -117,7 +117,7 @@ class AtomicFloat
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Copy assignment operator.
 	///
-	/// \param value to assign.
+	/// \param model Value to assign.
 	///
 	/// \return Reference to self.
 	///

@@ -55,19 +55,29 @@ class Lexicon
 
 	public :
 
+	/// \brief Token for unknown words
 	static constexpr unsigned int unknown = 0;
+	/// \brief UNKNOWN
 	static constexpr char unknownStr[] = "UNKNOWN";
 
+	/// \brief Token for mail addresses
 	static constexpr unsigned int mail = 1;
+	/// \brief MAIL
 	static constexpr char mailStr[] = "MAIL";
 
+	/// \brief Token for numbers
 	static constexpr unsigned int number = 2;
+	/// \brief NUMBER
 	static constexpr char numberStr[] = "NUMBER";
 
+	/// \brief Token for mail addresses
 	static constexpr unsigned int properNoun = 3;
+	/// \brief PROPERNOUN
 	static constexpr char properNounStr[] = "PROPERNOUN";
 
+	/// \brief Token for dates and time spans
 	static constexpr unsigned int date = 4;
+	/// \brief DATE
 	static constexpr char dateStr[] = "DATE";
 
 	/////////////////////////////////////////////////////////////////////////////

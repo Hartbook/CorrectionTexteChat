@@ -16,10 +16,9 @@ class Tokenizer
 	private :
 
 	Lexicon & lexicon;
+	std::string word;
 
 	public :
-
-	std::string word;
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Constructor.

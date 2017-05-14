@@ -79,9 +79,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#aa62f83480879f9c6489633cb83a0736f">Lexicon</a> ()</td></tr>
 <tr class="memdesc:aa62f83480879f9c6489633cb83a0736f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
 <tr class="separator:aa62f83480879f9c6489633cb83a0736f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97daf7fd0ec322c4a64c94207467d9f0"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a97daf7fd0ec322c4a64c94207467d9f0">getToken</a> (std::string &amp;s)</td></tr>
-<tr class="memdesc:a97daf7fd0ec322c4a64c94207467d9f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenize a word.  <a href="#a97daf7fd0ec322c4a64c94207467d9f0">More...</a><br /></td></tr>
-<tr class="separator:a97daf7fd0ec322c4a64c94207467d9f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1db5f9792a5488dea90a38dfb9a9560"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#ad1db5f9792a5488dea90a38dfb9a9560">getToken</a> (std::string &amp;s) const</td></tr>
+<tr class="memdesc:ad1db5f9792a5488dea90a38dfb9a9560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tokenize a word.  <a href="#ad1db5f9792a5488dea90a38dfb9a9560">More...</a><br /></td></tr>
+<tr class="separator:ad1db5f9792a5488dea90a38dfb9a9560"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a286b953dc921e936d07ba514e929fe"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; std::string, unsigned int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a7a286b953dc921e936d07ba514e929fe">getTokens</a> ()</td></tr>
 <tr class="memdesc:a7a286b953dc921e936d07ba514e929fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get every word and token inside the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>.  <a href="#a7a286b953dc921e936d07ba514e929fe">More...</a><br /></td></tr>
 <tr class="separator:a7a286b953dc921e936d07ba514e929fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -107,34 +107,44 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a59a48310a9dd34ca9dcd80d4ff047531"><td class="memItemLeft" align="right" valign="top"><a id="a59a48310a9dd34ca9dcd80d4ff047531"></a>
-static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>unknown</b> = 0</td></tr>
+static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a59a48310a9dd34ca9dcd80d4ff047531">unknown</a> = 0</td></tr>
+<tr class="memdesc:a59a48310a9dd34ca9dcd80d4ff047531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Token for unknown words. <br /></td></tr>
 <tr class="separator:a59a48310a9dd34ca9dcd80d4ff047531"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c4bf4e37c916cccd9adaeb228429330"><td class="memItemLeft" align="right" valign="top"><a id="a4c4bf4e37c916cccd9adaeb228429330"></a>
-static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><b>unknownStr</b> [] = &quot;UNKNOWN&quot;</td></tr>
+static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a4c4bf4e37c916cccd9adaeb228429330">unknownStr</a> [] = &quot;UNKNOWN&quot;</td></tr>
+<tr class="memdesc:a4c4bf4e37c916cccd9adaeb228429330"><td class="mdescLeft">&#160;</td><td class="mdescRight">UNKNOWN. <br /></td></tr>
 <tr class="separator:a4c4bf4e37c916cccd9adaeb228429330"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dae4cf53e7c6343d3fe95d8754fee61"><td class="memItemLeft" align="right" valign="top"><a id="a1dae4cf53e7c6343d3fe95d8754fee61"></a>
-static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>mail</b> = 1</td></tr>
+static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a1dae4cf53e7c6343d3fe95d8754fee61">mail</a> = 1</td></tr>
+<tr class="memdesc:a1dae4cf53e7c6343d3fe95d8754fee61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Token for mail addresses. <br /></td></tr>
 <tr class="separator:a1dae4cf53e7c6343d3fe95d8754fee61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e9965925b7ab956f4b0e6f82af4fcd8"><td class="memItemLeft" align="right" valign="top"><a id="a8e9965925b7ab956f4b0e6f82af4fcd8"></a>
-static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><b>mailStr</b> [] = &quot;MAIL&quot;</td></tr>
+static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a8e9965925b7ab956f4b0e6f82af4fcd8">mailStr</a> [] = &quot;MAIL&quot;</td></tr>
+<tr class="memdesc:a8e9965925b7ab956f4b0e6f82af4fcd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAIL. <br /></td></tr>
 <tr class="separator:a8e9965925b7ab956f4b0e6f82af4fcd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09c4d8bad7b44b9fce78f21aafd0e4d0"><td class="memItemLeft" align="right" valign="top"><a id="a09c4d8bad7b44b9fce78f21aafd0e4d0"></a>
-static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>number</b> = 2</td></tr>
+static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a09c4d8bad7b44b9fce78f21aafd0e4d0">number</a> = 2</td></tr>
+<tr class="memdesc:a09c4d8bad7b44b9fce78f21aafd0e4d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Token for numbers. <br /></td></tr>
 <tr class="separator:a09c4d8bad7b44b9fce78f21aafd0e4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39ff54ee2e7b5e6f523992ad92f30d6e"><td class="memItemLeft" align="right" valign="top"><a id="a39ff54ee2e7b5e6f523992ad92f30d6e"></a>
-static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><b>numberStr</b> [] = &quot;NUMBER&quot;</td></tr>
+static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a39ff54ee2e7b5e6f523992ad92f30d6e">numberStr</a> [] = &quot;NUMBER&quot;</td></tr>
+<tr class="memdesc:a39ff54ee2e7b5e6f523992ad92f30d6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">NUMBER. <br /></td></tr>
 <tr class="separator:a39ff54ee2e7b5e6f523992ad92f30d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae796dbdb68e1a4758a9d40998bf40833"><td class="memItemLeft" align="right" valign="top"><a id="ae796dbdb68e1a4758a9d40998bf40833"></a>
-static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>properNoun</b> = 3</td></tr>
+static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#ae796dbdb68e1a4758a9d40998bf40833">properNoun</a> = 3</td></tr>
+<tr class="memdesc:ae796dbdb68e1a4758a9d40998bf40833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Token for mail addresses. <br /></td></tr>
 <tr class="separator:ae796dbdb68e1a4758a9d40998bf40833"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cf65fdf5226cc21152c3dd28c4a6fa4"><td class="memItemLeft" align="right" valign="top"><a id="a9cf65fdf5226cc21152c3dd28c4a6fa4"></a>
-static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><b>properNounStr</b> [] = &quot;PROPERNOUN&quot;</td></tr>
+static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a9cf65fdf5226cc21152c3dd28c4a6fa4">properNounStr</a> [] = &quot;PROPERNOUN&quot;</td></tr>
+<tr class="memdesc:a9cf65fdf5226cc21152c3dd28c4a6fa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">PROPERNOUN. <br /></td></tr>
 <tr class="separator:a9cf65fdf5226cc21152c3dd28c4a6fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e8cf6d17dea0480adbdb1f08f6c1167"><td class="memItemLeft" align="right" valign="top"><a id="a1e8cf6d17dea0480adbdb1f08f6c1167"></a>
-static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>date</b> = 4</td></tr>
+static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a1e8cf6d17dea0480adbdb1f08f6c1167">date</a> = 4</td></tr>
+<tr class="memdesc:a1e8cf6d17dea0480adbdb1f08f6c1167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Token for dates and time spans. <br /></td></tr>
 <tr class="separator:a1e8cf6d17dea0480adbdb1f08f6c1167"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4457caaac6b659b7aeb8b40490a4438"><td class="memItemLeft" align="right" valign="top"><a id="aa4457caaac6b659b7aeb8b40490a4438"></a>
-static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><b>dateStr</b> [] = &quot;DATE&quot;</td></tr>
+static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#aa4457caaac6b659b7aeb8b40490a4438">dateStr</a> [] = &quot;DATE&quot;</td></tr>
+<tr class="memdesc:aa4457caaac6b659b7aeb8b40490a4438"><td class="mdescLeft">&#160;</td><td class="mdescRight">DATE. <br /></td></tr>
 <tr class="separator:aa4457caaac6b659b7aeb8b40490a4438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -238,12 +248,12 @@ static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><b>date
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The word which token is <code>token</code>, Lexicon::unknownStr if <code>token</code> is not in the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The word which token is <code>token</code>, <a class="el" href="classLexicon.html#a4c4bf4e37c916cccd9adaeb228429330" title="UNKNOWN. ">Lexicon::unknownStr</a> if <code>token</code> is not in the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>. </dd></dl>
 
 </div>
 </div>
-<a id="a97daf7fd0ec322c4a64c94207467d9f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a97daf7fd0ec322c4a64c94207467d9f0">&#9670;&nbsp;</a></span>getToken()</h2>
+<a id="ad1db5f9792a5488dea90a38dfb9a9560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1db5f9792a5488dea90a38dfb9a9560">&#9670;&nbsp;</a></span>getToken()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -253,7 +263,7 @@ static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><b>date
           <td>(</td>
           <td class="paramtype">std::string &amp;&#160;</td>
           <td class="paramname"><em>s</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -265,7 +275,7 @@ static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><b>date
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Token corresponding to <code>s</code>, Lexicon::unknown if <code>s</code> is not in the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Token corresponding to <code>s</code>, <a class="el" href="classLexicon.html#a59a48310a9dd34ca9dcd80d4ff047531" title="Token for unknown words. ">Lexicon::unknown</a> if <code>s</code> is not in the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>. </dd></dl>
 
 </div>
 </div>

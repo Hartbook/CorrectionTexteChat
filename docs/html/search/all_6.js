@@ -7,7 +7,7 @@ var searchData=
   ['getname',['getName',['../classFile.html#ac6d74a81bad59ad73501c3b89280b7e3',1,'File']]],
   ['getprob',['getProb',['../classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115',1,'GramsCounter::getProb(unsigned int t1) const'],['../classGramsCounter.html#ad9cf8f02d0a2cabcd17cac6c945b3ef6',1,'GramsCounter::getProb(unsigned int t1, unsigned int t2) const'],['../classGramsCounter.html#aaf9e73b2f78e2e062bac7fd3892bdf62',1,'GramsCounter::getProb(unsigned int t1, unsigned int t2, unsigned int t3) const']]],
   ['getstring',['getString',['../classLexicon.html#a328ff05786103c14ee4b0330829f3121',1,'Lexicon']]],
-  ['gettoken',['getToken',['../classLexicon.html#a97daf7fd0ec322c4a64c94207467d9f0',1,'Lexicon']]],
+  ['gettoken',['getToken',['../classLexicon.html#ad1db5f9792a5488dea90a38dfb9a9560',1,'Lexicon']]],
   ['gettokens',['getTokens',['../classLexicon.html#a7a286b953dc921e936d07ba514e929fe',1,'Lexicon']]],
   ['gram',['Gram',['../classGram.html',1,'']]],
   ['gramscounter',['GramsCounter',['../classGramsCounter.html',1,'GramsCounter'],['../classGramsCounter.html#a01f3b9c4cb82b096bf81ea09eed155c0',1,'GramsCounter::GramsCounter()']]]

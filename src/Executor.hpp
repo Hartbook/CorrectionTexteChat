@@ -54,6 +54,13 @@ class Executor
 
 	public :
 
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Constructor.
+	///
+	/// \param nbThreads Number of threads to use, by default it uses every thread
+	/// of the machine.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	Executor(int nbThreads = std::thread::hardware_concurrency())
 	{
 		if (nbThreads == 0)
@@ -62,11 +69,25 @@ class Executor
 		this->nbThreads = nbThreads;
 	}
 
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Add a Task to perform.
+	///
+	/// \param func A function that will be ran when run() is called.
+	/// \param argument `func` will be called with this argument..
+	///
+	////////////////////////////////////////////////////////////////////////////
 	void addTask(std::function<ReturnType(ArgType)> func, ArgType argument)
 	{
 		tasks.emplace_back(func, argument);
 	}
 
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Run every Task.
+	///
+	/// Task are equally distributed between the nbThreads threads, then ran.
+	/// This function return only when every Task has been ran.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	void run()
 	{
 		int nbTasksPerThread = tasks.size() / nbThreads;
@@ -86,6 +107,13 @@ class Executor
 			t.join();
 	}
 
+	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Delete threads and tasks.
+	///
+	/// Call this function before adding new Task to the executor if
+	/// run() has already been called.
+	///
+	////////////////////////////////////////////////////////////////////////////
 	void clear()
 	{
 		threads.clear();

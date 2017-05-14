@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['buildfromcorpus',['buildFromCorpus',['../classDatabase.html#a98b7974dc1e1b76456fa35cc2665e6f9',1,'Database']]]
+  ['buildfromcorpus',['buildFromCorpus',['../classDatabase.html#aeb1c9b10f9ff0834d01ef0f448f65f97',1,'Database']]]
 ];

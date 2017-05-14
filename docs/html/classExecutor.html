@@ -75,17 +75,17 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a783d0d5754142c9e56e0c0a4145d44ce"><td class="memItemLeft" align="right" valign="top"><a id="a783d0d5754142c9e56e0c0a4145d44ce"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Executor</b> (int nbThreads=std::thread::hardware_concurrency())</td></tr>
+<tr class="memitem:a783d0d5754142c9e56e0c0a4145d44ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor.html#a783d0d5754142c9e56e0c0a4145d44ce">Executor</a> (int nbThreads=std::thread::hardware_concurrency())</td></tr>
+<tr class="memdesc:a783d0d5754142c9e56e0c0a4145d44ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a783d0d5754142c9e56e0c0a4145d44ce">More...</a><br /></td></tr>
 <tr class="separator:a783d0d5754142c9e56e0c0a4145d44ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04ca3995fd6dccf42d235d9695ec0903"><td class="memItemLeft" align="right" valign="top"><a id="a04ca3995fd6dccf42d235d9695ec0903"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addTask</b> (std::function&lt; ReturnType(ArgType)&gt; func, ArgType argument)</td></tr>
+<tr class="memitem:a04ca3995fd6dccf42d235d9695ec0903"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor.html#a04ca3995fd6dccf42d235d9695ec0903">addTask</a> (std::function&lt; ReturnType(ArgType)&gt; func, ArgType argument)</td></tr>
+<tr class="memdesc:a04ca3995fd6dccf42d235d9695ec0903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a Task to perform.  <a href="#a04ca3995fd6dccf42d235d9695ec0903">More...</a><br /></td></tr>
 <tr class="separator:a04ca3995fd6dccf42d235d9695ec0903"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5905222a566b53ea585f83ea8fd1e565"><td class="memItemLeft" align="right" valign="top"><a id="a5905222a566b53ea585f83ea8fd1e565"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
+<tr class="memitem:a5905222a566b53ea585f83ea8fd1e565"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor.html#a5905222a566b53ea585f83ea8fd1e565">run</a> ()</td></tr>
+<tr class="memdesc:a5905222a566b53ea585f83ea8fd1e565"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run every Task.  <a href="#a5905222a566b53ea585f83ea8fd1e565">More...</a><br /></td></tr>
 <tr class="separator:a5905222a566b53ea585f83ea8fd1e565"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e13df6ead70066b3b26c3e83233e9e6"><td class="memItemLeft" align="right" valign="top"><a id="a3e13df6ead70066b3b26c3e83233e9e6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+<tr class="memitem:a3e13df6ead70066b3b26c3e83233e9e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor.html#a3e13df6ead70066b3b26c3e83233e9e6">clear</a> ()</td></tr>
+<tr class="memdesc:a3e13df6ead70066b3b26c3e83233e9e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete threads and tasks.  <a href="#a3e13df6ead70066b3b26c3e83233e9e6">More...</a><br /></td></tr>
 <tr class="separator:a3e13df6ead70066b3b26c3e83233e9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -102,7 +102,152 @@ class Executor&lt; ReturnType, ArgType &gt;</h3>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classExecutor_3_01void_00_01void_01_4.html" title="Concurrent execution of tasks using fixed threads pool. ">Executor&lt;void, void&gt;</a> </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a783d0d5754142c9e56e0c0a4145d44ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a783d0d5754142c9e56e0c0a4145d44ce">&#9670;&nbsp;</a></span>Executor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ReturnType , typename ArgType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classExecutor.html">Executor</a>&lt; ReturnType, ArgType &gt;::<a class="el" href="classExecutor.html">Executor</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nbThreads</em> = <code>std::thread::hardware_concurrency()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nbThreads</td><td>Number of threads to use, by default it uses every thread of the machine. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a04ca3995fd6dccf42d235d9695ec0903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04ca3995fd6dccf42d235d9695ec0903">&#9670;&nbsp;</a></span>addTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ReturnType , typename ArgType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classExecutor.html">Executor</a>&lt; ReturnType, ArgType &gt;::addTask </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; ReturnType(ArgType)&gt;&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ArgType&#160;</td>
+          <td class="paramname"><em>argument</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add a Task to perform. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>A function that will be ran when <a class="el" href="classExecutor.html#a5905222a566b53ea585f83ea8fd1e565" title="Run every Task. ">run()</a> is called. </td></tr>
+    <tr><td class="paramname">argument</td><td><code>func</code> will be called with this argument.. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3e13df6ead70066b3b26c3e83233e9e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e13df6ead70066b3b26c3e83233e9e6">&#9670;&nbsp;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ReturnType , typename ArgType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classExecutor.html">Executor</a>&lt; ReturnType, ArgType &gt;::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delete threads and tasks. </p>
+<p>Call this function before adding new Task to the executor if <a class="el" href="classExecutor.html#a5905222a566b53ea585f83ea8fd1e565" title="Run every Task. ">run()</a> has already been called. </p>
+
+</div>
+</div>
+<a id="a5905222a566b53ea585f83ea8fd1e565"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5905222a566b53ea585f83ea8fd1e565">&#9670;&nbsp;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ReturnType , typename ArgType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classExecutor.html">Executor</a>&lt; ReturnType, ArgType &gt;::run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Run every Task. </p>
+<p>Task are equally distributed between the nbThreads threads, then ran. This function return only when every Task has been ran. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Executor.hpp</li>
 </ul>
 </div><!-- contents -->

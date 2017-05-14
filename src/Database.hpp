@@ -58,6 +58,8 @@ class Database
 	////////////////////////////////////////////////////////////////////////////
 	void buildTranslationTableFromCorpora(const std::vector< std::pair<std::string, std::string> > & filenames);
 
+	friend Viterbi;
+
 	public :
 
 	////////////////////////////////////////////////////////////////////////////
@@ -99,8 +101,6 @@ class Database
 	////////////////////////////////////////////////////////////////////////////
 	void readFromFiles(std::string incorrectFilename, std::string correctFilename,
 		std::string gramsFilename, std::string tableFilename);
-
-	friend Viterbi;
 };
 
 #endif
