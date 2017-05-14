@@ -18,3 +18,6 @@ Correct VS Incorrect -> 17.34
 
 11/05/2017 : Levenshtein + TranslationTable, grand lexique amélioré  et grams.
 	Perxplexité : Correct VS Corrigé -> 24.01.
+
+14/05/2017 : Levenshtein + TranslationTable, grand lexique amélioré  et grams.
+	Perxplexité : Correct VS Corrigé -> 22.05.

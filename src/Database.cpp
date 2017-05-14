@@ -5,7 +5,6 @@
 #include "Executor.hpp"
 #include <cstdio>
 #include <stack>
-#include <mutex>
 
 Database::Database() : levenshteinTranslator(correctLexicon, incorrectLexicon)
 {
@@ -146,16 +145,21 @@ void Database::buildGramsCounterFromCorpora(const std::vector<std::string> & fil
 		inputFiles.pop();
 	}
 
-	std::mutex counterMutex;
 	Executor<void,void> executor;
 
-	for (auto & filePtr : splittedFiles)
-		executor.addTask([&]()
+	std::vector< std::vector<unsigned int> > tokenized;
+	tokenized.resize(splittedFiles.size());
+
+	for (unsigned int fileIndex = 0; fileIndex < splittedFiles.size(); fileIndex++)
+	{
+		File * filePtr = splittedFiles[fileIndex].get();
+		std::vector<unsigned int> * row = &tokenized[fileIndex];
+
+		executor.addTask([row,filePtr,this]()
 		{
 			std::string word;
 			bool firstWordOfSentence = true;
 			File & file = *filePtr;
-			unsigned int t1 = Lexicon::unknown, t2 = Lexicon::unknown, t3 = Lexicon::unknown;
 
 			file.rewind();
 
@@ -168,28 +172,37 @@ void Database::buildGramsCounterFromCorpora(const std::vector<std::string> & fil
 				if (token == Lexicon::unknown)
 					token = correctLexicon.getToken(word);
 
-				t1 = t2;
-				t2 = t3;
-				t3 = token;
-
-				counterMutex.lock();
-				if (t3 != Lexicon::unknown)
-				{
-					gramsCounter.addGram(t3);
-					if (t2 != Lexicon::unknown)
-					{
-						gramsCounter.addGram(t2, t3);
-						if (t1 != Lexicon::unknown)
-							gramsCounter.addGram(t1, t2, t3);
-					}
-				}
-				counterMutex.unlock();
+				row->emplace_back(token);
 
 				word.clear();
 			}
 		});
+	}
 
 	executor.run();
+
+	for (auto & row : tokenized)
+	{
+		unsigned int t1 = Lexicon::unknown, t2 = Lexicon::unknown, t3 = Lexicon::unknown;
+
+		for (unsigned int i = 0; i < row.size(); i++)
+		{
+			t1 = t2;
+			t2 = t3;
+			t3 = row[i];
+
+			if (t3 != Lexicon::unknown)
+			{
+				gramsCounter.addGram(t3);
+				if (t2 != Lexicon::unknown)
+				{
+					gramsCounter.addGram(t2, t3);
+					if (t1 != Lexicon::unknown)
+						gramsCounter.addGram(t1, t2, t3);
+				}
+			}
+		}
+	}
 }
 
 void Database::buildLexiconFromCorpora(const std::vector<std::string> & filenames)

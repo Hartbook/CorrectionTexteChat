@@ -178,9 +178,6 @@ float GramsCounter::getProb(unsigned int t1, unsigned int t2, unsigned int t3) c
 
 float GramsCounter::getLogProb(unsigned int t1) const
 {
-	if (-log(getProb(t1)) < 0)
-		fprintf(stderr,"BUG NEG ! nbOcc = %u et nbMonograms = %u donc la div = %f\n", ((nbOcc.count(Gram(t1)) ? nbOcc.at(Gram(t1)) : 0)), nbMonograms, ((float)(nbOcc.count(Gram(t1)) ? nbOcc.at(Gram(t1)) : 0))/nbMonograms);
-
 	return -log(getProb(t1));
 }
 
