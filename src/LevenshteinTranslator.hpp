@@ -79,7 +79,7 @@ class LevenshteinTranslator : public WordTranslator
 	/// s2 is the correction of s1.
 	///
 	////////////////////////////////////////////////////////////////////////////
-	float getProximity(const std::string & s1, const std::string & s2);
+	public :float getProximity(const std::string & s1, const std::string & s2);
 
 	public :
 

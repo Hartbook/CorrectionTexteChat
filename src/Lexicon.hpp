@@ -80,6 +80,16 @@ class Lexicon
 	/// \brief DATE
 	static constexpr char dateStr[] = "DATE";
 
+	/// \brief Token for URL
+	static constexpr unsigned int url = 5;
+	/// \brief URL
+	static constexpr char urlStr[] = "URL";
+
+	/// \brief Token for URL
+	static constexpr unsigned int newSentence = 6;
+	/// \brief URL
+	static constexpr char newSentenceStr[] = "NEWSENTENCE";
+
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Constructor.
 	///

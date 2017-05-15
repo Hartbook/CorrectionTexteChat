@@ -15,7 +15,13 @@ void Layout::transferLayout(File * target)
 	{
 		return s == Lexicon::unknownStr || s == Lexicon::mailStr ||
 			   s == Lexicon::numberStr || s == Lexicon::properNounStr ||
-			   s == Lexicon::dateStr;
+			   s == Lexicon::dateStr || s == Lexicon::urlStr || s == Lexicon::newSentenceStr;
+	};
+	auto removeDashes = [](std::string & s)
+	{
+		for (auto & c : s)
+			if (c == '_')
+				c = ' ';
 	};
 
 	std::string wordCorrect, wordIncorrect;
@@ -82,6 +88,8 @@ void Layout::transferLayout(File * target)
 				{
 					if (firstWordOfSentence)
 						toUpperCase(wordCorrect, 0);
+
+					removeDashes(wordCorrect);
 
 					fprintf(target->getDescriptor(), "%s", wordCorrect.c_str());
 				}

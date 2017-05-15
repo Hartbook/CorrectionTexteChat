@@ -9,11 +9,15 @@ constexpr unsigned int Lexicon::mail;
 constexpr unsigned int Lexicon::number;
 constexpr unsigned int Lexicon::properNoun;
 constexpr unsigned int Lexicon::date;
+constexpr unsigned int Lexicon::url;
+constexpr unsigned int Lexicon::newSentence;
 constexpr char Lexicon::unknownStr[];
 constexpr char Lexicon::mailStr[];
 constexpr char Lexicon::numberStr[];
 constexpr char Lexicon::properNounStr[];
 constexpr char Lexicon::dateStr[];
+constexpr char Lexicon::urlStr[];
+constexpr char Lexicon::newSentenceStr[];
 
 Lexicon::Lexicon()
 {
@@ -23,7 +27,8 @@ Lexicon::Lexicon()
 		{mailStr, mail},
 		{numberStr, number},
 		{properNounStr, properNoun},
-		{dateStr, date}
+		{dateStr, date},
+		{urlStr, url}
 	};
 
 	this->nextToken = unknown + specials.size();

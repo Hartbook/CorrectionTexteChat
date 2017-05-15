@@ -20,6 +20,7 @@ void Database::readFromFiles(std::string incorrectFilename, std::string correctF
 
 	correctLexicon.read(correctLexiconFile);
 	incorrectLexicon.read(incorrectLexiconFile);
+
 	gramsCounter.read(gramsCountFile);
 	translationTable.read(translationTableFile);
 
@@ -111,7 +112,7 @@ void Database::buildTranslationTableFromCorpora(
 
 void Database::buildGramsCounterFromCorpora(const std::vector<std::string> & filenames)
 {
-	static unsigned int linesPerSplit = 1000 * 1000;
+	static unsigned int linesPerSplit = 1000 * 250;
 	static const char * pathToTemp = "data/corpus/temp/";
 
 	std::stack< std::unique_ptr<File> > inputFiles;
@@ -167,6 +168,9 @@ void Database::buildGramsCounterFromCorpora(const std::vector<std::string> & fil
 			{
 				firstWordOfSentence = ignoreSeparators(file);
 
+				if (firstWordOfSentence)
+					row->emplace_back(Lexicon::newSentence);
+
 				unsigned int token = readWord(file, word, firstWordOfSentence);
 
 				if (token == Lexicon::unknown)
@@ -190,6 +194,13 @@ void Database::buildGramsCounterFromCorpora(const std::vector<std::string> & fil
 			t1 = t2;
 			t2 = t3;
 			t3 = row[i];
+
+			if (t3 == Lexicon::newSentence)
+			{
+				t1 = Lexicon::unknown;
+				t2 = Lexicon::unknown;
+				t3 = Lexicon::unknown;
+			}
 
 			if (t3 != Lexicon::unknown)
 			{

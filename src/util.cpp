@@ -1,5 +1,6 @@
 #include "util.hpp"
 #include <algorithm>
+#include <cstring>
 #include "Lexicon.hpp"
 
 bool isAlpha(char c)
@@ -23,7 +24,7 @@ bool isNum(const std::string & s)
 
 bool isSeparator(char c)
 {
-	if (c == '-')
+	if (c == '_')
 		return false;
 
 	return (c == EOF) || (!isAlpha(c) && !isNum(c) && (c >= 0));
@@ -128,9 +129,6 @@ void cleanCorpus(File & source, File & dest)
 					return isNewline(c) || c == ':';
 				});
 
-				if (read == ':')
-					fprintf(dest.getDescriptor(), "\n");
-
 				if (source.peek() == ' ')
 					read = source.getChar();
 
@@ -150,8 +148,7 @@ void cleanCorpus(File & source, File & dest)
 		if (isNewline(read))
 			read = '\n';
 
-		if (!isNewline(read))
-			fprintf(dest.getDescriptor(), "%c", read);
+		fprintf(dest.getDescriptor(), "%c", read);
 	}
 
 	fprintf(dest.getDescriptor(), "\n");
@@ -212,9 +209,32 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 		return false;
 	};
 
+	auto checkForUrl = [&]()
+	{
+		while (!corpus.isFinished() && corpus.peek() != ' ' && !isNewline(corpus.peek()))
+		{
+			char c = corpus.getChar();
+
+			word.push_back(c);
+		}
+
+		if (!strncmp(word.c_str(), "http", 4))
+			return true;
+
+		unsigned int nbToUnget = word.size() - indexOfFirstSeparator;
+
+		for (unsigned int i = 0; i < nbToUnget; i++)
+		{
+			corpus.ungetChar(word.back());
+			word.pop_back();
+		}
+
+		return false;
+	};
+
 	auto removeEndingDashes = [&]()
 	{
-		while (!word.empty() && word.back() == '-')
+		while (!word.empty() && word.back() == '_')
 		{
 			word.pop_back();
 			indexOfFirstSeparator =
@@ -239,6 +259,9 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 	if (checkForMailAddress())
 		return Lexicon::mail;
 
+	if (checkForUrl())
+		return Lexicon::url;
+
 	return checkForPattern();
 }
 
@@ -246,7 +269,7 @@ bool ignoreSeparators(File & corpus)
 {
 	static auto isToBeIgnored = [](char c)
 	{
-		return isSeparator(c) || c == '-';
+		return isSeparator(c) || c == '_';
 	};
 
 	bool sentenceBegin = false;

@@ -133,7 +133,7 @@ void Viterbi::correctSentence(std::vector<unsigned int> & dest, const std::vecto
 
 	std::reverse(dest.begin(), dest.end());
 
-	//printLatticeForDebug();
+	printLatticeForDebug(probas);
 }
 
 File * Viterbi::correct(std::string inputFilename)
@@ -214,30 +214,6 @@ File * Viterbi::correct(std::string inputFilename)
 
 	for (auto & sentence : sentences)
 		printSentence(sentence, *result);
-/*
-	std::vector<unsigned int> sentence;
-
-	while (!tokenized->isFinished())
-	{
-		sentence.emplace_back();
-
-		fscanf(tokenized->getDescriptor(), "%d", & sentence.back());
-
-		if (tokenized->peek() == ' ')
-			tokenized->getChar();
-
-		if (endSentence(tokenized->peek()))
-		{
-			auto & correctedSentence = correctSentence(sentence);
-			sentence.clear();
-
-			for (unsigned int token : correctedSentence)
-				fprintf(result->getDescriptor(), "%s ", lexicon.getString(token).c_str());
-
-			fprintf(result->getDescriptor(), "\n");
-		}
-	}
-*/
 
 	return result;
 }
