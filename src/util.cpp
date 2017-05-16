@@ -24,7 +24,7 @@ bool isNum(const std::string & s)
 
 bool isSeparator(char c)
 {
-	if (c == '_')
+	if (c == '_' || c == '\'')
 		return false;
 
 	return (c == EOF) || (!isAlpha(c) && !isNum(c) && (c >= 0));
@@ -168,7 +168,7 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 		{
 			if (isNum(c))
 				containsDigit = true;
-			if (isAlpha(c))
+			if (isAlpha(c) || c < 0)
 				containsLetter = true;
 		}
 
@@ -234,7 +234,7 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 
 	auto removeEndingDashes = [&]()
 	{
-		while (!word.empty() && word.back() == '_')
+		while (!word.empty() && word.back() == '_' && word.back() == '\'')
 		{
 			word.pop_back();
 			indexOfFirstSeparator =
@@ -269,7 +269,7 @@ bool ignoreSeparators(File & corpus)
 {
 	static auto isToBeIgnored = [](char c)
 	{
-		return isSeparator(c) || c == '_';
+		return isSeparator(c) || c == '_' || c == '\'';
 	};
 
 	bool sentenceBegin = false;

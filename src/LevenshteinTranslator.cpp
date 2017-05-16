@@ -29,9 +29,9 @@ float LevenshteinTranslator::getSubstitutionCost(const std::string & s1, const s
 	if (s1[i] == s2[j])
 		return 0.0f;
 
-	if (s1[i] < 0)
+	if (s2[i] < 0)
 	{
-		if (s2[j] == 'a' || s2[j] == 'e' || s2[j] == 'i' || s2[j] == 'o' || s2[j] == 'u')
+		if (s1[j] == 'a' || s1[j] == 'e' || s1[j] == 'i' || s1[j] == 'o' || s1[j] == 'u')
 			return 0.1f;
 	}
 

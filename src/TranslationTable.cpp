@@ -153,7 +153,7 @@ void TranslationTable::create(const Lexicon & correctLexicon,
 
 	for (auto & it : table)
 		if (it.second >= std::max(TranslationTable::minimalProb, initValueForTable))
-			it.second = -log(it.second);
+			it.second = (-log(it.second) + 1.0)*2;
 		else
 			it.second = -1;
 

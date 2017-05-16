@@ -19,9 +19,13 @@ void Layout::transferLayout(File * target)
 	};
 	auto removeDashes = [](std::string & s)
 	{
-		for (auto & c : s)
-			if (c == '_')
-				c = ' ';
+		for (unsigned int i = 0; i < s.size(); i++)
+			if (s[i] == '_')
+			{
+				if (i < s.size()-1)
+					s[i] = ' ';
+				else s.pop_back();
+			}
 	};
 
 	std::string wordCorrect, wordIncorrect;
@@ -30,6 +34,7 @@ void Layout::transferLayout(File * target)
 
 	bool mustReadWord = true;
 	bool firstWordOfSentence = true;
+	bool incorrectContainsApostrophe = false;
 
 	while (!baseText->isFinished())
 	{
@@ -37,6 +42,8 @@ void Layout::transferLayout(File * target)
 		{
 			mustReadWord = false;
 			fscanf(correctedText->getDescriptor(), "%s", buffer);
+			if (correctedText->peek() == ' ')
+				correctedText->getChar();
 			wordCorrect = buffer;
 		}
 
@@ -75,7 +82,10 @@ void Layout::transferLayout(File * target)
 			}
 
 			if (triggered)
+			{
+				incorrectContainsApostrophe = false;
 				wordIncorrect.clear();
+			}
 		}
 
 		fscanf(baseText->getDescriptor(), "%c", &read);
@@ -91,6 +101,32 @@ void Layout::transferLayout(File * target)
 
 					removeDashes(wordCorrect);
 
+					bool correctContainsApostrophe = false;
+
+					for (char c : wordCorrect)
+						if (c == '\'')
+							correctContainsApostrophe = true;
+
+					if (incorrectContainsApostrophe && !correctContainsApostrophe)
+					{
+						if (wordIncorrect[0] == '\'')
+						{
+							wordCorrect.insert(wordCorrect.begin(), '\'');
+						}
+						else
+						{
+							wordCorrect.push_back('\'');
+
+							if (wordIncorrect.back() != '\'')
+							{
+								if (correctedText->peek() == ' ')
+									correctedText->getChar();
+								while (!isSeparator(correctedText->peek()))
+									wordCorrect.push_back(correctedText->getChar());
+							}
+						}
+					}
+
 					fprintf(target->getDescriptor(), "%s", wordCorrect.c_str());
 				}
 				else
@@ -98,6 +134,7 @@ void Layout::transferLayout(File * target)
 
 				firstWordOfSentence = false;
 				mustReadWord = true;
+				incorrectContainsApostrophe = false;
 				wordIncorrect.clear();
 			}
 
@@ -105,6 +142,8 @@ void Layout::transferLayout(File * target)
 		}
 		else
 		{
+			if (read == '\'')
+				incorrectContainsApostrophe = true;
 			wordIncorrect.push_back(read);
 		}
 

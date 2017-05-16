@@ -34,10 +34,15 @@ void Tokenizer::tokenize(File & src, File & dest)
 	{
 		word.clear();
 
+		firstWordOfSentence = ignoreSeparators(src);
+
 		if (firstWordOfSentence)
 			fprintf(dest.getDescriptor(), "\n");
 
 		token = readWord(src, word, firstWordOfSentence);
+
+		if (word.empty())
+			break;
 
 		if (token == Lexicon::unknown || token == Lexicon::properNoun)
 		{
@@ -48,11 +53,32 @@ void Tokenizer::tokenize(File & src, File & dest)
 		}
 
 		if (token == Lexicon::unknown)
+		{
+			bool containsApostrophe = false;
+			for (unsigned int i = 0; i < word.size(); i++)
+			{
+				if (word[i] == '\'')
+				{
+					containsApostrophe = true;
+					word[i] = ' ';
+
+					while (!word.empty())
+					{
+						src.ungetChar(word.back());
+						word.pop_back();
+					}
+
+					break;
+				}
+			}
+
+			if (containsApostrophe)
+				continue;
+
 			token = lexicon.addWord(word);
+		}
 
 		fprintf(dest.getDescriptor(), "%d ", token);
-
-		firstWordOfSentence = ignoreSeparators(src);
 	}
 }
 
