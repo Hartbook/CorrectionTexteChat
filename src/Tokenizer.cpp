@@ -28,13 +28,19 @@ void Tokenizer::tokenize(File & src, File & dest)
 	std::string word;
 
 	unsigned int token;
-	bool firstWordOfSentence = ignoreSeparators(src);
+	bool firstWordOfSentence;
+	bool firstTime = true;
 
 	while (!src.isFinished())
 	{
 		word.clear();
 
 		firstWordOfSentence = ignoreSeparators(src);
+		if (firstTime)
+		{
+			firstWordOfSentence = true;
+			firstTime = false;
+		}
 
 		if (firstWordOfSentence)
 			fprintf(dest.getDescriptor(), "\n");

@@ -1,0 +1,64 @@
+TER
+
+De nombreuses entreprises produisent un très grand volume de données textuelles sous forme de 'tchat' c'est à dire une discution instantanée entre un opérateur et un client. Ces entreprises peuvent par exemple être des Fournisseurs d'Accès à Internet, qui proposent à leur client des conseils, du service après vente ou une assistance technique au travers d'une messagerie accéssible depuis leur site internet.
+Le but de ces services n'est évidemment pas de produire ces données (corpus de texte tchat), cependent il serait bénéfique de pouvoir les exploiter puisqu'elles seront produites quoi qu'il advienne. Ce genre de corpus est trop grand pour être exploité par un salarié, alors pour réduire les coûts on utilise traditionellement des outils de Traitement Automatique du Langage Naturel (TALN). Néanmoins un outil d'analyse automatique n'a pas la compréhension d'un humain, et il a besoin de reconnaître tous ou une très grande majorité des mots du corpus pour être efficace ; et compte tenu du fait que le corpus est généré par des humains qui ne font forcément attention à l'orthographe, et qui font des fautes de frappes : les outils automatiques ne sont pas adaptés au traitement de ce genre de corpus.
+Pour rendre ces tchats exploitables, on peut leur appliquer un pré-traitement qui consiste à en corriger tous les mots qui ne font pas partis de la langue française.
+
+Lorsqu'un outil automatique travaille sur un texte, il va d'abord le tokeniser c'est à dire remplacer chaque occurence d'un mot par un code (entier naturel) qui lui est propre.
+
+L'objectif de ce projet est de proposer un programme informatique qui est capable de corriger un grand nombre d'erreurs dans n'importe quel texte en langage naturel, qui pourra ainsi être utilisé pour prétraiter un corpus sur lequel on souhaite ensuite appliquer un outil de TALN.
+
+Il s'agit donc de transformer un texte en un autre, on peut voir ça comme une traduction d'un texte en français incorrect vers un texte en français correct. C'est pourquoi dans le cadre de ce projet nous allons utiliser des techniques issues de la traduction automatique (table de traduction, algorithme de Viterbi), dans le but de déterminer si leur usage est pertinant dans ce cas.
+
+On se limite dans le cadre de ce projet à la correction des erreurs d'orthographe qui sont les plus pénalisantes pour les outils automatiques - en effet même si par exemple un verbe est mal conjugué il garde son sens. On se limite aussi à la langue française, même si le code est écrit de manière agnostique et peut être utilisé avec toutes les langues qui partagent l'alphabet français.
+
+Dépôt Git distant contenant le code source : https://github.com/Hartbook/CorrectionTexteChat
+Documentation en ligne : https://hartbook.github.io/CorrectionTexteChat/html/index.html
+
+Exemple bref :
+
+input  : A FAIRE
+output : A FAIRE
+
+Descirption détaillée du fonctionnement :
+
+--buildDatabase : 
+
+Lecture des lexiques :
+
+Le programme commence par lire un ensemble de fichiers passés en argument, ces fichiers représentent le lexique de mots corrects de la langue française qui sera utilisé tout au long du programme pour déterminer si un mot est bien orthographié ou pas.
+
+Pour ce faire on lit les textes, et dès qu'un mot (ensembles de lettres séparés par des caractères non-alphanumériques - tous sauf les lettres, les chiffres, le '-' le ''' et le '_') n'appartenant pas déjà au lexique est rencontré, on l'ajoute au lexique en lui associant un code (entier naturel) unique qu'on appellera un token par la suite.
+Le lexique est représenté par une table de hachage. Avant de déterminer si un mot appartient ou non au lexique (donc avant l'étape de hachage du mot), il est normalisé : on retire toutes les majuscules et on les remplace par des minuscules. Ce qui permet de ne pas avoir de doublons dans le lexique.
+De plus le lexique contient des tokens spéciaux dont les valeurs vont de 0 à 6, ils représentent respectivements : Les mots inconnus (pas dans le lexique), les adresses e-mail, les nombres, les noms propres, les dates et durées, les adresses web, et les retour à la ligne (jamais utilisé pour tokeniser un texte, il est utile pour construire le modèle 3-grammes). Cela permet de ne pas polluer le lexique avec des mots qui dans tous les cas ne doivent pas être corrigés. Par exemple '13h12' et '14heures' se verront attribuer le même token.
+En pratique deux lexiques sont utilisés, l'un ne contiendra que des mots corrects de la langue française (il servira donc à déterminer si un mot est bien orthographié ou pas) et l'autre contiendra à la fois les mots corrects de la langue française (l'intégralité du premier lexique) ainsi que tous les mots incorrects rencontrés pendant l'exécution du programme. A la fin de cette première étape (Lecture des lexiques), les deux lexiques sont identiques (et ne contiennent donc que des mots corrects).
+
+Construction du modèle 3-grammes : 
+
+Maintenant le programme lit un nouvel ensemble de fichiers aussi passés en argument, ces fichiers représentent un grand nombre de texte tchat pas forcément corrigés (corpus d'apprentissage) similaires à ceux que nous souhaitons corriger. Le but étant d'apprendre de ces textes, les probabilités qu'une certaine suite de mots apparaisse dans un texte tchat. Par exemple la suite de mots 'je suis' est plus probable en français que la suite de mots 'je est'. Le programme se limite aux suites de maximum 3 mots, c'est à dire que lorsqu'il lit le corpus d'apprentissage il ne garde que les 3 derniers mots lu en mémoire (comme une fenêtre glissante). 
+Le corpus d'apprentissage n'étant pas corrigé, il contient des erreurs (mots qui ne sont pas reconnus par le lexique des mots corrects), pour ne pas apprendre à partir d'informations éronnées, on ignore les n-grammes qui contiennent un mot incorrect. Comme la fin d'une phrase donne rarement des indices sur le début de la phrase suivante, le programme ne compte pas les n-grammes qui sont à cheval sur deux phrases. 
+Le corpus d'apprentissage est en général très grand, c'est pourquoi le programme utilise plusieurs threads pour accélérer ce processus (texte découpé en plusieurs morceaux et chaque thread s'occupe d'un morceau).
+Une fois que le modèle 3-grammes est généré, il est enregistré sur le disque dans le dossier (chemin relatif à l'éxécutable) data/gramsCount/. Pour que sa représentation soit plus concise (ce qui fait gagner un temps précieux à la lecture) il est enregistré au format binaire (ce qui implique qu'un fichier écrit par une certaine machine doit être lu par la même machine).
+Un modèle 3-gramme est représenté par :
+	- le nombre de 1-grammes (pas uniques) qu'il contient.
+	- le nombre de 2-grammes (pas uniques) qu'il contient.
+	- le nombre de 3-grammes (pas uniques) qu'il contient.
+	- la liste des 1-grammes qu'il contient ainsi que leur nombre d'occurences.
+	- la liste des 2-grammes qu'il contient ainsi que leur nombre d'occurences.
+	- la liste des 3-grammes qu'il contient ainsi que leur nombre d'occurences.
+Donc si l'on demande au modèle la probabilité d'un n-gramme, il va retourner (nombre d'occurences de ce n-gramme)/(nombre de n-grammes). Sauf dans le cas où le n-gramme n'a jamais été rencontré lors de l'apprentissage (nombre d'occurences égal à 0), alors dans ce cas on retourne une probabilité spéciale, basse mais non-nulle.
+Les ordinateurs gèrent innéficacement les succéssion de produits de termes proches de zéro, c'est pourquoi on travaille avec des logarithmes. Le modèle de langage va donc retourner l'opposé du logarithme base e (logProb) de la probabilité.
+
+Construction de la table de traduction : 
+
+Le programme va ensuite lire un ensemble de paires de fichiers (fichierIncorrect / fichierCorrect) passés en argument, où fichierIncorrect est un texte en français qui n'a pas encore été corrigé et fichierCorrect est le même texte ayant été corrigé par un francophone. Ce qui implique que les deux textes d'une même paire doivent être alignés (chaque phrase a sa correspondante). Les deux textes (incorrect et correct) de chaque paire sont d'abord tokénisés (le fichier incorrect est tokénisé par le lexique incorrect et vice et versa), lorsque un mot inconnu est rencontré par le lexique des mots corrects (donc dans le texte correct) le mot est ajouté à la fois au lexique correct et au lexique incorrect (le lexique correct est un sous ensemble du lexique incorrect comme expliqué plus haut), lorsque un mot inconnu est rencontré par le lexique des mots incorrects (donc dans le texte incorrect) le mot est ajouté au lexique des mots incorrects.
+A partir de ces paires le programme va apprendre une table de traduction, qui est un objet qui regroupe un ensemble de paires (motIncorrect / motCorrect) et leur attribue un score. Plus ce score est bas, plus le mot incorrect a de chances de se corriger en le mot correct. On détermine ces paires de mots et leur score en appliquant un algorithme d'espérance-maximisation (EM). L'algorithme est itératif, le nombre d'itérations est fixé à 20 (facilement modifiable) ce qui en pratique permet la convergence. C'est une étape lente c'est pourquoi le programme utilise plusieurs threads pour l'accélérer (l'algorithme s'effectue phrase par phrase donc le traitement de chaque phrase se fait en parallèle).
+L'algorithme génère plusieurs traductions possibles pour chaque mots, dont certaines ne sont pas du tout pertinentes. C'est pourquoi on supprime les traductions dont le score est inférieur à un certain seuil fixé (déterminé suite a des tests). Pour obtenir le score comme décrit précédemment, on passe la valeur trouvée par l'algorithme (une probabilité entre 0 et 1) en logProb. Ce qui va donner un score entre 0 (traduction très probable) et -ln(seuil) (traduction acceptable la moins probable). La valeur 0 est génante pour la suite du programme (voir algorithme de Viterbi plus bas), c'est pourquoi on transforme encore une fois les scores. On effectue score = 2*(1+score), ce qui permet d'éviter la valeur 0 (le meilleur score devient 2) et augmente l'écart entre les scores (pour handicaper les mauvais scores).
+Une fois la création de la table de traduction terminée, elle est enregistrée sur le disque en format ascii, dans le dossier (chemin relatif à l'éxécutable) data/translationTable/. De plus elle est aussi enregistré dans le même endroit dans un format facilement lisible par un humain, dans une optique de débug.
+
+Ecriture des lexiques sur le disque :
+
+Enfin le programme peut enregistrer sur le disque les lexiques qui ont étés augmentés par les étapes précédentes.
+Le lexique des mots corrects est enregistré dans le dossier (chemin relatif à l'éxécutable) data/lexicon/corrige/.
+Le lexique des mots incorrects est enregistré dans le dossier (chemin relatif à l'éxécutable) data/lexicon/brut/.
+
