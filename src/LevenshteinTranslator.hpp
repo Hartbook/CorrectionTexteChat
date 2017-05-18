@@ -17,6 +17,8 @@ class LevenshteinTranslator : public WordTranslator
 {
 	private :
 
+	using boolMatrix = std::vector< std::vector<bool> >;
+
 	Lexicon & correctLexicon;
 	Lexicon & incorrectLexicon;
 
@@ -53,7 +55,7 @@ class LevenshteinTranslator : public WordTranslator
 	///
 	////////////////////////////////////////////////////////////////////////////
 	float getAddCost(const std::string & s1, const std::string & s2,
-							  unsigned int i, unsigned int j, bool & addHasOccured);
+							  unsigned int i, unsigned int j, boolMatrix & addHasOccured);
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Return the cost of deleting i-th element of s1.
@@ -67,7 +69,7 @@ class LevenshteinTranslator : public WordTranslator
 	///
 	////////////////////////////////////////////////////////////////////////////
 	float getDelCost(const std::string & s1, const std::string & s2,
-							  unsigned int i, unsigned int j, bool & delHasOccured);
+							  unsigned int i, unsigned int j, boolMatrix & delHasOccured);
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Get the distance between two strings.

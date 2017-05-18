@@ -50,7 +50,7 @@ void Tokenizer::tokenize(File & src, File & dest)
 		if (word.empty())
 			break;
 
-		if (token == Lexicon::unknown || token == Lexicon::properNoun)
+		if (token == Lexicon::unknown/* || token == Lexicon::properNoun*/)
 		{
 			unsigned int realToken = lexicon.getToken(word);
 

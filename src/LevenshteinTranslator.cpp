@@ -20,7 +20,7 @@ void LevenshteinTranslator::addTranslations(WordTranslations & actual)
 	for (auto & it : correctWords)
 		if (abs(lengthPrinted(incorrectWord) - lengthPrinted(it.first)) <= diffSizeMax)
 			if ((proximity = getProximity(incorrectWord, it.first)) <= threshold)
-				actual.addTranslation(it.second, proximity);
+				actual.addTranslation(it.second, 2 + proximity);
 }
 
 float LevenshteinTranslator::getSubstitutionCost(const std::string & s1, const std::string & s2,
@@ -40,15 +40,15 @@ float LevenshteinTranslator::getSubstitutionCost(const std::string & s1, const s
 }
 
 float LevenshteinTranslator::getAddCost(const std::string & s1, const std::string & s2,
-												 unsigned int i, unsigned int j, bool & addHasOccured)
+								 unsigned int i, unsigned int j, boolMatrix & addHasOccured)
 {
-	if (!addHasOccured && i == s1.size())
+	if (!addHasOccured[i][j] && i == s1.size())
 	{
-		addHasOccured = true;
+		addHasOccured[i][j] = true;
 		return 0.3f;
 	}
 
-	if (s1[i] < 0 || s2[j] < 0)
+	if (s2[j] < 0)
 		return 0.1f;
 
 	if (s2[j] == '-' || s2[j] == '\'' || s2[j] == '_')
@@ -58,11 +58,11 @@ float LevenshteinTranslator::getAddCost(const std::string & s1, const std::strin
 }
 
 float LevenshteinTranslator::getDelCost(const std::string & s1, const std::string & s2,
-												 unsigned int i, unsigned int j, bool & delHasOccured)
+								 unsigned int i, unsigned int j, boolMatrix & delHasOccured)
 {
-	if (!delHasOccured && j == s2.size())
+	if (!delHasOccured[i][j] && j == s1.size())
 	{
-		delHasOccured = true;
+		delHasOccured[i][j] = true;
 		return 0.3f;
 	}
 
@@ -87,15 +87,24 @@ float LevenshteinTranslator::getDelCost(const std::string & s1, const std::strin
 float LevenshteinTranslator::getProximity(const std::string & s1, const std::string & s2)
 {
 	std::vector< std::vector<float> > distances;
-	bool delHasOccured = false;
-	bool addHasOccured = false;
+	boolMatrix delHasOccured;
+	boolMatrix addHasOccured;
 
 	distances.resize(s1.size()+1);
+	delHasOccured.resize(s1.size()+1);
+	addHasOccured.resize(s1.size()+1);
 
 	for (unsigned int i = 0; i <= s1.size(); i++)
 	{
 		distances[i].resize(s2.size()+1);
 		distances[i][0] = i;
+		delHasOccured[i].resize(s2.size()+1, false);
+		addHasOccured[i].resize(s2.size()+1, false);
+		for (unsigned int j = 0; j <= s2.size(); j++)
+		{
+			delHasOccured[i][j] = false;
+			addHasOccured[i][j] = false;
+		}
 	}
 
 	for (unsigned int i = 0; i <= s2.size(); i++)

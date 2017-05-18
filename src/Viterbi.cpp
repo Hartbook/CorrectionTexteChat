@@ -133,7 +133,8 @@ void Viterbi::correctSentence(std::vector<unsigned int> & dest, const std::vecto
 
 	std::reverse(dest.begin(), dest.end());
 
-	printLatticeForDebug(probas);
+	//printLatticeForDebug(probas);
+	// Can be useful to see how the correction was obtained
 }
 
 File * Viterbi::correct(std::string inputFilename)

@@ -13,7 +13,7 @@ float WordTranslations::combineProbas(float p1, float p2)
 	float max = std::max(p1, p2);
 	float diff = max - min;
 
-	return min - std::max(min/2 - 0.5f*diff, 0.0f);
+	return min - std::max<double>(0.5*(min-diff*diff), 0.0f);
 }
 
 void WordTranslations::addTranslation(unsigned int token, float proba)

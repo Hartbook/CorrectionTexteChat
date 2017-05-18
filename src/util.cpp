@@ -157,10 +157,10 @@ void cleanCorpus(File & source, File & dest)
 unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 {
 	unsigned int indexOfFirstSeparator = 0;
-	bool startsWithUpperCase = isUpper(corpus.peek());
 
 	auto checkForPattern = [&]()
 	{
+		bool startsWithUpperCase = isUpper(word[0]);
 		bool containsLetter = false;
 		bool containsDigit = false;
 
@@ -234,7 +234,7 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 
 	auto removeEndingDashes = [&]()
 	{
-		while (!word.empty() && word.back() == '_' && word.back() == '\'')
+		while (!word.empty() && (word.back() == '_' || word.back() == '\''))
 		{
 			word.pop_back();
 			indexOfFirstSeparator =
