@@ -62,6 +62,9 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classExecutor_3_01void_00_01void_01_4-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Executor&lt; void, void &gt; Class Template Reference</div>  </div>
@@ -73,20 +76,53 @@ $(function() {
 
 <p><code>#include &lt;Executor.hpp&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html">Task</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function without parameter nor return value.  <a href="structExecutor_3_01void_00_01void_01_4_1_1Task.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f924354573e9debd3cc97ff2378bb3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor_3_01void_00_01void_01_4.html#a1f924354573e9debd3cc97ff2378bb3b">Executor</a> (int nbThreads=std::thread::hardware_concurrency())</td></tr>
 <tr class="memdesc:a1f924354573e9debd3cc97ff2378bb3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a1f924354573e9debd3cc97ff2378bb3b">More...</a><br /></td></tr>
 <tr class="separator:a1f924354573e9debd3cc97ff2378bb3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdc61e42ff31fb4a18562cf4d3d5e0b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor_3_01void_00_01void_01_4.html#afdc61e42ff31fb4a18562cf4d3d5e0b3">addTask</a> (std::function&lt; void(void)&gt; func)</td></tr>
-<tr class="memdesc:afdc61e42ff31fb4a18562cf4d3d5e0b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a Task to perform.  <a href="#afdc61e42ff31fb4a18562cf4d3d5e0b3">More...</a><br /></td></tr>
+<tr class="memdesc:afdc61e42ff31fb4a18562cf4d3d5e0b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a <a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a> to perform.  <a href="#afdc61e42ff31fb4a18562cf4d3d5e0b3">More...</a><br /></td></tr>
 <tr class="separator:afdc61e42ff31fb4a18562cf4d3d5e0b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba601150cd9b408bf858f4ad15b64ed4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor_3_01void_00_01void_01_4.html#aba601150cd9b408bf858f4ad15b64ed4">run</a> ()</td></tr>
-<tr class="memdesc:aba601150cd9b408bf858f4ad15b64ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run every Task.  <a href="#aba601150cd9b408bf858f4ad15b64ed4">More...</a><br /></td></tr>
+<tr class="memdesc:aba601150cd9b408bf858f4ad15b64ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run every <a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a>.  <a href="#aba601150cd9b408bf858f4ad15b64ed4">More...</a><br /></td></tr>
 <tr class="separator:aba601150cd9b408bf858f4ad15b64ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1ae73ad5bdca1a0a71084bfef74e016"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor_3_01void_00_01void_01_4.html#ac1ae73ad5bdca1a0a71084bfef74e016">clear</a> ()</td></tr>
 <tr class="memdesc:ac1ae73ad5bdca1a0a71084bfef74e016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete threads and tasks.  <a href="#ac1ae73ad5bdca1a0a71084bfef74e016">More...</a><br /></td></tr>
 <tr class="separator:ac1ae73ad5bdca1a0a71084bfef74e016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a8f54c3fd310752abff6f6c062dac3ce8"><td class="memItemLeft" align="right" valign="top"><a id="a8f54c3fd310752abff6f6c062dac3ce8"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>It</b> = typename std::vector&lt; Task &gt;::iterator</td></tr>
+<tr class="separator:a8f54c3fd310752abff6f6c062dac3ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a6984fabb98ab2edb9c2dead61a1111a7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExecutor_3_01void_00_01void_01_4.html#a6984fabb98ab2edb9c2dead61a1111a7">runTasks</a> (It firstTask, int numberOfTasks)</td></tr>
+<tr class="memdesc:a6984fabb98ab2edb9c2dead61a1111a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">run <code>numberOfTasks</code> <a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a> starting from <code>firstTask</code>  <a href="#a6984fabb98ab2edb9c2dead61a1111a7">More...</a><br /></td></tr>
+<tr class="separator:a6984fabb98ab2edb9c2dead61a1111a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aaaeaebaf3fad7db83bb6b71b80a42d35"><td class="memItemLeft" align="right" valign="top"><a id="aaaeaebaf3fad7db83bb6b71b80a42d35"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nbThreads</b></td></tr>
+<tr class="separator:aaaeaebaf3fad7db83bb6b71b80a42d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f32a5453b3e590b13cca5f3a680ffad"><td class="memItemLeft" align="right" valign="top"><a id="a8f32a5453b3e590b13cca5f3a680ffad"></a>
+std::vector&lt; std::thread &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>threads</b></td></tr>
+<tr class="separator:a8f32a5453b3e590b13cca5f3a680ffad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad0d53113507959fbfb7d2b273a83a1c"><td class="memItemLeft" align="right" valign="top"><a id="aad0d53113507959fbfb7d2b273a83a1c"></a>
+std::vector&lt; Task &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tasks</b></td></tr>
+<tr class="separator:aad0d53113507959fbfb7d2b273a83a1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabe7a3b24e14f5f6cb1983367677555f"><td class="memItemLeft" align="right" valign="top"><a id="aabe7a3b24e14f5f6cb1983367677555f"></a>
+std::vector&lt; std::vector&lt; Task * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>taskGroups</b></td></tr>
+<tr class="separator:aabe7a3b24e14f5f6cb1983367677555f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;&gt;<br />
@@ -153,7 +189,7 @@ class Executor&lt; void, void &gt;</h3>
 </table>
 </div><div class="memdoc">
 
-<p>Add a Task to perform. </p>
+<p>Add a <a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a> to perform. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">func</td><td>A function that will be ran when <a class="el" href="classExecutor_3_01void_00_01void_01_4.html#aba601150cd9b408bf858f4ad15b64ed4" title="Run every Task. ">run()</a> is called. </td></tr>
@@ -187,7 +223,7 @@ class Executor&lt; void, void &gt;</h3>
 </div><div class="memdoc">
 
 <p>Delete threads and tasks. </p>
-<p>Call this function before adding new Task to the executor if <a class="el" href="classExecutor_3_01void_00_01void_01_4.html#aba601150cd9b408bf858f4ad15b64ed4" title="Run every Task. ">run()</a> has already been called. </p>
+<p>Call this function before adding new <a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a> to the executor if <a class="el" href="classExecutor_3_01void_00_01void_01_4.html#aba601150cd9b408bf858f4ad15b64ed4" title="Run every Task. ">run()</a> has already been called. </p>
 
 </div>
 </div>
@@ -214,8 +250,55 @@ class Executor&lt; void, void &gt;</h3>
 </table>
 </div><div class="memdoc">
 
-<p>Run every Task. </p>
-<p>Task are equally distributed between the nbThreads threads, then ran. This function return only when every Task has been ran. </p>
+<p>Run every <a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a>. </p>
+<p><a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a> are equally distributed between the nbThreads threads, then ran. This function return only when every <a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a> has been ran. </p>
+
+</div>
+</div>
+<a id="a6984fabb98ab2edb9c2dead61a1111a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6984fabb98ab2edb9c2dead61a1111a7">&#9670;&nbsp;</a></span>runTasks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="classExecutor.html">Executor</a>&lt; void, void &gt;::runTasks </td>
+          <td>(</td>
+          <td class="paramtype">It&#160;</td>
+          <td class="paramname"><em>firstTask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numberOfTasks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>run <code>numberOfTasks</code> <a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a> starting from <code>firstTask</code> </p>
+<p>Each thread call this function one time, to run every task assigned to it.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">firstTask</td><td>Iterator to the first <a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a> to run. </td></tr>
+    <tr><td class="paramname">numberOfTasks</td><td>Number of <a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html" title="A function without parameter nor return value. ">Task</a> to run.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classExecutor_3_01void_00_01void_01_4.html#aba601150cd9b408bf858f4ad15b64ed4" title="Run every Task. ">run</a> </dd></dl>
 
 </div>
 </div>

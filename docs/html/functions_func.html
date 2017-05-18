@@ -78,7 +78,10 @@ $(function() {
 , <a class="el" href="classWordTranslator.html#a21d741b1316bdf315a4c9346900e1846">WordTranslator</a>
 </li>
 <li>addWord()
-: <a class="el" href="classLexicon.html#a94b037e129bab580cdee396c8db8244c">Lexicon</a>
+: <a class="el" href="classLexicon.html#a75740f5210eaa0e141341f600ff4b4d3">Lexicon</a>
+</li>
+<li>arrangeTranslations()
+: <a class="el" href="classTranslationTable.html#afb91b55be90fa70b7375a8a23c5fcd2c">TranslationTable</a>
 </li>
 <li>AtomicFloat()
 : <a class="el" href="classAtomicFloat.html#af11cff090e6c3e37996efe67157a9301">AtomicFloat</a>
@@ -89,6 +92,18 @@ $(function() {
 <h3><a id="index_b"></a>- b -</h3><ul>
 <li>buildFromCorpus()
 : <a class="el" href="classDatabase.html#aeb1c9b10f9ff0834d01ef0f448f65f97">Database</a>
+</li>
+<li>buildGramsCounterFromCorpora()
+: <a class="el" href="classDatabase.html#a74fd20c33a833a70f8fa48e788fd7922">Database</a>
+</li>
+<li>buildLatticeFromSentence()
+: <a class="el" href="classViterbi.html#acf607e2915d946c88178f9e8e49c3c09">Viterbi</a>
+</li>
+<li>buildLexiconFromCorpora()
+: <a class="el" href="classDatabase.html#aa46fe8c899d11d421429b866532eaf3e">Database</a>
+</li>
+<li>buildTranslationTableFromCorpora()
+: <a class="el" href="classDatabase.html#a6b27d2c40b903fc733663790f1f35be3">Database</a>
 </li>
 </ul>
 
@@ -101,11 +116,17 @@ $(function() {
 <li>combineProbas()
 : <a class="el" href="classWordTranslations.html#ac0f45e5c4155787ca85297cd82df3c6c">WordTranslations</a>
 </li>
+<li>computeViterbiForRow()
+: <a class="el" href="classViterbi.html#aedb7d1566a9ce2cce09020258a72699e">Viterbi</a>
+</li>
 <li>copy()
 : <a class="el" href="classLexicon.html#af4ed9570b9575341c43442150c1a748a">Lexicon</a>
 </li>
 <li>correct()
 : <a class="el" href="classViterbi.html#ac7b573f62eea989f1abbfbabb0bcdaa0">Viterbi</a>
+</li>
+<li>correctSentence()
+: <a class="el" href="classViterbi.html#a831f980b8091e35827e5830c6f04ee19">Viterbi</a>
 </li>
 <li>create()
 : <a class="el" href="classTranslationTable.html#a194a18a3efa0ad776e99e73c6a385bca">TranslationTable</a>
@@ -139,14 +160,20 @@ $(function() {
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>getAddCost()
+: <a class="el" href="classLevenshteinTranslator.html#aad0c46cc72274f39f2119efa13d620d8">LevenshteinTranslator</a>
+</li>
 <li>getChar()
 : <a class="el" href="classFile.html#a9377d79b66b40cef676db07e67871ca8">File</a>
+</li>
+<li>getDelCost()
+: <a class="el" href="classLevenshteinTranslator.html#a297a1c932ba2e079a30c2825c6143082">LevenshteinTranslator</a>
 </li>
 <li>getDescriptor()
 : <a class="el" href="classFile.html#aa538ff162143bbfe6782b9ebe33426b4">File</a>
 </li>
 <li>getLogProb()
-: <a class="el" href="classGramsCounter.html#aac64cb91593a3d4b15d6821e73cfa476">GramsCounter</a>
+: <a class="el" href="classGramsCounter.html#ab6e4e5ed53e00ba86deb737e84f46372">GramsCounter</a>
 </li>
 <li>getMaxToken()
 : <a class="el" href="classLexicon.html#a25a9fff92015f05e2b315e31e74bee2f">Lexicon</a>
@@ -157,14 +184,23 @@ $(function() {
 <li>getProb()
 : <a class="el" href="classGramsCounter.html#a532728e0311b5f5cdd0dd9f2cd0b5115">GramsCounter</a>
 </li>
+<li>getProximity()
+: <a class="el" href="classLevenshteinTranslator.html#a6d3a861a844a19d6fad3fd6346fa2c76">LevenshteinTranslator</a>
+</li>
 <li>getString()
 : <a class="el" href="classLexicon.html#a328ff05786103c14ee4b0330829f3121">Lexicon</a>
+</li>
+<li>getSubstitutionCost()
+: <a class="el" href="classLevenshteinTranslator.html#a124380f712b569442af07c7a86345e79">LevenshteinTranslator</a>
 </li>
 <li>getToken()
 : <a class="el" href="classLexicon.html#ad1db5f9792a5488dea90a38dfb9a9560">Lexicon</a>
 </li>
 <li>getTokens()
 : <a class="el" href="classLexicon.html#a7a286b953dc921e936d07ba514e929fe">Lexicon</a>
+</li>
+<li>Gram()
+: <a class="el" href="classGram.html#a37acd846709fea904229730e5cbc1c08">Gram</a>
 </li>
 <li>GramsCounter()
 : <a class="el" href="classGramsCounter.html#a01f3b9c4cb82b096bf81ea09eed155c0">GramsCounter</a>
@@ -175,6 +211,12 @@ $(function() {
 <h3><a id="index_i"></a>- i -</h3><ul>
 <li>initForToken()
 : <a class="el" href="classWordTranslations.html#aac43127bc3f117331995c214f94ac92f">WordTranslations</a>
+</li>
+<li>initMaps()
+: <a class="el" href="classLexicon.html#ab98081cb72cada5ba51138752d81d898">Lexicon</a>
+</li>
+<li>isCorrect()
+: <a class="el" href="classTranslationTable.html#a7eb772ff87190a2fb07e7694587cdcb1">TranslationTable</a>
 </li>
 <li>isFinished()
 : <a class="el" href="classFile.html#a93457cfa8895f0eb185f4b47d3f36fd9">File</a>
@@ -194,6 +236,13 @@ $(function() {
 </li>
 <li>load()
 : <a class="el" href="classAtomicFloat.html#a38d6e55da00fa162185fc2bfaef16239">AtomicFloat</a>
+</li>
+</ul>
+
+
+<h3><a id="index_n"></a>- n -</h3><ul>
+<li>normalize()
+: <a class="el" href="classLexicon.html#adfa690309426b796b69f91d7030182c5">Lexicon</a>
 </li>
 </ul>
 
@@ -230,6 +279,9 @@ $(function() {
 <li>printForDebug()
 : <a class="el" href="classTranslationTable.html#ae8e6848bfd3221e1ba0c9cada67222c6">TranslationTable</a>
 </li>
+<li>printLatticeForDebug()
+: <a class="el" href="classViterbi.html#acaf6076d2c22f4a130b38cba5ea14608">Viterbi</a>
+</li>
 </ul>
 
 
@@ -251,6 +303,16 @@ $(function() {
 <li>run()
 : <a class="el" href="classExecutor.html#a5905222a566b53ea585f83ea8fd1e565">Executor&lt; ReturnType, ArgType &gt;</a>
 , <a class="el" href="classExecutor_3_01void_00_01void_01_4.html#aba601150cd9b408bf858f4ad15b64ed4">Executor&lt; void, void &gt;</a>
+</li>
+<li>runTasks()
+: <a class="el" href="classExecutor_3_01void_00_01void_01_4.html#a6984fabb98ab2edb9c2dead61a1111a7">Executor&lt; void, void &gt;</a>
+</li>
+</ul>
+
+
+<h3><a id="index_s"></a>- s -</h3><ul>
+<li>scale()
+: <a class="el" href="classAtomicFloat.html#ab842d3b53d55a84deac19875cb861cf2">AtomicFloat</a>
 </li>
 </ul>
 

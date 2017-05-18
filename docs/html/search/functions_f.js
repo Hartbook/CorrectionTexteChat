@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7efile',['~File',['../classFile.html#ac704ebdf5f57d7a1c5ddf409d797fb69',1,'File']]]
+  ['ungetchar',['ungetChar',['../classFile.html#aad8d72b0d1ebd8f10f6b031065c9271e',1,'File']]]
 ];

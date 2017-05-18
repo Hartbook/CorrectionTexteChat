@@ -61,6 +61,9 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classLevenshteinTranslator-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">LevenshteinTranslator Class Reference</div>  </div>
@@ -83,12 +86,42 @@ Inheritance diagram for LevenshteinTranslator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a6d3a861a844a19d6fad3fd6346fa2c76"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevenshteinTranslator.html#a6d3a861a844a19d6fad3fd6346fa2c76">getProximity</a> (const std::string &amp;s1, const std::string &amp;s2)</td></tr>
+<tr class="memdesc:a6d3a861a844a19d6fad3fd6346fa2c76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the distance between two strings.  <a href="#a6d3a861a844a19d6fad3fd6346fa2c76">More...</a><br /></td></tr>
+<tr class="separator:a6d3a861a844a19d6fad3fd6346fa2c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a549cbb265018570510b836e2cc5c8128"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevenshteinTranslator.html#a549cbb265018570510b836e2cc5c8128">LevenshteinTranslator</a> (<a class="el" href="classLexicon.html">Lexicon</a> &amp;correctLexicon, <a class="el" href="classLexicon.html">Lexicon</a> &amp;incorrectLexicon)</td></tr>
 <tr class="memdesc:a549cbb265018570510b836e2cc5c8128"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a549cbb265018570510b836e2cc5c8128">More...</a><br /></td></tr>
 <tr class="separator:a549cbb265018570510b836e2cc5c8128"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af78505539527d0678ca35d9cb63910d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevenshteinTranslator.html#af78505539527d0678ca35d9cb63910d4">addTranslations</a> (<a class="el" href="classWordTranslations.html">WordTranslations</a> &amp;actual)</td></tr>
-<tr class="memdesc:af78505539527d0678ca35d9cb63910d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proposes corrections for an incorrect word, using getProximity() with correct words from <code>correctLexicon</code>.  <a href="#af78505539527d0678ca35d9cb63910d4">More...</a><br /></td></tr>
+<tr class="memdesc:af78505539527d0678ca35d9cb63910d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proposes corrections for an incorrect word, using <a class="el" href="classLevenshteinTranslator.html#a6d3a861a844a19d6fad3fd6346fa2c76" title="Get the distance between two strings. ">getProximity()</a> with correct words from <code>correctLexicon</code>.  <a href="#af78505539527d0678ca35d9cb63910d4">More...</a><br /></td></tr>
 <tr class="separator:af78505539527d0678ca35d9cb63910d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:ae19380c85f5919a2304ed04c740d667d"><td class="memItemLeft" align="right" valign="top"><a id="ae19380c85f5919a2304ed04c740d667d"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>boolMatrix</b> = std::vector&lt; std::vector&lt; bool &gt; &gt;</td></tr>
+<tr class="separator:ae19380c85f5919a2304ed04c740d667d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a124380f712b569442af07c7a86345e79"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevenshteinTranslator.html#a124380f712b569442af07c7a86345e79">getSubstitutionCost</a> (const std::string &amp;s1, const std::string &amp;s2, unsigned int i, unsigned int j)</td></tr>
+<tr class="memdesc:a124380f712b569442af07c7a86345e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the cost of substituing i-th element of s1 by the j-th element of s2.  <a href="#a124380f712b569442af07c7a86345e79">More...</a><br /></td></tr>
+<tr class="separator:a124380f712b569442af07c7a86345e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad0c46cc72274f39f2119efa13d620d8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevenshteinTranslator.html#aad0c46cc72274f39f2119efa13d620d8">getAddCost</a> (const std::string &amp;s1, const std::string &amp;s2, unsigned int i, unsigned int j, boolMatrix &amp;addHasOccured)</td></tr>
+<tr class="memdesc:aad0c46cc72274f39f2119efa13d620d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the cost of adding j-th element of s2 at i position in s1.  <a href="#aad0c46cc72274f39f2119efa13d620d8">More...</a><br /></td></tr>
+<tr class="separator:aad0c46cc72274f39f2119efa13d620d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a297a1c932ba2e079a30c2825c6143082"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevenshteinTranslator.html#a297a1c932ba2e079a30c2825c6143082">getDelCost</a> (const std::string &amp;s1, const std::string &amp;s2, unsigned int i, unsigned int j, boolMatrix &amp;delHasOccured)</td></tr>
+<tr class="memdesc:a297a1c932ba2e079a30c2825c6143082"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the cost of deleting i-th element of s1.  <a href="#a297a1c932ba2e079a30c2825c6143082">More...</a><br /></td></tr>
+<tr class="separator:a297a1c932ba2e079a30c2825c6143082"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aa704e712dde3e563b505a0a6c2a9adef"><td class="memItemLeft" align="right" valign="top"><a id="aa704e712dde3e563b505a0a6c2a9adef"></a>
+<a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>correctLexicon</b></td></tr>
+<tr class="separator:aa704e712dde3e563b505a0a6c2a9adef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac798efc0d21416b238e7d3892ba3cba4"><td class="memItemLeft" align="right" valign="top"><a id="ac798efc0d21416b238e7d3892ba3cba4"></a>
+<a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>incorrectLexicon</b></td></tr>
+<tr class="separator:ac798efc0d21416b238e7d3892ba3cba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -163,7 +196,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Proposes corrections for an incorrect word, using getProximity() with correct words from <code>correctLexicon</code>. </p>
+<p>Proposes corrections for an incorrect word, using <a class="el" href="classLevenshteinTranslator.html#a6d3a861a844a19d6fad3fd6346fa2c76" title="Get the distance between two strings. ">getProximity()</a> with correct words from <code>correctLexicon</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">actual</td><td></td></tr>
@@ -173,6 +206,238 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classWordTranslator.html#a21d741b1316bdf315a4c9346900e1846" title="Proposes corrections for an incorrect word and add them to actual. ">WordTranslator::addTranslations()</a> </dd></dl>
 
 <p>Implements <a class="el" href="classWordTranslator.html#a21d741b1316bdf315a4c9346900e1846">WordTranslator</a>.</p>
+
+</div>
+</div>
+<a id="aad0c46cc72274f39f2119efa13d620d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad0c46cc72274f39f2119efa13d620d8">&#9670;&nbsp;</a></span>getAddCost()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float LevenshteinTranslator::getAddCost </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boolMatrix &amp;&#160;</td>
+          <td class="paramname"><em>addHasOccured</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the cost of adding j-th element of s2 at i position in s1. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>String containing the original letter. </td></tr>
+    <tr><td class="paramname">s2</td><td>String containing the transformed letter. </td></tr>
+    <tr><td class="paramname">i</td><td>Index of the insertion. </td></tr>
+    <tr><td class="paramname">j</td><td>Index of the letter to insert. </td></tr>
+    <tr><td class="paramname">addHasOccured</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the more it's high the less likely the insertion is. </dd></dl>
+
+</div>
+</div>
+<a id="a297a1c932ba2e079a30c2825c6143082"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a297a1c932ba2e079a30c2825c6143082">&#9670;&nbsp;</a></span>getDelCost()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float LevenshteinTranslator::getDelCost </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boolMatrix &amp;&#160;</td>
+          <td class="paramname"><em>delHasOccured</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the cost of deleting i-th element of s1. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>String containing the original letter. </td></tr>
+    <tr><td class="paramname">s2</td><td>String containing the transformed letter. </td></tr>
+    <tr><td class="paramname">i</td><td>Index of the deletion. </td></tr>
+    <tr><td class="paramname">delHasOccured</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the more it's high the less likely the deletion is. </dd></dl>
+
+</div>
+</div>
+<a id="a6d3a861a844a19d6fad3fd6346fa2c76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d3a861a844a19d6fad3fd6346fa2c76">&#9670;&nbsp;</a></span>getProximity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float LevenshteinTranslator::getProximity </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the distance between two strings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>First string to check. </td></tr>
+    <tr><td class="paramname">s2</td><td>Second string to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if s1 == s2, the more it's high the less likely it is that s2 is the correction of s1. </dd></dl>
+
+</div>
+</div>
+<a id="a124380f712b569442af07c7a86345e79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a124380f712b569442af07c7a86345e79">&#9670;&nbsp;</a></span>getSubstitutionCost()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float LevenshteinTranslator::getSubstitutionCost </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the cost of substituing i-th element of s1 by the j-th element of s2. </p>
+<p>If it returns 1 if s1[i] != s2[j] and 0 otherwise, <a class="el" href="classLevenshteinTranslator.html#a6d3a861a844a19d6fad3fd6346fa2c76" title="Get the distance between two strings. ">getProximity()</a> will return the edit distance. However as return value is <code>float</code> it can be tuned to penalize unlikely substitutions.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>String containing the original letter. </td></tr>
+    <tr><td class="paramname">s2</td><td>String containing the transformed letter. </td></tr>
+    <tr><td class="paramname">i</td><td>Index of the original letter. </td></tr>
+    <tr><td class="paramname">j</td><td>Index of the transformed letter.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if s1[i] != s2[j], the more it's high the less likely the substitution is. </dd></dl>
 
 </div>
 </div>

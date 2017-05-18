@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Correction Texte Chat: Main Page</title>
+<title>Correction Texte Chat: Executor&lt; void, void &gt;::Task Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -43,7 +43,6 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -58,26 +57,45 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="classExecutor_3_01void_00_01void_01_4.html">Executor&lt; void, void &gt;</a></li><li class="navelem"><a class="el" href="structExecutor_3_01void_00_01void_01_4_1_1Task.html">Task</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structExecutor_3_01void_00_01void_01_4_1_1Task-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Correction Texte Chat Documentation</div>  </div>
+<div class="title">Executor&lt; void, void &gt;::Task Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2>Abstract</h2>
-<p>The goal of this program is to correct spelling in texts. It is necessary to train the program beforeand, using large amount of data such as lexicons, corpus to learn a language model from and manually corrected examples.</p>
-<p>Example :</p>
-<p>[00:16:34] <em>CLIENT</em>: Bjr, monsieu j'ai oune probeme avec ma livebox : lecran tv est noi.</p>
-<p>is corrected into</p>
-<p>[00:16:34] <em>CLIENT</em>: Bonjour, monsieur j'ai un problème avec ma livebox : écran tv est noir.</p>
-<h2>Build</h2>
-<p>make to build the program (main). Requires g++ version with support of C++11. make doc to build the Doxygen documentation (docs/html). Requires Doxygen.</p>
-<h2>Usage</h2>
-<h3>Training</h3>
-<div class="fragment"><div class="line">./main --buildDatabase -lexicons &lt;List of lexicons&gt; </div><div class="line">    -corpora &lt;Corpora to learn from&gt; -pairs &lt;Pairs of incorrect-correct texts&gt;</div></div><!-- fragment --><p> Example : </p><div class="fragment"><div class="line">./main --buildDatabase -lexicons data/corpus/corrige/lexicon1 data/corpus/corrige/lexicon2</div><div class="line">    -corpora data/corpus/brut/germinal data/corpus/brut/tintin</div><div class="line">    -pairs data/corpus/brut/texte1Faux data/corpus/corrige/texte1Juste</div><div class="line">    data/corpus/brut/texte2Faux data/corpus/corrige/texte2Juste</div></div><!-- fragment --><p>This will create files in data/lexicon, data/gramsCount, data/translationTable</p>
-<h3>Correcting</h3>
-<div class="fragment"><div class="line">--correct incorrectLexicon correctLexicon gramsCount translationTable input</div></div><!-- fragment --><p>Where incorrectLexicon, correctLexicon, gramsCount and translationTable are the files created by &ndash;buildDatabase ; and input is the file to correct.</p>
-<p>This will create a file containing the correction of input in data/output </p>
-</div></div><!-- contents -->
+
+<p>A function without parameter nor return value.  
+ <a href="structExecutor_3_01void_00_01void_01_4_1_1Task.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1d48f7794c4dbbe5cf9bd800e25f3e26"><td class="memItemLeft" align="right" valign="top"><a id="a1d48f7794c4dbbe5cf9bd800e25f3e26"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Task</b> (const std::function&lt; void(void)&gt; &amp;run)</td></tr>
+<tr class="separator:a1d48f7794c4dbbe5cf9bd800e25f3e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a173bad68ff24967d020503e46a0bc554"><td class="memItemLeft" align="right" valign="top"><a id="a173bad68ff24967d020503e46a0bc554"></a>
+std::function&lt; void(void)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>run</b></td></tr>
+<tr class="separator:a173bad68ff24967d020503e46a0bc554"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;&gt;<br />
+struct Executor&lt; void, void &gt;::Task</h3>
+
+<p>A function without parameter nor return value. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>Executor.hpp</li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

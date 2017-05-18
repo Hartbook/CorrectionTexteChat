@@ -61,6 +61,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classGramsCounter-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">GramsCounter Class Reference</div>  </div>
@@ -114,6 +115,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1c70211f6f1c5a81bd1711f6909d914b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGramsCounter.html#a1c70211f6f1c5a81bd1711f6909d914b">print</a> (FILE *output, <a class="el" href="classLexicon.html">Lexicon</a> &amp;lexicon)</td></tr>
 <tr class="memdesc:a1c70211f6f1c5a81bd1711f6909d914b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the language model into a file, human readable format.  <a href="#a1c70211f6f1c5a81bd1711f6909d914b">More...</a><br /></td></tr>
 <tr class="separator:a1c70211f6f1c5a81bd1711f6909d914b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a8972a3a1880e1ef8a12fb7babb709d49"><td class="memItemLeft" align="right" valign="top"><a id="a8972a3a1880e1ef8a12fb7babb709d49"></a>
+std::unordered_map&lt; <a class="el" href="classGram.html">Gram</a>, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nbOcc</b></td></tr>
+<tr class="separator:a8972a3a1880e1ef8a12fb7babb709d49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2f70610058cde46c26441eee4c89e88"><td class="memItemLeft" align="right" valign="top"><a id="aa2f70610058cde46c26441eee4c89e88"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nbMonograms</b></td></tr>
+<tr class="separator:aa2f70610058cde46c26441eee4c89e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c7a1fb4fee945c5f334c1857ce65182"><td class="memItemLeft" align="right" valign="top"><a id="a3c7a1fb4fee945c5f334c1857ce65182"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nbBigrams</b></td></tr>
+<tr class="separator:a3c7a1fb4fee945c5f334c1857ce65182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af819e92126b51be697795e4cd533ef31"><td class="memItemLeft" align="right" valign="top"><a id="af819e92126b51be697795e4cd533ef31"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nbTrigrams</b></td></tr>
+<tr class="separator:af819e92126b51be697795e4cd533ef31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20330044bdd11b7cbc35f31c8a7e3267"><td class="memItemLeft" align="right" valign="top"><a id="a20330044bdd11b7cbc35f31c8a7e3267"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>alpha</b> = 0.1</td></tr>
+<tr class="separator:a20330044bdd11b7cbc35f31c8a7e3267"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5824bf2c5f9b1ba998e2eb04f6e774c"><td class="memItemLeft" align="right" valign="top"><a id="ae5824bf2c5f9b1ba998e2eb04f6e774c"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nbTokensTotal</b></td></tr>
+<tr class="separator:ae5824bf2c5f9b1ba998e2eb04f6e774c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a language model. </p>

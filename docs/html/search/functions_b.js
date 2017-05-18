@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['read',['read',['../classGramsCounter.html#a8019ed3baf4bbf6d432177ba971095fc',1,'GramsCounter::read()'],['../classLexicon.html#a7b3d53999b6e75aee8ffd2bb45ffdf70',1,'Lexicon::read()'],['../classTranslationTable.html#a0856b27e0567627e2fc625dbc92a2d7a',1,'TranslationTable::read()']]],
-  ['readfromfiles',['readFromFiles',['../classDatabase.html#a3dbadcd3a09ae36cb36c73519e34b328',1,'Database']]],
-  ['readuntil',['readUntil',['../classFile.html#a86532a7e52e5c6a75ec98b3c46f77376',1,'File::readUntil(char c)'],['../classFile.html#ad5878720bf6a72548ec8f2fa5598ed45',1,'File::readUntil(const std::function&lt; bool(char)&gt; &amp;condition)']]],
-  ['rewind',['rewind',['../classFile.html#a80c6611e0e9e89f45307f7606e643cfa',1,'File']]],
-  ['run',['run',['../classExecutor.html#a5905222a566b53ea585f83ea8fd1e565',1,'Executor::run()'],['../classExecutor_3_01void_00_01void_01_4.html#aba601150cd9b408bf858f4ad15b64ed4',1,'Executor&lt; void, void &gt;::run()']]]
+  ['peek',['peek',['../classFile.html#a60b843d95156968bb69e26e9171b2c57',1,'File']]],
+  ['print',['print',['../classGramsCounter.html#a05ccff4ad467e1200e2e202e572bb2ca',1,'GramsCounter::print(FILE *output)'],['../classGramsCounter.html#a1c70211f6f1c5a81bd1711f6909d914b',1,'GramsCounter::print(FILE *output, Lexicon &amp;lexicon)'],['../classLexicon.html#a7126d888d4fceb8a58d21eb7ef95c2d6',1,'Lexicon::print()'],['../classTranslationTable.html#a1d06855e760f3d39c57a188b0059e99a',1,'TranslationTable::print()']]],
+  ['printfordebug',['printForDebug',['../classTranslationTable.html#ae8e6848bfd3221e1ba0c9cada67222c6',1,'TranslationTable']]],
+  ['printlatticefordebug',['printLatticeForDebug',['../classViterbi.html#acaf6076d2c22f4a130b38cba5ea14608',1,'Viterbi']]]
 ];

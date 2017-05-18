@@ -62,6 +62,9 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classViterbi-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Viterbi Class Reference</div>  </div>
@@ -73,6 +76,11 @@ $(function() {
 
 <p><code>#include &lt;Viterbi.hpp&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structViterbi_1_1Trio.html">Trio</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae99b04e927af06a69689ad333f6069b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classViterbi.html#ae99b04e927af06a69689ad333f6069b5">Viterbi</a> (<a class="el" href="classDatabase.html">Database</a> &amp;database)</td></tr>
@@ -81,6 +89,42 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac7b573f62eea989f1abbfbabb0bcdaa0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFile.html">File</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classViterbi.html#ac7b573f62eea989f1abbfbabb0bcdaa0">correct</a> (std::string inputFilename)</td></tr>
 <tr class="memdesc:ac7b573f62eea989f1abbfbabb0bcdaa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Correct a text file.  <a href="#ac7b573f62eea989f1abbfbabb0bcdaa0">More...</a><br /></td></tr>
 <tr class="separator:ac7b573f62eea989f1abbfbabb0bcdaa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a008a60d6aa42babce990b9c8ccdb279c"><td class="memItemLeft" align="right" valign="top"><a id="a008a60d6aa42babce990b9c8ccdb279c"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>Pair</b> = std::pair&lt; unsigned int, unsigned int &gt;</td></tr>
+<tr class="separator:a008a60d6aa42babce990b9c8ccdb279c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:acf607e2915d946c88178f9e8e49c3c09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classViterbi.html#acf607e2915d946c88178f9e8e49c3c09">buildLatticeFromSentence</a> (std::vector&lt; std::vector&lt; <a class="el" href="structViterbi_1_1Trio.html">Trio</a> &gt; &gt; &amp;probas, const std::vector&lt; unsigned int &gt; &amp;sentence)</td></tr>
+<tr class="memdesc:acf607e2915d946c88178f9e8e49c3c09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a lattice representing every probable correction of the sentence.  <a href="#acf607e2915d946c88178f9e8e49c3c09">More...</a><br /></td></tr>
+<tr class="separator:acf607e2915d946c88178f9e8e49c3c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedb7d1566a9ce2cce09020258a72699e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classViterbi.html#aedb7d1566a9ce2cce09020258a72699e">computeViterbiForRow</a> (std::vector&lt; std::vector&lt; <a class="el" href="structViterbi_1_1Trio.html">Trio</a> &gt; &gt; &amp;probas, unsigned int row)</td></tr>
+<tr class="memdesc:aedb7d1566a9ce2cce09020258a72699e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the <a class="el" href="classViterbi.html" title="Used to correct a File, using Viterbi algorithm. ">Viterbi</a> algorithm for the specified row of the lattice.  <a href="#aedb7d1566a9ce2cce09020258a72699e">More...</a><br /></td></tr>
+<tr class="separator:aedb7d1566a9ce2cce09020258a72699e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaf6076d2c22f4a130b38cba5ea14608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classViterbi.html#acaf6076d2c22f4a130b38cba5ea14608">printLatticeForDebug</a> (std::vector&lt; std::vector&lt; <a class="el" href="structViterbi_1_1Trio.html">Trio</a> &gt; &gt; &amp;probas)</td></tr>
+<tr class="memdesc:acaf6076d2c22f4a130b38cba5ea14608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Neatly output the current lattice into <code>stdout</code>, human readable.  <a href="#acaf6076d2c22f4a130b38cba5ea14608">More...</a><br /></td></tr>
+<tr class="separator:acaf6076d2c22f4a130b38cba5ea14608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a831f980b8091e35827e5830c6f04ee19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classViterbi.html#a831f980b8091e35827e5830c6f04ee19">correctSentence</a> (std::vector&lt; unsigned int &gt; &amp;dest, const std::vector&lt; unsigned int &gt; &amp;sentence)</td></tr>
+<tr class="memdesc:a831f980b8091e35827e5830c6f04ee19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Correct a sentence.  <a href="#a831f980b8091e35827e5830c6f04ee19">More...</a><br /></td></tr>
+<tr class="separator:a831f980b8091e35827e5830c6f04ee19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a7e58ea828b2abedfc82268febffa03f5"><td class="memItemLeft" align="right" valign="top"><a id="a7e58ea828b2abedfc82268febffa03f5"></a>
+<a class="el" href="classDatabase.html">Database</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>database</b></td></tr>
+<tr class="separator:a7e58ea828b2abedfc82268febffa03f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a745ed74a9ae4e26181d3bbc2e19992b5"><td class="memItemLeft" align="right" valign="top"><a id="a745ed74a9ae4e26181d3bbc2e19992b5"></a>
+<a class="el" href="classLexicon.html">Lexicon</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>lexicon</b></td></tr>
+<tr class="separator:a745ed74a9ae4e26181d3bbc2e19992b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9f35b79bb99025767f95e6e22a17034"><td class="memItemLeft" align="right" valign="top"><a id="af9f35b79bb99025767f95e6e22a17034"></a>
+<a class="el" href="classGramsCounter.html">GramsCounter</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>gramsCounter</b></td></tr>
+<tr class="separator:af9f35b79bb99025767f95e6e22a17034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e61c33d294e06da6ff64c525f901cd5"><td class="memItemLeft" align="right" valign="top"><a id="a0e61c33d294e06da6ff64c525f901cd5"></a>
+std::vector&lt; <a class="el" href="classWordTranslator.html">WordTranslator</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>translators</b></td></tr>
+<tr class="separator:a0e61c33d294e06da6ff64c525f901cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Used to correct a <a class="el" href="classFile.html" title="Represents a file on the system. ">File</a>, using <a class="el" href="classViterbi.html" title="Used to correct a File, using Viterbi algorithm. ">Viterbi</a> algorithm. </p>
@@ -112,6 +156,97 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="acf607e2915d946c88178f9e8e49c3c09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf607e2915d946c88178f9e8e49c3c09">&#9670;&nbsp;</a></span>buildLatticeFromSentence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Viterbi::buildLatticeFromSentence </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; <a class="el" href="structViterbi_1_1Trio.html">Trio</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>sentence</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build a lattice representing every probable correction of the sentence. </p>
+<p>The constructed lattice is stored into <code>probas</code></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">probas</td><td>Lattice to construct into. </td></tr>
+    <tr><td class="paramname">sentence</td><td>Sentence to build the correction lattice from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aedb7d1566a9ce2cce09020258a72699e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedb7d1566a9ce2cce09020258a72699e">&#9670;&nbsp;</a></span>computeViterbiForRow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Viterbi::computeViterbiForRow </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; <a class="el" href="structViterbi_1_1Trio.html">Trio</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>row</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform the <a class="el" href="classViterbi.html" title="Used to correct a File, using Viterbi algorithm. ">Viterbi</a> algorithm for the specified row of the lattice. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">probas</td><td>Lattice the algorithm will be performed on. </td></tr>
+    <tr><td class="paramname">row</td><td>Row the algorithm will be performed on. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ac7b573f62eea989f1abbfbabb0bcdaa0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac7b573f62eea989f1abbfbabb0bcdaa0">&#9670;&nbsp;</a></span>correct()</h2>
 
@@ -136,6 +271,86 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classFile.html" title="Represents a file on the system. ">File</a> containing the corrected text. </dd></dl>
+
+</div>
+</div>
+<a id="a831f980b8091e35827e5830c6f04ee19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a831f980b8091e35827e5830c6f04ee19">&#9670;&nbsp;</a></span>correctSentence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Viterbi::correctSentence </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>sentence</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Correct a sentence. </p>
+<p>Correction of words are taken from every instances of <a class="el" href="classWordTranslator.html" title="Interface. Represent an object that is able to propose probable corrections of a given word...">WordTranslator</a> found as a member of <code>database</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>Where to put the corrected sentence. </td></tr>
+    <tr><td class="paramname">sentence</td><td>Sentence to be corrected, tokenized. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acaf6076d2c22f4a130b38cba5ea14608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaf6076d2c22f4a130b38cba5ea14608">&#9670;&nbsp;</a></span>printLatticeForDebug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Viterbi::printLatticeForDebug </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; <a class="el" href="structViterbi_1_1Trio.html">Trio</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>probas</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Neatly output the current lattice into <code>stdout</code>, human readable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">probas</td><td>Lattice to print. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

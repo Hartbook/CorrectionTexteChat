@@ -62,6 +62,8 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classLexicon-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Lexicon Class Reference</div>  </div>
@@ -146,12 +148,98 @@ static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"
 static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#aa4457caaac6b659b7aeb8b40490a4438">dateStr</a> [] = &quot;DATE&quot;</td></tr>
 <tr class="memdesc:aa4457caaac6b659b7aeb8b40490a4438"><td class="mdescLeft">&#160;</td><td class="mdescRight">DATE. <br /></td></tr>
 <tr class="separator:aa4457caaac6b659b7aeb8b40490a4438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8a913c17e9deaa351c73fae46751953"><td class="memItemLeft" align="right" valign="top"><a id="ac8a913c17e9deaa351c73fae46751953"></a>
+static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#ac8a913c17e9deaa351c73fae46751953">url</a> = 5</td></tr>
+<tr class="memdesc:ac8a913c17e9deaa351c73fae46751953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Token for URL. <br /></td></tr>
+<tr class="separator:ac8a913c17e9deaa351c73fae46751953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6af6e1eaa4ce16835934ef655d0f7d0b"><td class="memItemLeft" align="right" valign="top"><a id="a6af6e1eaa4ce16835934ef655d0f7d0b"></a>
+static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a6af6e1eaa4ce16835934ef655d0f7d0b">urlStr</a> [] = &quot;URL&quot;</td></tr>
+<tr class="memdesc:a6af6e1eaa4ce16835934ef655d0f7d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">URL. <br /></td></tr>
+<tr class="separator:a6af6e1eaa4ce16835934ef655d0f7d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae63e3ed73efdb205fa0b6d943aba3688"><td class="memItemLeft" align="right" valign="top"><a id="ae63e3ed73efdb205fa0b6d943aba3688"></a>
+static constexpr unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#ae63e3ed73efdb205fa0b6d943aba3688">newSentence</a> = 6</td></tr>
+<tr class="memdesc:ae63e3ed73efdb205fa0b6d943aba3688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Token for URL. <br /></td></tr>
+<tr class="separator:ae63e3ed73efdb205fa0b6d943aba3688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0ecc9cb4d46f6aa551c2b04a6fe2315"><td class="memItemLeft" align="right" valign="top"><a id="aa0ecc9cb4d46f6aa551c2b04a6fe2315"></a>
+static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#aa0ecc9cb4d46f6aa551c2b04a6fe2315">newSentenceStr</a> [] = &quot;NEWSENTENCE&quot;</td></tr>
+<tr class="memdesc:aa0ecc9cb4d46f6aa551c2b04a6fe2315"><td class="mdescLeft">&#160;</td><td class="mdescRight">URL. <br /></td></tr>
+<tr class="separator:aa0ecc9cb4d46f6aa551c2b04a6fe2315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:adfa690309426b796b69f91d7030182c5"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#adfa690309426b796b69f91d7030182c5">normalize</a> (std::string &amp;s) const</td></tr>
+<tr class="memdesc:adfa690309426b796b69f91d7030182c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make the input string lower case.  <a href="#adfa690309426b796b69f91d7030182c5">More...</a><br /></td></tr>
+<tr class="separator:adfa690309426b796b69f91d7030182c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75740f5210eaa0e141341f600ff4b4d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#a75740f5210eaa0e141341f600ff4b4d3">addWord</a> (std::string word, unsigned int token)</td></tr>
+<tr class="memdesc:a75740f5210eaa0e141341f600ff4b4d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a word into the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> associated with a specific token.  <a href="#a75740f5210eaa0e141341f600ff4b4d3">More...</a><br /></td></tr>
+<tr class="separator:a75740f5210eaa0e141341f600ff4b4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab98081cb72cada5ba51138752d81d898"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLexicon.html#ab98081cb72cada5ba51138752d81d898">initMaps</a> (std::unordered_map&lt; std::string, unsigned int &gt; &amp;specials)</td></tr>
+<tr class="memdesc:ab98081cb72cada5ba51138752d81d898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert special entries to the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>.  <a href="#ab98081cb72cada5ba51138752d81d898">More...</a><br /></td></tr>
+<tr class="separator:ab98081cb72cada5ba51138752d81d898"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a2a85114e63e27b73b688b2eabfca1eea"><td class="memItemLeft" align="right" valign="top"><a id="a2a85114e63e27b73b688b2eabfca1eea"></a>
+std::unordered_map&lt; std::string, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tokens</b></td></tr>
+<tr class="separator:a2a85114e63e27b73b688b2eabfca1eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3fd9d30498047ac8924aa6e71732af2"><td class="memItemLeft" align="right" valign="top"><a id="ad3fd9d30498047ac8924aa6e71732af2"></a>
+std::unordered_map&lt; unsigned int, const std::string * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>strings</b></td></tr>
+<tr class="separator:ad3fd9d30498047ac8924aa6e71732af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebd287ad851be9849833b97a43eda810"><td class="memItemLeft" align="right" valign="top"><a id="aebd287ad851be9849833b97a43eda810"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>nextToken</b></td></tr>
+<tr class="separator:aebd287ad851be9849833b97a43eda810"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains known words and their corresponding token. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a75740f5210eaa0e141341f600ff4b4d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75740f5210eaa0e141341f600ff4b4d3">&#9670;&nbsp;</a></span>addWord() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Lexicon::addWord </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>word</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>token</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Insert a word into the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a> associated with a specific token. </p>
+<p>This is used by <a class="el" href="classLexicon.html#af4ed9570b9575341c43442150c1a748a" title="Initialize this Lexicon so that it contains every word present in other. ">copy()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">word</td><td>Word to insert. </td></tr>
+    <tr><td class="paramname">token</td><td>Token corresponding to the word. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a94b037e129bab580cdee396c8db8244c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94b037e129bab580cdee396c8db8244c">&#9670;&nbsp;</a></span>addWord()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a94b037e129bab580cdee396c8db8244c">&#9670;&nbsp;</a></span>addWord() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -296,6 +384,77 @@ static constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a clas
 
 <p>Get every word and token inside the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>const ref to container. </dd></dl>
+
+</div>
+</div>
+<a id="ab98081cb72cada5ba51138752d81d898"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab98081cb72cada5ba51138752d81d898">&#9670;&nbsp;</a></span>initMaps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Lexicon::initMaps </td>
+          <td>(</td>
+          <td class="paramtype">std::unordered_map&lt; std::string, unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>specials</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Insert special entries to the <a class="el" href="classLexicon.html" title="Contains known words and their corresponding token. ">Lexicon</a>. </p>
+<p>Used by the constructor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">specials</td><td>Special entries like <a class="el" href="classLexicon.html#a59a48310a9dd34ca9dcd80d4ff047531" title="Token for unknown words. ">Lexicon::unknown</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adfa690309426b796b69f91d7030182c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfa690309426b796b69f91d7030182c5">&#9670;&nbsp;</a></span>normalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; Lexicon::normalize </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Make the input string lower case. </p>
+<p>Used before insertion and look-up.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>String to transform.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>reference to s. </dd></dl>
 
 </div>
 </div>

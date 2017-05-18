@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7efile',['~File',['../classFile.html#ac704ebdf5f57d7a1c5ddf409d797fb69',1,'File']]]
+  ['wordtranslations',['WordTranslations',['../classWordTranslations.html',1,'']]],
+  ['wordtranslator',['WordTranslator',['../classWordTranslator.html',1,'']]]
 ];

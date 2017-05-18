@@ -61,6 +61,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classDatabase-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Database Class Reference</div>  </div>
@@ -83,6 +85,39 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3dbadcd3a09ae36cb36c73519e34b328"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a3dbadcd3a09ae36cb36c73519e34b328">readFromFiles</a> (std::string incorrectFilename, std::string correctFilename, std::string gramsFilename, std::string tableFilename)</td></tr>
 <tr class="memdesc:a3dbadcd3a09ae36cb36c73519e34b328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the <a class="el" href="classDatabase.html" title="Contains necessary data to perform a correction. ">Database</a> from files created by buildFromCorpus.  <a href="#a3dbadcd3a09ae36cb36c73519e34b328">More...</a><br /></td></tr>
 <tr class="separator:a3dbadcd3a09ae36cb36c73519e34b328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aa46fe8c899d11d421429b866532eaf3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#aa46fe8c899d11d421429b866532eaf3e">buildLexiconFromCorpora</a> (const std::vector&lt; std::string &gt; &amp;filenames)</td></tr>
+<tr class="memdesc:aa46fe8c899d11d421429b866532eaf3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct lexicons from files.  <a href="#aa46fe8c899d11d421429b866532eaf3e">More...</a><br /></td></tr>
+<tr class="separator:aa46fe8c899d11d421429b866532eaf3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74fd20c33a833a70f8fa48e788fd7922"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a74fd20c33a833a70f8fa48e788fd7922">buildGramsCounterFromCorpora</a> (const std::vector&lt; std::string &gt; &amp;filenames)</td></tr>
+<tr class="memdesc:a74fd20c33a833a70f8fa48e788fd7922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the language model from files.  <a href="#a74fd20c33a833a70f8fa48e788fd7922">More...</a><br /></td></tr>
+<tr class="separator:a74fd20c33a833a70f8fa48e788fd7922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b27d2c40b903fc733663790f1f35be3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a6b27d2c40b903fc733663790f1f35be3">buildTranslationTableFromCorpora</a> (const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;filenames)</td></tr>
+<tr class="memdesc:a6b27d2c40b903fc733663790f1f35be3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> from files.  <a href="#a6b27d2c40b903fc733663790f1f35be3">More...</a><br /></td></tr>
+<tr class="separator:a6b27d2c40b903fc733663790f1f35be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a86d16fdeecf9549ca9261ebd5967426b"><td class="memItemLeft" align="right" valign="top"><a id="a86d16fdeecf9549ca9261ebd5967426b"></a>
+<a class="el" href="classLexicon.html">Lexicon</a>&#160;</td><td class="memItemRight" valign="bottom"><b>correctLexicon</b></td></tr>
+<tr class="separator:a86d16fdeecf9549ca9261ebd5967426b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a889b680c830f6363a9d1aa4a0a005ab3"><td class="memItemLeft" align="right" valign="top"><a id="a889b680c830f6363a9d1aa4a0a005ab3"></a>
+<a class="el" href="classLexicon.html">Lexicon</a>&#160;</td><td class="memItemRight" valign="bottom"><b>incorrectLexicon</b></td></tr>
+<tr class="separator:a889b680c830f6363a9d1aa4a0a005ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b177fee0cff4dee0da126915f352bed"><td class="memItemLeft" align="right" valign="top"><a id="a1b177fee0cff4dee0da126915f352bed"></a>
+<a class="el" href="classGramsCounter.html">GramsCounter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gramsCounter</b></td></tr>
+<tr class="separator:a1b177fee0cff4dee0da126915f352bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa12ba1e16ff9b47f34f4af123e9a1fc7"><td class="memItemLeft" align="right" valign="top"><a id="aa12ba1e16ff9b47f34f4af123e9a1fc7"></a>
+<a class="el" href="classTranslationTable.html">TranslationTable</a>&#160;</td><td class="memItemRight" valign="bottom"><b>translationTable</b></td></tr>
+<tr class="separator:aa12ba1e16ff9b47f34f4af123e9a1fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af81c36537506e644ec184c1d1472a639"><td class="memItemLeft" align="right" valign="top"><a id="af81c36537506e644ec184c1d1472a639"></a>
+<a class="el" href="classLevenshteinTranslator.html">LevenshteinTranslator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>levenshteinTranslator</b></td></tr>
+<tr class="separator:af81c36537506e644ec184c1d1472a639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affb4d666b7bac4f76aca3863e158cf11"><td class="memItemLeft" align="right" valign="top"><a id="affb4d666b7bac4f76aca3863e158cf11"></a>
+friend&#160;</td><td class="memItemRight" valign="bottom"><b>Viterbi</b></td></tr>
+<tr class="separator:affb4d666b7bac4f76aca3863e158cf11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains necessary data to perform a correction. </p>
@@ -148,6 +183,108 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">lexicons</td><td>List of paths to files that contain a lexicon. </td></tr>
     <tr><td class="paramname">corpora</td><td>List of paths to files that contain text to learn ngrams from. </td></tr>
     <tr><td class="paramname">pairs</td><td>List of pairs of paths to files consisting of un-corrected and corrected versions of the same text. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a74fd20c33a833a70f8fa48e788fd7922"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74fd20c33a833a70f8fa48e788fd7922">&#9670;&nbsp;</a></span>buildGramsCounterFromCorpora()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Database::buildGramsCounterFromCorpora </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>filenames</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build the language model from files. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filenames</td><td>List of paths to file that contains corpora to learn from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa46fe8c899d11d421429b866532eaf3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa46fe8c899d11d421429b866532eaf3e">&#9670;&nbsp;</a></span>buildLexiconFromCorpora()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Database::buildLexiconFromCorpora </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>filenames</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct lexicons from files. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filenames</td><td>List of paths to file that contains lexicons. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6b27d2c40b903fc733663790f1f35be3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b27d2c40b903fc733663790f1f35be3">&#9670;&nbsp;</a></span>buildTranslationTableFromCorpora()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Database::buildTranslationTableFromCorpora </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>filenames</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build the <a class="el" href="classTranslationTable.html" title="Proposes corrections of a word based on a model learned from manually corrected corpus. ">TranslationTable</a> from files. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filenames</td><td>List of pairs of paths to files consisting of un-corrected and corrected versions of the same text. </td></tr>
   </table>
   </dd>
 </dl>

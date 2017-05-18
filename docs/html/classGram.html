@@ -61,6 +61,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classGram-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -79,6 +81,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a03b03e2ae7a911ae18da92336720a2f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares equality.  <a href="#a03b03e2ae7a911ae18da92336720a2f6">More...</a><br /></td></tr>
 <tr class="separator:a03b03e2ae7a911ae18da92336720a2f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a37acd846709fea904229730e5cbc1c08"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGram.html#a37acd846709fea904229730e5cbc1c08">Gram</a> (unsigned int t1)</td></tr>
+<tr class="memdesc:a37acd846709fea904229730e5cbc1c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the monogram t1.  <a href="#a37acd846709fea904229730e5cbc1c08">More...</a><br /></td></tr>
+<tr class="separator:a37acd846709fea904229730e5cbc1c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41b2142ce20f29c00552ed7fccf45487"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGram.html#a41b2142ce20f29c00552ed7fccf45487">Gram</a> (unsigned int t1, unsigned int t2)</td></tr>
+<tr class="memdesc:a41b2142ce20f29c00552ed7fccf45487"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the bigram (t1,t2).  <a href="#a41b2142ce20f29c00552ed7fccf45487">More...</a><br /></td></tr>
+<tr class="separator:a41b2142ce20f29c00552ed7fccf45487"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a718efebcd6819d1b972a7b42cb57b513"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGram.html#a718efebcd6819d1b972a7b42cb57b513">Gram</a> (unsigned int t1, unsigned int t2, unsigned int t3)</td></tr>
+<tr class="memdesc:a718efebcd6819d1b972a7b42cb57b513"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the trigram (t1,t2,t3)  <a href="#a718efebcd6819d1b972a7b42cb57b513">More...</a><br /></td></tr>
+<tr class="separator:a718efebcd6819d1b972a7b42cb57b513"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a146fa4ca6e8fe4cbf66a2084b03104f5"><td class="memItemLeft" align="right" valign="top"><a id="a146fa4ca6e8fe4cbf66a2084b03104f5"></a>
+std::vector&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tokens</b></td></tr>
+<tr class="separator:a146fa4ca6e8fe4cbf66a2084b03104f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a7448f2740fc0d47d2dc39bb494954eed"><td class="memItemLeft" align="right" valign="top"><a id="a7448f2740fc0d47d2dc39bb494954eed"></a>
@@ -90,7 +110,139 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>GramsCounter</b></td
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a monogram, a bigram or a trigram. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a37acd846709fea904229730e5cbc1c08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37acd846709fea904229730e5cbc1c08">&#9670;&nbsp;</a></span>Gram() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Gram::Gram </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct the monogram t1. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a41b2142ce20f29c00552ed7fccf45487"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41b2142ce20f29c00552ed7fccf45487">&#9670;&nbsp;</a></span>Gram() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Gram::Gram </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct the bigram (t1,t2). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token. </td></tr>
+    <tr><td class="paramname">t2</td><td>Token. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a718efebcd6819d1b972a7b42cb57b513"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a718efebcd6819d1b972a7b42cb57b513">&#9670;&nbsp;</a></span>Gram() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Gram::Gram </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>t3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct the trigram (t1,t2,t3) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t1</td><td>Token. </td></tr>
+    <tr><td class="paramname">t2</td><td>Token. </td></tr>
+    <tr><td class="paramname">t3</td><td>Token. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a03b03e2ae7a911ae18da92336720a2f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a03b03e2ae7a911ae18da92336720a2f6">&#9670;&nbsp;</a></span>operator==()</h2>
 
