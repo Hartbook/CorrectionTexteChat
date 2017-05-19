@@ -5,8 +5,9 @@ function formatText
 	local filename=$(basename $1)
 
 	cat $1 | tr -d '[:punct:]' > eval/tmp/$filename.clean
-	#cat $1 > eval/tmp/$filename.clean
-	awk '{printf("%s (a_%d)\n", $0, NR)}' eval/tmp/$filename.clean > eval/tmp/$filename
+	dos2unix eval/tmp/$filename.clean
+	sed '/^$/d' eval/tmp/$filename.clean > eval/tmp/$filename.clean2
+	awk '{printf("%s (a_%d)\n", $0, NR)}' eval/tmp/$filename.clean2 > eval/tmp/$filename
 	echo eval/tmp/$filename
 }
 

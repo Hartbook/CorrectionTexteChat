@@ -124,31 +124,26 @@ void GramsCounter::print(FILE * output)
 
 void GramsCounter::print(FILE * output, Lexicon & lexicon)
 {
-	static unsigned int maxPadding = 50;
-
 	for (auto it : nbOcc)
 	{
-		fprintf(output, "<");
+		float logProb = 9999;
+		if (it.first.tokens.size() == 1)
+			logProb = getLogProb(it.first.tokens[0]);
+		else if (it.first.tokens.size() == 2)
+			logProb = getLogProb(it.first.tokens[0], it.first.tokens[1]);
+		else if (it.first.tokens.size() == 3)
+			logProb = getLogProb(it.first.tokens[0], it.first.tokens[1], it.first.tokens[2]);
 
-		unsigned int padding = maxPadding;
+		fprintf(output, "%07d %5f ", it.second, logProb);
+
+		fprintf(output, "<");
 
 		for (unsigned int i = 0; i < it.first.tokens.size(); i++)
 		{
 			const auto & word = lexicon.getString(it.first.tokens[i]);
 
-			fprintf(output, "%s%s", word.c_str(), i == it.first.tokens.size()-1 ? ">" : ", ");
-
-			padding -= 2;
-			padding -= lengthPrinted(word);
+			fprintf(output, "%s%s", word.c_str(), i == it.first.tokens.size()-1 ? ">\n" : ", ");
 		}
-
-		if (padding > maxPadding)
-			padding = 1;
-
-		for (unsigned int i = 0; i < padding; i++)
-			fprintf(output, " ");
-
-		fprintf(output, "%d\n", it.second);
 	}
 }
 

@@ -1,6 +1,7 @@
 #include "Layout.hpp"
 #include "util.hpp"
 #include "Lexicon.hpp"
+#include <cstring>
 
 Layout::Layout(File * baseText, File * correctedText)
 {
@@ -130,7 +131,19 @@ void Layout::transferLayout(File * target)
 					fprintf(target->getDescriptor(), "%s", wordCorrect.c_str());
 				}
 				else
+				{
+					if (!strncmp(wordIncorrect.c_str(), "http", 4))
+					{
+						wordIncorrect.push_back(read);
+						while (!baseText->isFinished() && !isNewline(baseText->peek()) && baseText->peek() != ' ')
+						{
+							read = baseText->getChar();
+							wordIncorrect.push_back(read);
+						}
+					}
+
 					fprintf(target->getDescriptor(), "%s", wordIncorrect.c_str());
+				}
 
 				firstWordOfSentence = false;
 				mustReadWord = true;
@@ -142,9 +155,15 @@ void Layout::transferLayout(File * target)
 		}
 		else
 		{
-			if (read == '\'')
-				incorrectContainsApostrophe = true;
-			wordIncorrect.push_back(read);
+			if (wordIncorrect.empty() && (read == '\'' || read == '-'))
+			{
+			}
+			else
+			{
+				if (read == '\'')
+					incorrectContainsApostrophe = true;
+				wordIncorrect.push_back(read);
+			}
 		}
 
 		if (endSentence(read))

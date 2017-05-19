@@ -24,8 +24,11 @@ void Database::readFromFiles(std::string incorrectFilename, std::string correctF
 	gramsCounter.read(gramsCountFile);
 	translationTable.read(translationTableFile);
 
-	File test(tableFilename+".debug", "w");
-	translationTable.printForDebug(test.getDescriptor(), correctLexicon, incorrectLexicon);
+	File tableDebug(tableFilename+".debug", "w");
+	translationTable.printForDebug(tableDebug.getDescriptor(), correctLexicon, incorrectLexicon);
+
+	File gramsDebug(gramsFilename+".debug", "w");
+	gramsCounter.print(gramsDebug.getDescriptor(), correctLexicon);
 }
 
 void Database::buildFromCorpus(const std::vector<std::string> & lexicons,

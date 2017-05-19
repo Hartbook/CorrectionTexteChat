@@ -1,9 +1,9 @@
-Corpus de test : 180 lignes, 1993 mots.
+Corpus de test : 1797 lignes, 20841 mots.
 
 Évalutations :
 
 Corpus brut :
-	1900 Corr (95.3%) 82 Sub (4.1%) 11 Del (0.6%) 12 Ins (0.6%)
+	19813 Corr (95.1%) 924 Sub (4.4%) 104 Del (0.5%) 191 Ins (0.9%)
 
 Correction : Final.
-	1931 Corr (96.9%) 51 Sub (2.6%) 11 Del (0.6%) 12 Ins (0.6%)
+	20075 Corr (96.3%) 662 Sub (3.2%) 104 Del (0.5%) 194 Ins (0.9%)
