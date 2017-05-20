@@ -1,9 +1,21 @@
-Corpus de test : 1797 lignes, 20841 mots.
+Corpus de test : 999 lignes, 8683 mots.
 
 Évalutations :
 
 Corpus brut :
-	19813 Corr (95.1%) 924 Sub (4.4%) 104 Del (0.5%) 191 Ins (0.9%)
+	11.5% Err.
 
-Correction : Final.
-	20075 Corr (96.3%) 662 Sub (3.2%) 104 Del (0.5%) 194 Ins (0.9%)
+Correction : Tout.
+	07.9% Err.
+
+Correction : Sans Grams. Avec TableTrad.
+	07.6% Err.
+
+Correction : Sans Grams. Sans TableTrad.
+	09.0% Err.
+
+Correction : Avec Grams. Sans TableTrad.
+	09.0% Err.
+
+Correction : Tout. + Grams plus lourds.
+	00.0% Err.
