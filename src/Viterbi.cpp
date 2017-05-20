@@ -51,7 +51,6 @@ void Viterbi::buildLatticeFromSentence(std::vector< std::vector<Trio> > & probas
 	}
 }
 
-
 void Viterbi::computeViterbiForRow(std::vector< std::vector<Trio> > & probas, unsigned int row)
 {
 	auto getProbaCommingFrom = [&](unsigned int line, Trio & current)
@@ -64,6 +63,8 @@ void Viterbi::computeViterbiForRow(std::vector< std::vector<Trio> > & probas, un
 		else
 			gram = gramsCounter.getLogProb(probas[row-1][line].trad.first,
 				probas[row-1][line].trad.second, current.trad.second);
+
+//		gram *= gram; // Boost importance of n-grams model
 
 		return previous + gram;
 	};
@@ -133,12 +134,17 @@ void Viterbi::correctSentence(std::vector<unsigned int> & dest, const std::vecto
 
 	std::reverse(dest.begin(), dest.end());
 
+	nbCorrected++;
+	printf("\rNb sentences corrected : %06d / %06d (%4f%%)", nbCorrected.load(), nbTotal, (100.0*nbCorrected.load() / nbTotal));
+	fflush(stdout);
+
 	//printLatticeForDebug(probas);
 	// Can be useful to see how the correction was obtained
 }
 
 File * Viterbi::correct(std::string inputFilename)
 {
+	nbCorrected = 0;
 	static const char * pathToTemp = "data/corpus/temp/";
 
 	auto & lexicon = database.incorrectLexicon;
@@ -200,6 +206,8 @@ File * Viterbi::correct(std::string inputFilename)
 	}
 
 	delete tokenized;
+
+	nbTotal = sentences.size();
 
 	Executor<void,void> executor;
 

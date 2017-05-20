@@ -5,6 +5,8 @@ Corpus de test : 999 lignes, 8683 mots.
 Corpus brut :
 	11.5% Err.
 
+Lexique vient de la Table de Trad, Grams vient de corpus bigChat
+-----------------------------------------------------------------------
 Correction : Tout.
 	07.9% Err.
 
@@ -17,5 +19,37 @@ Correction : Sans Grams. Sans TableTrad.
 Correction : Avec Grams. Sans TableTrad.
 	09.0% Err.
 
-Correction : Tout. + Grams plus lourds.
-	00.0% Err.
+Correction : Tout. + Grams plus lourds (*2).
+	08.1% Err.
+
+Correction : Tout. + Grams plus lourds (^2).
+	08.3% Err.
+-----------------------------------------------------------------------
+
+
+Lexique NE vient PAS de la Table de Trad, Grams vient de corpus bigChat
+-----------------------------------------------------------------------
+Correction : Tout.
+	10.0% Err.
+-----------------------------------------------------------------------
+
+
+Lexique vient de la Table de Trad et de Germinal, Grams vient de Germinal
+-----------------------------------------------------------------------
+Correction : Tout.
+	08.2% Err.
+
+Correction : Sans grams. Avec TableTrad.
+	07.6% Err.
+-----------------------------------------------------------------------
+
+
+Lexique vient de la Table de Trad et de Germinal, Grams vient de Germinal et de bigChat
+-----------------------------------------------------------------------
+Correction : Tout.
+	08.0% Err.
+
+Correction : Tout. + On corrige aussi quelques mots connus (si n-gramme mauvais).
+	08.0% Err.
+-----------------------------------------------------------------------
+

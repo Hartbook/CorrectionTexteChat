@@ -5,6 +5,7 @@
 #define VITERBI__H
 
 #include <vector>
+#include <atomic>
 #include "Database.hpp"
 #include "WordTranslator.hpp"
 
@@ -20,6 +21,9 @@ class Viterbi
 	Lexicon & lexicon;
 	GramsCounter & gramsCounter;
 	std::vector<WordTranslator*> translators;
+
+	std::atomic<int> nbCorrected;
+	int nbTotal;
 
 	using Pair = std::pair<unsigned int, unsigned int>;
 	struct Trio

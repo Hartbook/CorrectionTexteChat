@@ -95,7 +95,7 @@ void Database::buildTranslationTableFromCorpora(
 	incorrectCleaned.rewind();
 
 	Tokenizer t1(incorrectLexicon);
-	Tokenizer t2(correctLexicon);
+	Tokenizer t2(correctLexicon); // Augment correct Lexicon with words from parralel corpus
 
 	File correctTokenized(correctCleanedName + ".tokenized", "w");
 	File incorrectTokenized(incorrectCleanedName + ".tokenized", "w");
