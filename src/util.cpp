@@ -108,7 +108,7 @@ void cleanCorpus(File & source, File & dest)
 
 			skipControlCharacters();
 
-			while (isNewline(read) && source.peek() == '#')
+			while (false/*isNewline(read) && source.peek() == '#'*/)
 			{
 				triggered = true;
 
