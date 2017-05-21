@@ -52,7 +52,13 @@ Correction : Tout.
 Correction : Tout. + On corrige aussi quelques mots connus (si n-gramme mauvais).
 	08.0% Err.
 
-Correction : Tout. + On fusionne les mots coupés.
+Correction : Tout. + On fusionne les mots coupés avant et après corr.
+	07.0% Err.
+
+Correction : Tout. + On fusionne les mots coupés avant corr.
+	07.1% Err.
+
+Correction : Tout. + On fusionne les mots coupés après corr.
 	07.0% Err.
 -----------------------------------------------------------------------
 

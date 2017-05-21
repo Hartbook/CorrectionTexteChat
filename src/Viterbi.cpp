@@ -211,8 +211,8 @@ File * Viterbi::correct(std::string inputFilename)
 
 	database.fusions.resize(nbTotal);
 
-	for (unsigned int i = 0; i < sentences.size(); i++)
-		fuseCutWords(sentences[i], database.fusions[i]);
+//	for (unsigned int i = 0; i < sentences.size(); i++)
+//		fuseCutWords(sentences[i], database.fusions[i]);
 
 	Executor<void,void> executor;
 
