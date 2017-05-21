@@ -33,6 +33,12 @@ class Database
 	TranslationTable translationTable;
 	LevenshteinTranslator levenshteinTranslator;
 
+	public :
+
+	std::vector< std::set<unsigned int> > fusions;
+
+	private :
+
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Construct lexicons from files.
 	///

@@ -65,6 +65,8 @@ void Tokenizer::tokenize(File & src, File & dest)
 			{
 				if (word[i] == '\'')
 				{
+					//printf("\n<%s>\n", word.c_str());
+
 					containsApostrophe = true;
 					word[i] = ' ';
 

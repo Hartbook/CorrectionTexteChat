@@ -47,9 +47,12 @@ Correction : Sans grams. Avec TableTrad.
 Lexique vient de la Table de Trad et de Germinal, Grams vient de Germinal et de bigChat
 -----------------------------------------------------------------------
 Correction : Tout.
-	08.0% Err.
+	08.0% Err. (6m48)
 
 Correction : Tout. + On corrige aussi quelques mots connus (si n-gramme mauvais).
 	08.0% Err.
+
+Correction : Tout. + On fusionne les mots coupés.
+	07.0% Err.
 -----------------------------------------------------------------------
 

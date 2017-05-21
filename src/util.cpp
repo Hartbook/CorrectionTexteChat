@@ -265,6 +265,78 @@ unsigned int readWord(File & corpus, std::string & word, bool sentenceBegin)
 	return checkForPattern();
 }
 
+bool ignoreAndPrintSeparators(File & corpus, File & output)
+{
+	static auto isToBeIgnored = [](char c)
+	{
+		return isSeparator(c) || c == '_' || c == '\'';
+	};
+
+	bool sentenceBegin = false;
+
+	while (!corpus.isFinished() && isToBeIgnored(corpus.peek()))
+	{
+		char c = corpus.getChar();
+		fprintf(output.getDescriptor(), "%c", c);
+
+		if (endSentence(c))
+			sentenceBegin = true;
+	}
+
+	return sentenceBegin;
+}
+
+bool ignoreAndAddSeparators(File & corpus, std::string & output)
+{
+	static auto isToBeIgnored = [](char c)
+	{
+		return isSeparator(c) || c == '_' || c == '\'';
+	};
+
+	bool sentenceBegin = false;
+
+	while (!corpus.isFinished() && isToBeIgnored(corpus.peek()))
+	{
+		char c = corpus.getChar();
+		output += c;
+
+		if (endSentence(c))
+			sentenceBegin = true;
+	}
+
+	return sentenceBegin;
+}
+
+
+unsigned int getNextSentenceSize(File & file)
+{
+	unsigned int nbWords = 0;
+	std::string word;
+	std::string entireLine;
+	bool beginSentence;
+
+	while (true)
+	{
+		beginSentence = ignoreAndAddSeparators(file, entireLine);
+
+		if (beginSentence || file.isFinished())
+			break;
+
+		word.clear();
+		readWord(file, word, beginSentence);
+		entireLine += word;
+		nbWords++;
+	}
+
+	while (!entireLine.empty())
+	{
+		file.ungetChar(entireLine.back());
+		entireLine.pop_back();
+	}
+
+	return nbWords;
+}
+
 bool ignoreSeparators(File & corpus)
 {
 	static auto isToBeIgnored = [](char c)

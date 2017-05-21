@@ -38,6 +38,15 @@ class Viterbi
 	private :
 
 	/////////////////////////////////////////////////////////////////////////////
+	/// \brief Check if some words are cut, ex : bon jour -> bonjour
+	///
+	/// \param sentence Sentence containing the tokenized words.
+	/// \param fusions Set of index of words that has been fused.
+	///
+	////////////////////////////////////////////////////////////////////////////
+	void fuseCutWords(std::vector<unsigned int> & sentence, std::set<unsigned int> & fusions);
+
+	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Build a lattice representing every probable correction of the sentence.
 	///
 	/// The constructed lattice is stored into `probas`

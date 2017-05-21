@@ -209,6 +209,11 @@ File * Viterbi::correct(std::string inputFilename)
 
 	nbTotal = sentences.size();
 
+	database.fusions.resize(nbTotal);
+
+	for (unsigned int i = 0; i < sentences.size(); i++)
+		fuseCutWords(sentences[i], database.fusions[i]);
+
 	Executor<void,void> executor;
 
 	for (auto & sentence : sentences)
@@ -221,12 +226,94 @@ File * Viterbi::correct(std::string inputFilename)
 
 	executor.run();
 
+	for (unsigned int i = 0; i < sentences.size(); i++)
+		fuseCutWords(sentences[i], database.fusions[i]);
+
 	for (auto & sentence : sentences)
 		printSentence(sentence, *result);
 
 	return result;
 }
 
+void Viterbi::fuseCutWords(std::vector<unsigned int> & sentence, std::set<unsigned int> & fusions)
+{
+	static std::vector<char> fusionTypes = {0, '-', '\'', '_'};
+	float realisticThreshold = 70.0f;
+
+	for (unsigned int i = 0; i < sentence.size()-1; i++)
+	{
+		const std::string & s1 = lexicon.getString(sentence[i]);
+		const std::string & s2 = lexicon.getString(sentence[i+1]);
+
+
+		unsigned int token1 = sentence[i];
+		unsigned int token2 = sentence[i+1];
+
+		unsigned int token0 = i > 0 ? sentence[i-1] : Lexicon::newSentence;
+		unsigned int token3 = i + 2 < sentence.size() ? sentence[i+2] : Lexicon::newSentence;
+
+		float originalLogprob = 0.0;
+		float nbWordsInOriginalLogprob = 1.0f;
+		if (token0 != Lexicon::newSentence)
+		{
+			originalLogprob += gramsCounter.getLogProb(token0, token1);
+			nbWordsInOriginalLogprob++;
+		}
+		if (token3 != Lexicon::newSentence)
+		{
+			originalLogprob += gramsCounter.getLogProb(token2, token3);
+			nbWordsInOriginalLogprob++;
+		}
+		originalLogprob += gramsCounter.getLogProb(token1, token2);
+		originalLogprob = pow(2.0, originalLogprob / nbWordsInOriginalLogprob);
+
+		int bestFusionType = -1;
+		float bestFusionLogprob = 0;
+		unsigned int bestFusionToken = 0;
+
+		for (unsigned int j = 0; j < fusionTypes.size(); j++)
+		{
+			char link = fusionTypes[j];
+			std::string fused = link ? s1 + link + s2 : s1 + s2;
+			unsigned int tokenFused = lexicon.addWord(fused);
+			float fusedLogprob = 0.0;
+			float nbWordsInFused = 1.0f;
+			if (token0 != Lexicon::newSentence)
+			{
+				fusedLogprob += gramsCounter.getLogProb(token0, tokenFused);
+				nbWordsInFused++;
+			}
+			else
+				fusedLogprob += gramsCounter.getLogProb(tokenFused);
+			if (token3 != Lexicon::newSentence)
+			{
+				nbWordsInFused++;
+				fusedLogprob += gramsCounter.getLogProb(tokenFused, token3);
+			}
+			fusedLogprob = pow(2.0, fusedLogprob / nbWordsInFused);
+
+			if (bestFusionType == -1 || fusedLogprob < bestFusionLogprob)
+			{
+				bestFusionType = j;
+				bestFusionLogprob = fusedLogprob;
+				bestFusionToken = tokenFused;
+			}
+		}
+
+		bool fusedTokenIsCorrect = database.correctLexicon.getMaxToken() >= bestFusionToken;
+
+		if (fusedTokenIsCorrect && bestFusionLogprob < originalLogprob && bestFusionLogprob < realisticThreshold)
+		{
+			fprintf(stderr, "<%s><%s>(%f) must become <%s>(%f)\n", s1.c_str(), s2.c_str(), originalLogprob, lexicon.getString(bestFusionToken).c_str(), bestFusionLogprob);
+
+			sentence[i] = bestFusionToken;
+			sentence.erase(sentence.begin()+i+1);
+			fusions.emplace(i);
+
+			i--;
+		}
+	}
+}
 
 void Viterbi::printLatticeForDebug(std::vector< std::vector<Trio> > & probas)
 {

@@ -154,7 +154,7 @@ int main(int argc, char * argv[])
 		File * target = new File(corrected->getName() + ".layout", "w");
 
 		corrected->rewind();
-		Layout layout(base, corrected);
+		Layout layout(base, corrected, database.fusions);
 		layout.transferLayout(target);
 
 		delete corrected;

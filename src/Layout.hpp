@@ -5,6 +5,8 @@
 #define LAYOUT__H
 
 #include "File.hpp"
+#include <vector>
+#include <set>
 
 /////////////////////////////////////////////////////////////////////////////
 /// \brief Transfers the punctuation from one file to another.
@@ -31,6 +33,7 @@ class Layout
 
 	File * baseText;
 	File * correctedText;
+	std::vector< std::set<unsigned int> > fusions;
 
 	public :
 
@@ -39,9 +42,10 @@ class Layout
 	///
 	/// \param baseText File containing text with syntax.
 	/// \param correctedText File containing text without syntax.
+	/// \param fusions One set per line, index of fused words.
 	///
 	////////////////////////////////////////////////////////////////////////////
-	Layout(File * baseText, File * correctedText);
+	Layout(File * baseText, File * correctedText, std::vector< std::set<unsigned int> > & fusions);
 
 	/////////////////////////////////////////////////////////////////////////////
 	/// \brief Write the contents of correctedText with the syntax of baseText.

@@ -3,171 +3,117 @@
 #include "Lexicon.hpp"
 #include <cstring>
 
-Layout::Layout(File * baseText, File * correctedText)
+Layout::Layout(File * baseText, File * correctedText, std::vector< std::set<unsigned int> > & fusions)
 {
 	this->baseText = baseText;
 	this->correctedText = correctedText;
+	this->fusions = fusions;
 }
 
 void Layout::transferLayout(File * target)
 {
-	auto isNewline = [](char c) {return c == 10 || c == 13;};
 	auto isSpecial = [](const std::string & s)
 	{
 		return s == Lexicon::unknownStr || s == Lexicon::mailStr ||
 			   s == Lexicon::numberStr || s == Lexicon::properNounStr ||
 			   s == Lexicon::dateStr || s == Lexicon::urlStr || s == Lexicon::newSentenceStr;
 	};
-	auto removeDashes = [](std::string & s)
+
+	auto contains = [](const std::string & s, char c)
 	{
-		for (unsigned int i = 0; i < s.size(); i++)
-			if (s[i] == '_')
-			{
-				if (i < s.size()-1)
-					s[i] = ' ';
-				else s.pop_back();
-			}
+		for (char cc : s)
+			if (cc == c)
+				return true;
+
+		return false;
 	};
 
-	std::string wordCorrect, wordIncorrect;
-	char buffer[4096];
-	char read = '\n';
+	bool sentenceBegin;
+	std::string incorrectWord;
+	std::string correctWord;
 
-	bool mustReadWord = true;
-	bool firstWordOfSentence = true;
+	std::vector< std::vector<std::string> > corrected;
+	corrected.emplace_back();
+
+	while (!correctedText->isFinished())
+	{
+		correctWord.clear();
+		sentenceBegin = ignoreSeparators(*correctedText);
+
+		if (correctedText->isFinished())
+			break;
+
+		if (sentenceBegin)
+			corrected.emplace_back();
+
+		readWord(*correctedText, correctWord, sentenceBegin);
+		corrected.back().emplace_back(correctWord);
+	}
+
+	unsigned int line = 0;
+	unsigned int wordIndex = 0;
+
+	bool dropNextWord = false;
+	int incorrectIndex = -1;
+
+	bool correctContainsApostrophe = false;
 	bool incorrectContainsApostrophe = false;
+
+	unsigned int sentenceSize = getNextSentenceSize(*baseText);
 
 	while (!baseText->isFinished())
 	{
-		if (mustReadWord)
+		incorrectWord.clear();
+		sentenceBegin = ignoreAndPrintSeparators(*baseText, *target);
+
+		if (sentenceBegin)
 		{
-			mustReadWord = false;
-			fscanf(correctedText->getDescriptor(), "%s", buffer);
-			if (correctedText->peek() == ' ')
-				correctedText->getChar();
-			wordCorrect = buffer;
+			line++;
+			sentenceSize = getNextSentenceSize(*baseText);
+			wordIndex = 0;
+			incorrectIndex = 0;
+			if (line >= corrected.size())
+				break;
 		}
 
-		bool triggered = true;
+		readWord(*baseText, incorrectWord, sentenceBegin);
+		incorrectIndex++;
 
-		while (triggered)
+		if ((!dropNextWord || (((unsigned int)incorrectIndex) >= sentenceSize-1)) && wordIndex < corrected[line].size())
 		{
-			triggered = false;
+			correctContainsApostrophe = contains(corrected[line][wordIndex], '\'');
+			incorrectContainsApostrophe = contains(incorrectWord, '\'');
 
-			while (isNewline(read) && baseText->peek() == '#')
+			if (incorrectContainsApostrophe && !correctContainsApostrophe)
 			{
-				triggered = true;
-
-				do
+				while (incorrectWord.back() != '\'')
 				{
-					fscanf(baseText->getDescriptor(), "%c", &read);
-					fprintf(target->getDescriptor(), "%c", read);
-				} while (!isNewline(read));
-			}
-
-			while (isNewline(read) && baseText->peek() == '[')
-			{
-				triggered = true;
-
-				do
-				{
-					fscanf(baseText->getDescriptor(), "%c", &read);
-					fprintf(target->getDescriptor(), "%c", read);
-				} while (read != ']');
-
-				do
-				{
-					fscanf(baseText->getDescriptor(), "%c", &read);
-					fprintf(target->getDescriptor(), "%c", read);
-				} while (read != ':' && !isNewline(read));
-			}
-
-			if (triggered)
-			{
-				incorrectContainsApostrophe = false;
-				wordIncorrect.clear();
-			}
-		}
-
-		fscanf(baseText->getDescriptor(), "%c", &read);
-
-		if (isSeparator(read) || (read == '-' && wordIncorrect.empty()))
-		{
-			if (!wordIncorrect.empty())
-			{
-				if (!isSpecial(wordCorrect))
-				{
-					if (firstWordOfSentence)
-						toUpperCase(wordCorrect, 0);
-
-					removeDashes(wordCorrect);
-
-					bool correctContainsApostrophe = false;
-
-					for (char c : wordCorrect)
-						if (c == '\'')
-							correctContainsApostrophe = true;
-
-					if (incorrectContainsApostrophe && !correctContainsApostrophe)
-					{
-						if (wordIncorrect[0] == '\'')
-						{
-							wordCorrect.insert(wordCorrect.begin(), '\'');
-						}
-						else
-						{
-							wordCorrect.push_back('\'');
-
-							if (wordIncorrect.back() != '\'')
-							{
-								if (correctedText->peek() == ' ')
-									correctedText->getChar();
-								while (!isSeparator(correctedText->peek()))
-									wordCorrect.push_back(correctedText->getChar());
-							}
-						}
-					}
-
-					fprintf(target->getDescriptor(), "%s", wordCorrect.c_str());
+					baseText->ungetChar(incorrectWord.back());
+					incorrectWord.pop_back();
 				}
-				else
-				{
-					if (!strncmp(wordIncorrect.c_str(), "http", 4))
-					{
-						wordIncorrect.push_back(read);
-						while (!baseText->isFinished() && !isNewline(baseText->peek()) && baseText->peek() != ' ')
-						{
-							read = baseText->getChar();
-							wordIncorrect.push_back(read);
-						}
-					}
-
-					fprintf(target->getDescriptor(), "%s", wordIncorrect.c_str());
-				}
-
-				firstWordOfSentence = false;
-				mustReadWord = true;
-				incorrectContainsApostrophe = false;
-				wordIncorrect.clear();
+	
+				baseText->ungetChar(incorrectWord.back());
+				incorrectWord.pop_back();
 			}
 
-			fprintf(target->getDescriptor(), "%c", read);
+			correctWord = corrected[line][wordIndex];
+
+			if (isSpecial(correctWord))
+				fprintf(target->getDescriptor(), "%s", incorrectWord.c_str());
+			else
+				fprintf(target->getDescriptor(), "%s", correctWord.c_str());
+
+			if (fusions[line].find(incorrectIndex) != fusions[line].end())
+					dropNextWord = true;
+
+			wordIndex++;
 		}
 		else
 		{
-			if (wordIncorrect.empty() && (read == '\'' || read == '-'))
-			{
-			}
-			else
-			{
-				if (read == '\'')
-					incorrectContainsApostrophe = true;
-				wordIncorrect.push_back(read);
-			}
+			dropNextWord = false;
+			if (wordIndex >= corrected[line].size())
+				fprintf(target->getDescriptor(), "%s", incorrectWord.c_str());
 		}
-
-		if (endSentence(read))
-			firstWordOfSentence = true;
 	}
 }
 
