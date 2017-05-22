@@ -1,0 +1,10 @@
+#Begin tchat1
+[00:11:09] _TC_: Bonjour, je suis _TC_, que puis-je pour vous ? 
+[00:13:24] _CLIENT_: bonjour _TC_ voila depuis samedi j ai changer toute mon instalation live box plus decodeur mais quand on regarde la tv sa s arrete souvent et apres sa repart 
+[00:13:29] _TC_: Merci de me confirmer votre numéro ligne fixe afin que je sois sûr d'avoir le bon dossier. 
+[00:13:58] _CLIENT_: _NUMTEL_ 
+[00:14:48] _TC_: Avez-vous un souci au niveau de la qualité d'image ? 
+[00:16:16] _CLIENT_: oui et du son 
+[00:16:23] _TC_: Utilisez-vous des Liveplugs ? 
+[00:16:34] _CLIENT_: oui 
+[00:16:37] _TC_: Comment avez-vous branché votre tv au décodeur ? Avec un cable péritél ou hdmi ? 

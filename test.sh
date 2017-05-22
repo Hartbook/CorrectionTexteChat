@@ -29,8 +29,6 @@ score='eval/eval.sh'
 #Correction de input.txt
 #./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainBrut.txt.lexicon data/gramsCount/full.grams data/translationTable/full.table input.txt
 
-#./main --correct data/lexicon/brut/trainBrut.txt.lexicon data/lexicon/corrige/trainBrut.txt.lexicon data/gramsCount/void.grams data/translationTable/void.table input.txt
-
 #eval/sclite -r data/corpus/corrige/corpus_devt_corr.txt -h data/corpus/brut/corpus_devt_brut.txt -i wsj
 
 #eval/sclite -r data/corpus/corrige/corpus_devt_corr.txt -h data/output/corpus_devt_brut.txt.corrected.layout -i wsj

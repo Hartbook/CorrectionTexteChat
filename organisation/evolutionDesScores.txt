@@ -60,5 +60,8 @@ Correction : Tout. + On fusionne les mots coupés avant corr.
 
 Correction : Tout. + On fusionne les mots coupés après corr.
 	07.0% Err.
+
+Correction : Sans grams. + On fusionne les mots coupés avant et après corr.
+	06.7% Err.
 -----------------------------------------------------------------------
 

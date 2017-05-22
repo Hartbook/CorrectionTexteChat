@@ -65,6 +65,7 @@ void Viterbi::computeViterbiForRow(std::vector< std::vector<Trio> > & probas, un
 				probas[row-1][line].trad.second, current.trad.second);
 
 //		gram *= gram; // Boost importance of n-grams model
+		gram  = 0.0; // Drop n-gram model for Viterbi
 
 		return previous + gram;
 	};
@@ -95,7 +96,7 @@ void Viterbi::correctSentence(std::vector<unsigned int> & dest, const std::vecto
 	buildLatticeFromSentence(probas, sentence);
 
 	for (auto & p : probas[0])
-		p.proba += gramsCounter.getLogProb(p.trad.second);
+		p.proba += 0.0/*gramsCounter.getLogProb(p.trad.second)*/;
 
 	if (probas.size() == 1)
 	{
@@ -211,8 +212,8 @@ File * Viterbi::correct(std::string inputFilename)
 
 	database.fusions.resize(nbTotal);
 
-//	for (unsigned int i = 0; i < sentences.size(); i++)
-//		fuseCutWords(sentences[i], database.fusions[i]);
+	for (unsigned int i = 0; i < sentences.size(); i++)
+		fuseCutWords(sentences[i], database.fusions[i]);
 
 	Executor<void,void> executor;
 
@@ -337,19 +338,19 @@ void Viterbi::printLatticeForDebug(std::vector< std::vector<Trio> > & probas)
 				const std::string & word = lexicon.getString(probas[i][index].trad.second);
 				float proba = probas[i][index].proba;
 				sprintf(buffer, "%f", proba);
-				printf("<%s>(%s)", word.c_str(), buffer);
+				fprintf(stderr, "<%s>(%s)", word.c_str(), buffer);
 				padding -= lengthPrinted(word) + strlen(buffer) + 4;
 			}
 
 			for (int i = 0; i < padding; i++)
-				printf(" ");
+				fprintf(stderr, " ");
 		}
 
 		index++;
 
-		printf("\n");
+		fprintf(stderr, "\n");
 	}
 
-	printf("\n");
+	fprintf(stderr, "\n");
 }
 
