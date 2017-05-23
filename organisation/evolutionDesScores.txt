@@ -65,3 +65,13 @@ Correction : Sans grams. + On fusionne les mots coupés avant et après corr.
 	06.7% Err.
 -----------------------------------------------------------------------
 
+
+Lexique vient de la Table de Trad et de Germinal, Grams vient de corpus corrigé
+-----------------------------------------------------------------------
+Correction : Sans grams. + On fusionne les mots coupés avant et après corr.
+	06.4% Err.
+
+Correction : Avec grams. + On fusionne les mots coupés avant et après corr.
+	06.3% Err.
+-----------------------------------------------------------------------
+

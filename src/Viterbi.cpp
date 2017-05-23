@@ -64,8 +64,8 @@ void Viterbi::computeViterbiForRow(std::vector< std::vector<Trio> > & probas, un
 			gram = gramsCounter.getLogProb(probas[row-1][line].trad.first,
 				probas[row-1][line].trad.second, current.trad.second);
 
-//		gram *= gram; // Boost importance of n-grams model
-		gram  = 0.0; // Drop n-gram model for Viterbi
+		gram *= gram; // Boost importance of n-grams model
+//		gram  = 0.0; // Drop n-gram model for Viterbi
 
 		return previous + gram;
 	};
@@ -96,7 +96,7 @@ void Viterbi::correctSentence(std::vector<unsigned int> & dest, const std::vecto
 	buildLatticeFromSentence(probas, sentence);
 
 	for (auto & p : probas[0])
-		p.proba += 0.0/*gramsCounter.getLogProb(p.trad.second)*/;
+		p.proba += gramsCounter.getLogProb(p.trad.second);
 
 	if (probas.size() == 1)
 	{
